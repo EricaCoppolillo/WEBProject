@@ -1,0 +1,28 @@
+body {
+	width: 99%; 
+}
+
+#menuBar div {
+	position: relative;
+	height: 80px;
+}
+
+#logo {
+	position: absolute;
+	cursor: pointer;
+	height: 100%;
+}
+
+#whoWeAre, #faq, #map, #assistance, #register, #login, #logout {
+	height: 40px;
+	top: 28px;
+}
+
+#register, #login, #logout {
+	position: relative;
+	top: 20px;
+}
+
+#register {
+	float: right;
+}
