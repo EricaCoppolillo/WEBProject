@@ -22,12 +22,9 @@ public class Login extends HttpServlet {
 		String isAdmin = req.getParameter("admin");
 		
 		if(isAdmin != null && isAdmin.equals("true")) {
-<<<<<<< HEAD
 			req.getSession().setAttribute("amministratoreNonAutenticato", true);
-=======
 //			Amministratore admin = new Amministratore();//poi lo prenderò dal db
 //			req.getSession().setAttribute("amministratore", admin);
->>>>>>> branch 'master' of https://github.com/EricaCoppolillo/WEBProject.git
 			rd = req.getRequestDispatcher("login.jsp");
 		}
 		
