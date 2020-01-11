@@ -18,9 +18,25 @@ body {
 	top: 28px;
 }
 
+#welcomeAdm {
+	position: fixed;
+	height: 40px;
+	font-family: "Tw Cen MT";
+	font-weight: lighter; 
+	font-size: 25px;
+	color: white;
+	background-color: #feac01;
+	border-radius: 0px 0px 22px 22px;
+	top: 0;
+	z-index: 10;
+}
+span {
+	/* vertical-align: sub; */
+}
+
 #register, #login, #logout {
 	position: relative;
-	top: 20px;
+	top: 20px;	
 }
 
 #register {

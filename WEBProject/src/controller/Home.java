@@ -14,6 +14,7 @@ public class Home extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
+		req.getSession().removeAttribute("amministratoreNonAutenticato");
 		rd.forward(req, resp);
 	}
 }

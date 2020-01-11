@@ -54,7 +54,9 @@
 					</a>
 				</c:if>
 				<c:if test="${amministratore != null}">
-					<%-- <p id="welcomeAdm">Benvenuto, Amministratore ${amministratore.id}</p> --%>
+					<label id="welcomeAdm" class="badge badge-pill badge-warning text-wrap">
+					<span> Ciao, ${amministratore.id}</span>
+					</label>
 				</c:if>
 			</c:if>
 			<c:if test="${utente != null}">
@@ -62,14 +64,14 @@
 			</c:if>
 		</div>
 		<div class="col">
-			<c:if test="${utente == null}">
+			<c:if test="${(utente == null) && (amministratore == null)}">
 				<a href="login">
 					<button id="login" class="btn btn-primary">
 						Accedi
 					</button>
 				</a>
 			</c:if>
-			<c:if test="${utente != null}">
+			<c:if test="${(utente != null) || (amministratore != null)}">
 				<a href="login?logout=true">
 					<button id="logout" class="btn btn-primary">
 						Logout

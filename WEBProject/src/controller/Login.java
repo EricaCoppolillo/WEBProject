@@ -22,9 +22,12 @@ public class Login extends HttpServlet {
 		String isAdmin = req.getParameter("admin");
 		
 		if(isAdmin != null && isAdmin.equals("true")) {
-			Amministratore admin = new Amministratore();//poi lo prenderò dal db
-			req.getSession().setAttribute("amministratore", admin);
+			req.getSession().setAttribute("amministratoreNonAutenticato", true);
 			rd = req.getRequestDispatcher("login.jsp");
+		}
+		
+		else if(isAdmin != null && isAdmin.equals("false")) {
+			req.getSession().removeAttribute("amministratoreNonAutenticato");
 		}
 		
 		String logout = req.getParameter("logout");
@@ -64,15 +67,15 @@ public class Login extends HttpServlet {
 		
 		if(isAdmin != null && isAdmin.equals("true")) {
 			String id = req.getParameter("id");
-			Amministratore admin = (Amministratore) req.getSession().getAttribute("amministratore");
-			if(db.amministratoreRegistrato(admin)) {
-				admin.setId(id);
-				admin.setId(password);
+			Amministratore admin = db.getAmministratore(id, password);
+			if(admin != null) {
+				req.getSession().removeAttribute("amministratoreNonAutenticato");
+				req.getSession().setAttribute("amministratore", admin);
 				rd = req.getRequestDispatcher("home.jsp");
 			}
 			else {
-				req.getSession().removeAttribute("amministratore");
-				rd = req.getRequestDispatcher("");
+				req.setAttribute("erroreLogin", true);
+				rd = req.getRequestDispatcher("login.jsp");
 			}
 		}
 		
@@ -84,7 +87,8 @@ public class Login extends HttpServlet {
 				rd = req.getRequestDispatcher("home.jsp");
 			}
 			else {
-				rd = req.getRequestDispatcher("loginError.jsp");
+				req.setAttribute("erroreLogin", true);
+				rd = req.getRequestDispatcher("login.jsp");
 			}
 		}
 		
