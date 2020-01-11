@@ -27,7 +27,11 @@
 			</a>
 		</div>
 		<div id="whoWeAre" class="col">Chi Siamo</div>
-		<div id="faq" class="col">FAQ</div>
+		<div id="faq" class="col">
+			<a href="faq">
+				FAQ
+			</a>
+		</div>
 		<div id="map" class="col">Mappa</div>
 		<div id="assistance" class="col">Assistenza</div>
 <!-- 		<div class="col-sm-2"></div> -->
@@ -48,11 +52,11 @@
          
 		<div class="col">
 			<c:if test="${utente == null}">
-				<c:if test="${amministratore == null}">
+				<%-- <c:if test="${amministratore == null}"> --%>
 					<a href="registration">
 						<button id="register" class="btn btn-outline-secondary">Registrati</button>
 					</a>
-				</c:if>
+				<%-- </c:if> --%>
 				<c:if test="${amministratore != null}">
 					<label id="welcomeAdm" class="badge badge-pill badge-warning text-wrap">
 					<span> Ciao, ${amministratore.id}</span>
