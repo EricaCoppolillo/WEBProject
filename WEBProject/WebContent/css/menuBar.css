@@ -26,3 +26,7 @@ body {
 #register {
 	float: right;
 }
+
+#faq > a {
+	color: inherit;
+}

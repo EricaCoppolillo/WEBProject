@@ -24,7 +24,7 @@
 <body>
 
 	
-	<div id="container"">
+	<div id="container">
 		<div id="divLogo">
 			<a href="home">
 				<img id="logo" src="img/logo2.png">

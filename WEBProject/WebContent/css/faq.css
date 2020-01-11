@@ -1,0 +1,57 @@
+@charset "ISO-8859-1";
+
+div {
+	position: relative;
+}
+
+#title {
+	height: 30vh;
+}
+
+.imageTitle {
+	position: relative;
+	height: 90%;
+	float: right;
+	content: url("../img/doubt.png");
+}
+
+#buttonCenterFaq{
+	/*questo bottone vorrei che fosse al centro del div istanzaDomande e quindi da esso si possa ottenere qualche funzionalità*/
+	position: absolute;
+	/*left: 50%;*/
+	right: 50%;	
+	top: 100%;
+}
+
+.tasti{
+	height: 60px;
+	width:60px;
+}
+
+
+#title{
+	position: relative;
+}
+
+td {
+	cursor: pointer;
+}
+
+#istanzaDomande{
+}
+
+#container{
+	position: relative;
+}
+
+#usbVolante{
+	position: relative;
+	animation: mymove 100s infinite;
+	animation-timing-function: linear;
+	text-align: center;
+}
+
+@keyframes mymove {
+  from {left: 0px;}
+  to {left: 90%;}
+}
