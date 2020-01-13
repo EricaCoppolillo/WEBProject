@@ -3,10 +3,15 @@ package persistence;
 import java.util.ArrayList;
 
 import model.Amministratore;
+import model.Category;
+import model.Product;
 import model.Utente;
-import persistence.DataSource;
 import persistence.dao.AmministratoreDao;
+import persistence.dao.CategoryDao;
+import persistence.dao.ProductDao;
 import persistence.dao.jdbc.AmministratoreDaoJDBC;
+import persistence.dao.jdbc.CategoryDaoJDBC;
+import persistence.dao.jdbc.ProductDaoJDBC;
 
 public class DBManager {
 	
@@ -18,7 +23,7 @@ public class DBManager {
 			Class.forName("org.postgresql.Driver").newInstance();
 			//questi vanno messi in file di configurazione!!!	
 //			dataSource=new DataSource("jdbc:postgresql://52.39.164.176:5432/xx","xx","p@xx");
-			dataSource = new DataSource("jdbc:postgresql://localhost:5432/Progetto","postgres","_cuoricino1999_");
+			dataSource = new DataSource("jdbc:postgresql://localhost:5432/technoworld","postgres","admin");
 		} 
 		catch (Exception e) {
 			System.err.println("PostgresDAOFactory.class: failed to load MySQL JDBC driver\n"+e);
@@ -62,9 +67,30 @@ public class DBManager {
 		return new AmministratoreDaoJDBC(dataSource);
 		
 	}
+
+	public ProductDao getProductDao(){
+		return new ProductDaoJDBC(this.dataSource);
+	}
+
+	public CategoryDao getCategoryDao(){
+		return new CategoryDaoJDBC(this.dataSource);
+	}
+
 	public void stampaUtenti() {
 		for(Utente u : utenti) {
 			System.out.println(u.getUsername() + " " + u.getPassword());
 		}
+	}
+
+	public Category getCategory(int categoryId){
+		return getCategoryDao().findCategory(categoryId);
+	}
+
+	public Product getProduct(int productId){
+		return getProductDao().findProduct(productId);
+	}
+
+	public ArrayList<Product> getProducts(int categoryId){
+		return getProductDao().findProducts(categoryId);
 	}
 }
