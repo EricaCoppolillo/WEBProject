@@ -1,6 +1,8 @@
 package model;
 
-public class Product {
+import java.util.ArrayList;
+
+public abstract class Product {
     private int id;
     private String model;
     private String manufacturer;
@@ -8,8 +10,11 @@ public class Product {
     private String specs;
     private String description;
     private Category category;
+    private int starsAvg;
+    private String imagePath;
+    protected ArrayList<Review> reviews;
 
-    public Product(int id, String model, String manufacturer, float price, String specs, String description, Category category) {
+    public Product(int id, String model, String manufacturer, float price, String specs, String description, Category category, int starsAvg, String imagePath) {
         this.id = id;
         this.model = model;
         this.manufacturer = manufacturer;
@@ -17,6 +22,8 @@ public class Product {
         this.specs = specs;
         this.description = description;
         this.category = category;
+        this.starsAvg = starsAvg;
+        this.imagePath = imagePath;
     }
 
     public String getDescription() {
@@ -73,5 +80,27 @@ public class Product {
 
     public void setSpecs(String specs) {
         this.specs = specs;
+    }
+
+    public int getStarsAvg() {
+        return starsAvg;
+    }
+
+    public void setStarsAvg(int starsAvg) {
+        this.starsAvg = starsAvg;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public abstract ArrayList<Review> getReviews();
+
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
     }
 }

@@ -2,10 +2,7 @@ package persistence;
 
 import java.util.ArrayList;
 
-import model.Amministratore;
-import model.Category;
-import model.Product;
-import model.Utente;
+import model.*;
 import persistence.dao.AmministratoreDao;
 import persistence.dao.CategoryDao;
 import persistence.dao.ProductDao;
@@ -93,4 +90,16 @@ public class DBManager {
 	public ArrayList<Product> getProducts(int categoryId){
 		return getProductDao().findProducts(categoryId);
 	}
+
+	public ArrayList<Product> getProductsByManufacturer(String manufacturer){
+		return getProductDao().findProductsByManufacturer(manufacturer);
+	}
+
+	public ArrayList<Manufacturer> getManufacturers(){ return getProductDao().findManufacturers(); }
+
+	public ArrayList<Product> getProductsByPriceRange(float lowerBound, float upperBound){
+		return getProductDao().findProductsByPriceRange(lowerBound, upperBound);
+	}
+
+	public ArrayList<Review> getLastReviews(int productId){ return getProductDao().findLastReviews(productId); }
 }

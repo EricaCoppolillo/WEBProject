@@ -1,8 +1,11 @@
 package controller;
 
+import model.Category;
+import model.Manufacturer;
 import model.Product;
 import persistence.DBManager;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,20 +17,16 @@ import java.util.ArrayList;
 public class Search extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter out = resp.getWriter();
-        resp.setContentType("text/html");
-        out.println("<html>");
-        out.println("<body>");
-        if(req.getParameter("id") != null) {
-            int categoryId = Integer.parseInt(req.getParameter("id"));
+        if(req.getParameter("category") != null) {
+            int categoryId = Integer.parseInt(req.getParameter("category"));
             ArrayList<Product> products = DBManager.getInstance().getProducts(categoryId);
-            for (Product product : products) {
-                out.println("<p>" + product.getManufacturer() + " " + product.getModel() + "</p>");
-            }
-        } else {
-            out.println("<p>Categoria non valida!</p>");
+            Category category = DBManager.getInstance().getCategory(categoryId);
+            ArrayList<Manufacturer> manufacturers = DBManager.getInstance().getManufacturers();
+            req.setAttribute("category", category);
+            req.setAttribute("products", products);
+            req.setAttribute("manufacturers", manufacturers);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("search.jsp");
+            requestDispatcher.forward(req, resp);
         }
-        out.println("</body>");
-        out.println("</html>");
     }
 }

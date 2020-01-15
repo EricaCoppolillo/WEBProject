@@ -25,12 +25,12 @@ public class CategoryDaoJDBC implements CategoryDao {
 
         try {
             this.connection = this.dataSource.getConnection();
-            String query = "select * from \"categoria\" where id = ?";
+            String query = "select * from \"category\" where id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, categoryId);
             ResultSet result = statement.executeQuery();
             if(result.next()) {
-                category = new Category(categoryId, result.getString(1));
+                category = new Category(categoryId, result.getString(2));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,7 +50,7 @@ public class CategoryDaoJDBC implements CategoryDao {
         ArrayList<Category> categories = new ArrayList<>();
         try {
             this.connection = this.dataSource.getConnection();
-            String query = "select * from \"categoria\"";
+            String query = "select * from \"category\"";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             while(result.next()){
