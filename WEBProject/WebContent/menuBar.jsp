@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,11 +22,9 @@
 <body>
 
 	<div id="menuBar" class="row">
-		<div class="col">
-			<a href="home">
-				<img id="logo" class="thumbnails" src="img/logo.png">
-			</a>
-		</div>
+		<a href="home" class="col">
+		<div id="logo"></div>
+		</a>
 		<div id="whoWeAre" class="col">Chi Siamo</div>
 		<div id="faq" class="col">
 			<a href="faq">

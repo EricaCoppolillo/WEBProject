@@ -8,9 +8,11 @@ body {
 }
 
 #logo {
-	position: absolute;
+	content: url("../img/logo.png");
+	position: relative;
 	cursor: pointer;
-	height: 100%;
+	width: 90px;
+	
 }
 
 #whoWeAre, #faq, #map, #assistance, #register, #login, #logout {
