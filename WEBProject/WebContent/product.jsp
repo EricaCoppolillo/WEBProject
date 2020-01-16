@@ -47,10 +47,11 @@
 			
 			
 	        <div class="card card-outline-secondary my-4">
-	          <div class="card-header">Recensoni</div>
+	          <div class="card-header">Recensioni</div>
 	          <div class="card-body">
 	          	<div id="reviewBox" class="col">
 					<c:forEach var="review" items="${product.reviews}">
+						<h6 id="reviewTitle">${review.title}</h6>
 						<p id="reviewText">${review.body}</p>
 						<small id="author" class="text-muted">Scritta da ${review.author}</small>
 						<hr>
@@ -102,10 +103,12 @@
       
       <div class="bg-modal">
         <div class="modal-content">
+          <div id="title">
           <div class="close">+</div>
-            <h3>Scrivi recensione:</h3>
+            <h3>Scrivi una recensione</h3>
+            </div>
             <div class="form-group">
-              <label for="usr">Nome:</label>
+              <label for="usr">Titolo:</label>
               <input type="text" class="form-control" id="usr">
           </div>
           <div class="form-group">
@@ -122,7 +125,7 @@
               <label for="comment">Commento:</label>
               <textarea class="form-control" rows="5" id="comment"></textarea>
           </div>
-          <a href="#" class="btn btn-success" onclick="stampa()">Invia recensione</a>
+          <button class="btn btn-primary">Invia recensione</button>
         </div>
       </div>
       

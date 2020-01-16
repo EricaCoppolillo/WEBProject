@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+body {
+	position: relative;
+}
 
 .bg-modal {
   width: 100%;
@@ -8,29 +11,60 @@
   position: absolute;
   top: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
   display: none;
 }
 
 .modal-content {
-  width: 500px;
-  height: 430px;
+  width: 45%;
+  height: auto;
   background-color: white;
   border-radius: 4px;
-  text-align: center;
+  text-align: left;
   padding: 20px;
-  position: relative;
+  
+  position:fixed;
+  top: 20%; 
+  left: 48%;
+  transform: translate(-50%, 0);
+  
+}
+
+p {
+	font-size: 14px;
+}
+
+.modal-content h3 {
+	margin-top: 0px;
+}
+
+.modal-content h3 {
+	font-size: 2vw;
+}
+
+.modal-content label, .modal-content button {
+	margin : 10px;
+	font-size: 1vw;
 }
 
 textarea {
 	resize: none;
 }
 
+#comment {
+	margin-bottom: 14px;
+}
+
+#title {
+	position: relative;
+	top: -5px;
+}
+
 .close {
-  position: absolute;
-  top: 0;
-  right: 5px;
+  position: relative;
+  top: -15px;
+  float: right;
+  right: -14px;
   font-size: 30px;
   transform: rotate(45deg);
   cursor: pointer;
