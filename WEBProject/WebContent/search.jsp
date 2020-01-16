@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ include file="menuBar.jsp" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -37,14 +38,14 @@
 			  <!-- The slideshow -->
 			  <div class="carousel-inner">
 			  	<div id="carousel2" class="carousel-item active">
-			      <img id="img2" class="carousel-img" src="img/carousel/smartphone/2.jpg">
+			      <img id="img2" class="carousel-img" src="img/carousel/${fn:toLowerCase(category.name)}/2.jpg">
 			  	</div>
 			    <div id="carousel1" class="carousel-item">
-			      <img class="carousel-img" id="img1" src="img/carousel/smartphone/1.jpg">
+			      <img class="carousel-img" id="img1" src="img/carousel/${fn:toLowerCase(category.name)}/1.jpg">
 			    </div>
 			    
 			    <div id="carousel3" class="carousel-item">
-			      <img class="carousel-img" id="img3" src="img/carousel/smartphone/3.jpg">
+			      <img class="carousel-img" id="img3" src="img/carousel/${fn:toLowerCase(category.name)}/3.jpg">
 				</div>
 				</div>
 			  </div>
