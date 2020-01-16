@@ -9,7 +9,7 @@
 }
 
 .wrunner__division_theme_default.wrunner__division {
-  background-color: lightseagreen;
+  background-color: #0080ff;
 }
 
 .wrunner__divisions_theme_default.wrunner__divisions_direction_horizontal {
@@ -46,7 +46,7 @@
   height: 1.25rem;
   width: 1.25rem;
   border-radius: 40%;
-  background-color: lightseagreen;
+  background-color: #0080ff;
   transition-duration: 0.2s;
   transition-property: transform, background-color, border-radius;
   cursor: pointer;
@@ -55,12 +55,12 @@
 .wrunner__handle_theme_default.wrunner__handle:hover {
   transform: scale(1.1);
   border-radius: 50%;
-  background-color: lightseagreen;
+  background-color: #0073e6;
 }
 .wrunner__handle_theme_default.wrunner__handle:active {
   transform: scale(0.9);
   border-radius: 50%;
-  background-color: #17827d;
+  background-color: #0073e6;
 }
 
 .wrunner__outer_theme_default.wrunner__outer_direction_horizontal {
@@ -109,7 +109,7 @@
 
 .wrunner__pathPassed_theme_default.wrunner__pathPassed {
   position: absolute;
-  background-color: lightseagreen;
+  background-color: #0073e6;
   border-radius: 0.25rem;
 }
 
@@ -136,7 +136,7 @@
   margin-top: -0.25rem;
   left: -0.5rem;
   border: 0.25rem solid transparent;
-  border-right-color: lightseagreen;
+  border-right-color: #0080ff;
 }
 
 .wrunner__valueNote_theme_default.wrunner__valueNote_display_hidden {
@@ -150,11 +150,11 @@
 .wrunner__valueNote_theme_default.wrunner__valueNote {
   position: absolute;
   padding: 0.35rem;
-  background-color: lightseagreen;
+  background-color: #0080ff;
   text-align: center;
   color: #fff;
   font-size: 0.75rem;
-  font-family: lato;
+  font-family: serif;
   font-weight: 900;
   cursor: default;
 }

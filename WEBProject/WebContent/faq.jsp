@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- le cose che devo capire in questa pagina è:
+<!-- le cose che devo capire in questa pagina Ã¨:
 1.il css non funziona e non so perche
 2.va messo qualcosa per abbellimento
 3. devo aggiungere dei bottoni nella "tabella" di sinistra affinche possa cambiare le domande che ho presenti sulla destra nei collapse
@@ -25,7 +25,7 @@
 	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="js/faq.js"></script>
 	
-	<link rel="stylesheet" href="css/faq.css"> <!-- qua non so perchè lo sfondo rimane bianco se io ho incluso dei caratteri di merda buoni -->
+	<link rel="stylesheet" href="css/faq.css"> <!-- qua non so perchÃ¨ lo sfondo rimane bianco se io ho incluso dei caratteri di merda buoni -->
 	<link rel="stylesheet" href="css/CSShake.css">
 </head>
 <body>
@@ -140,7 +140,7 @@
         <!-- Footer -->
         <a id = "usbVolante"><img src="img/usb.png"></a>
 	<footer class="page-footer font-small blue pt-4">
-	  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+	  <div class="footer-copyright text-center py-3">Â© 2020 Copyright:
 	    <a href="https://mdbootstrap.com/education/bootstrap/"> progettoSIW.it</a>
 	  </div>
 	</footer>

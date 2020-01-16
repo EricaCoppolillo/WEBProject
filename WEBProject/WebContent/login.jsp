@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Log-in</title>
 
 
@@ -104,7 +104,7 @@
 	<!-- Footer -->
 	<hr>
 	<footer class="page-footer font-small blue pt-4">
-	  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+	  <div class="footer-copyright text-center py-3">Â© 2020 Copyright:
 	    <a href="https://mdbootstrap.com/education/bootstrap/"> progettoSIW.it</a>
 	  </div>
 	</footer>

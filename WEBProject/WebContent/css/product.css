@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset "UTF-8";
 
 
 .bg-modal {
@@ -15,12 +15,16 @@
 
 .modal-content {
   width: 500px;
-  height: 500px;
+  height: 460px;
   background-color: white;
   border-radius: 4px;
   text-align: center;
   padding: 20px;
   position: relative;
+}
+
+textarea {
+	resize: none;
 }
 
 .close {
@@ -30,4 +34,38 @@
   font-size: 30px;
   transform: rotate(45deg);
   cursor: pointer;
+}
+
+#price2 {
+	color : black;
+	padding-left: 5px;
+}
+
+#priceDiv {
+	margin : 0;
+}
+
+.form-group {
+	margin : 0;
+}
+
+#shipment {
+	padding-top: 1%;
+	color: lightslategray;
+}
+
+#summary {
+	color: black;
+	margin-left: 5px;
+	margin-top: 3px;
+	
+}
+
+#quantity {
+	margin-left: 5px;
+}
+
+#quantityDiv {
+	margin: 0;
+	margin-bottom: 2%;
 }

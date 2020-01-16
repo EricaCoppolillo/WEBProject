@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#carousel1 {
+	background-color: white;
+	text-align: center;
+}
+
+#carousel2 {
+	background-color: white;
+	text-align: left;
+}
+
+#carousel3 {
+	background-color: white;
+	text-align: right;
+}
+
+
+#carouselBox div {
+	height: 50vh; 
+	z-index: 0;
+}
+
+.carousel-img  {
+	height: 100%;
+	z-index: 1;
+}
+
+#pagination {
+	margin: 20 px;	
+}
+	
+

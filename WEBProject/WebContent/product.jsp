@@ -1,10 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="menuBar.jsp" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>Techno World</title>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -65,19 +67,19 @@
 	      <div class="col-lg-3">
 	        <div class="card mt-4">
 	          <div class="card-title">
-	            <p style="color: lightseagreen;"><strong>Riepilogo:</strong></p>
+	            <h3 id="summary"><strong>Riepilogo:</strong></h3>
 	          </div>
 	          <div class="card-text">
 	            <p>${product.manufacturer} ${product.model}</p>
-	            <div class="row card-text" style="margin: 0;">
-	              <h4 style="color: lightseagreen;"><strong>€ ${product.price}</strong></h4>
-	              <h6 style="color: lightslategrey; margin-top: 1%;">&nbsp; + spedizione gratuita</h6>
+	            <div class="row card-text" id="priceDiv">
+	              <h4 id="price2"><strong>€ 999<!--  ${product.price}--></strong></h4>
+	              <h6 id="shipment">&nbsp; + spedizione gratuita</h6>
 	            </div>
 	
 	
 	          </div>
-	          <div class="row" style="margin: 0; margin-bottom: 2%;">
-	            <h6>Quantità:&nbsp; </h6>
+	          <div class="row" id="quantityDiv">
+	            <h6 id="quantity">Quantità:&nbsp; </h6>
 	          
 	            <select id="productQuantity" class="quantity__select" aria-label="Seleziona Quantità:">
 	              <option value="1">1</option>
@@ -106,7 +108,7 @@
               <label for="usr">Nome:</label>
               <input type="text" class="form-control" id="usr">
           </div>
-          <div class="form-group" style="margin: 0;">
+          <div class="form-group">
               <label for="sel1">Valutazione: </label>
               <select class="form-control" id="sel1">
                 <option>1</option>
