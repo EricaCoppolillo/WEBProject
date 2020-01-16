@@ -32,22 +32,16 @@
 			</a>
 		</div>
 		<div id="map" class="col">Mappa</div>
-		<div id="assistance" class="col">Assistenza</div>
-<!-- 		<div class="col-sm-2"></div> -->
-	
+		<div id="assistance" class="col">Assistenza</div>	
 		
-<!-- 		<div class="col-sm-2"> -->
-<!-- 			<form id="search" action=""> -->
-<!-- 	          <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4"> -->
-<!-- 	            <div class="input-group"> -->
-<!-- 	              <input type="search" aria-describedby="searchIcon" class="form-control border-0 bg-light"> -->
-<!-- 	              <div class="input-group-append"> -->
-<!-- 	                <button id="searchIcon" type="submit" class="btn btn-link-dark"><i class="fa fa-search"></i></button> -->
-<!-- 	              </div> -->
-<!-- 	            </div> -->
-<!-- 	          </div> -->
-<!-- 	         </form> -->
-<!--          </div> -->
+		<div class="col">
+	      <div class="d-flex justify-content-center h-100">
+	        <div class="searchbar">
+	          <input class="search_input" type="text" name="" placeholder="Search...">
+	          <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+	        </div>
+	      </div>
+	    </div>
          
 		<div class="col">
 			<c:if test="${(utente == null)}">
