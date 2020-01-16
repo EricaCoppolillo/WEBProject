@@ -19,7 +19,7 @@ public class Registration extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		RequestDispatcher rd = req.getRequestDispatcher("registration.html");
+		RequestDispatcher rd = req.getRequestDispatcher("registration.jsp");
 		rd.forward(req, resp);
 	}
 	

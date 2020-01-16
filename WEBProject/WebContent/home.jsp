@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="menuBar.jsp" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -11,18 +11,12 @@
 
 <title>Home</title>
 	
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="bootstrap/js/jquery-3.4.1.js"></script>
-	<script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-	
+	<%@ include file="include.jsp" %>
 	<link rel="stylesheet" href="css/home.css">
 	
 </head>
 <body>
-
+	<%@ include file="menuBar.jsp" %>
 	<div id="carouselBox" class="row">
 		<div class="col">
 			<div id="demo" class="carousel slide" data-ride="carousel">
@@ -93,7 +87,7 @@
 		<div class="col-sm-12">
 		<div class="smartphoneCategory">
 			<h1>SmartPhone</h1>
-    		<p><a id="smartphoneLink" href="search">Acquista ></a></p>
+    		<p><a id="smartphoneLink" href="search?category=2">Acquista ></a></p>
  	    	<div class="imageSmartphone"></div>
 		</div>
 		</div>
@@ -103,7 +97,7 @@
 		<div class="col-sm-12">
 			<div class="laptopCategory">
 		   		<h1>Laptop</h1>
-		   		<p><a id="laptopLink" href="search">Acquista ></a></p>
+		   		<p><a id="laptopLink" href="search?category=1">Acquista ></a></p>
 			    <div class="imageLaptop"></div>
 			</div>
 	    </div>
@@ -114,7 +108,7 @@
 			<div class="hardwareCategory">
 		    	<div class="imageHardware"></div>
 		    	<h1>Hardware</h1>
-		    	<p><a id="hardwareLink" href="search">Acquista ></a></p>
+		    	<p><a id="hardwareLink" href="search?category=3">Acquista ></a></p>
     		</div>
     	</div>
 	   	
@@ -122,21 +116,12 @@
 			<div class="accessoryCategory">
 		   		<div class="imageAccessory"></div>
 		   		<h1>Accessori</h1>
-		   		<p><a id="accessoryLink" href="search">Acquista ></a></p>
+		   		<p><a id="accessoryLink" href="search?category=4">Acquista ></a></p>
 	   		</div>
 		</div>
 	</div>
-	
-	<hr>
-	
-	<!-- Footer -->
-	<footer class="page-footer font-small blue pt-4">
-	  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-	    <a href="https://mdbootstrap.com/education/bootstrap/"> progettoSIW.it</a>
-	  </div>
-	</footer>
-	<!-- Footer -->
-
+		
+	<%@ include file="footer.jsp" %>
 
 </body>
 </html>

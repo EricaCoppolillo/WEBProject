@@ -6,33 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>FAQ</title>
 
-<!-- le cose che devo capire in questa pagina è:
-1.il css non funziona e non so perche
-2.va messo qualcosa per abbellimento
-3. devo aggiungere dei bottoni nella "tabella" di sinistra affinche possa cambiare le domande che ho presenti sulla destra nei collapse
-4.far funzionare il link che non funziona anche se ho fatto un mapping server ecc.  
-5. controllare se la riga 3 ho fatto bene a metterla o no-->
-
-	<script src="https://www.w3schools.com/lib/w3.js"></script>
-	
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="bootstrap/js/jquery-3.4.1.js"></script>
-	<script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<%@ include file="include.jsp" %>
 	<script src="js/faq.js"></script>
 	
 	<link rel="stylesheet" href="css/faq.css"> <!-- qua non so perchè lo sfondo rimane bianco se io ho incluso dei caratteri di merda buoni -->
 	<link rel="stylesheet" href="css/CSShake.css">
 </head>
 <body>
-<!-- dal momento che si tratta di una pagina jsp statica allora premetto che saro e scrivero solo cose essenziali -->
-	<div w3-include-html="menuBar.jsp"></div>
-	<script>w3.includeHTML();</script>
-	
+	<%@ include file="menuBar.jsp" %>
 
 
 	<div id = "title" class="jumbotron">
@@ -137,14 +120,9 @@
         </div>
          <br>
          <br>
-        <!-- Footer -->
         <a id = "usbVolante"><img src="img/usb.png"></a>
-	<footer class="page-footer font-small blue pt-4">
-	  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-	    <a href="https://mdbootstrap.com/education/bootstrap/"> progettoSIW.it</a>
-	  </div>
-	</footer>
-	<!-- Footer -->
+	
+	<%@ include file="footer.jsp" %>
 
 
 	

@@ -4,15 +4,7 @@
 <meta charset="UTF-8">
 <title>Registrazione</title>
 
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-
-	<script src="bootstrap/js/jquery-3.4.1.js"></script>
-	<script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-	
+	<%@ include file="include.jsp" %>  
 	<link rel="stylesheet" href="css/login.css">
 	
 </head>
@@ -21,7 +13,7 @@
 	<div id="container">
 		<div id="divLogo">
 			<a href="home">
-				<img id="logo" src="img/logo2.png">
+				<img id="logoLogin" src="img/logo2.png">
 			</a>
 		</div>
 		<form method="post" action="registration" class="needs-validation" novalidate>
@@ -93,7 +85,7 @@
 	<!-- Footer -->
 	<hr>
 	<footer class="page-footer font-small blue pt-4">
-	  <div class="footer-copyright text-center py-3">Â© 2020 Copyright:
+	  <div class="footer-copyright text-center py-3">© 2020 Copyright:
 	    <a href="https://mdbootstrap.com/education/bootstrap/"> progettoSIW.it</a>
 	  </div>
 	</footer>

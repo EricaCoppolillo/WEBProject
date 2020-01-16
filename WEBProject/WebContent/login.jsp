@@ -9,25 +9,17 @@
 <meta charset="UTF-8">
 <title>Log-in</title>
 
-
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+	<%@ include file="include.jsp" %>
 	<script type="text/javascript" src="js/login.js"></script>
-	<script src="bootstrap/js/jquery-3.4.1.js"></script>
-	<script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-	
 	<link rel="stylesheet" href="css/login.css">
+	
 </head>
 <body>
 
-	
 	<div id="container">
 		<div id="divLogo">
 			<a href="home">
-				<img id="logo" src="img/logo2.png">
+				<img id="logoLogin" src="img/logo2.png">
 			</a>
 		</div>
 		
@@ -101,16 +93,7 @@
 		</form>
 	</div>
 	
-	<!-- Footer -->
-	<hr>
-	<footer class="page-footer font-small blue pt-4">
-	  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-	    <a href="https://mdbootstrap.com/education/bootstrap/"> progettoSIW.it</a>
-	  </div>
-	</footer>
-	<!-- Footer -->
-	
-	
+	<%@ include file="footer.jsp" %>
 
 </body>
 </html>
