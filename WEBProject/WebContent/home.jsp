@@ -93,7 +93,7 @@
 		<div class="col-sm-12">
 		<div class="smartphoneCategory">
 			<h1>SmartPhone</h1>
-    		<p><a href="...html">Acquista ></a></p>
+    		<p><a id="smartphoneLink" href="search">Acquista ></a></p>
  	    	<div class="imageSmartphone"></div>
 		</div>
 		</div>
@@ -103,7 +103,7 @@
 		<div class="col-sm-12">
 			<div class="laptopCategory">
 		   		<h1>Laptop</h1>
-		   		<p><a href="...html">Acquista ></a></p>
+		   		<p><a id="laptopLink" href="search">Acquista ></a></p>
 			    <div class="imageLaptop"></div>
 			</div>
 	    </div>
@@ -114,7 +114,7 @@
 			<div class="hardwareCategory">
 		    	<div class="imageHardware"></div>
 		    	<h1>Hardware</h1>
-		    	<p><a href="...html">Acquista ></a></p>
+		    	<p><a id="hardwareLink" href="search">Acquista ></a></p>
     		</div>
     	</div>
 	   	
@@ -122,7 +122,7 @@
 			<div class="accessoryCategory">
 		   		<div class="imageAccessory"></div>
 		   		<h1>Accessori</h1>
-		   		<p><a href="...html">Acquista ></a></p>
+		   		<p><a id="accessoryLink" href="search">Acquista ></a></p>
 	   		</div>
 		</div>
 	</div>
@@ -131,7 +131,7 @@
 	
 	<!-- Footer -->
 	<footer class="page-footer font-small blue pt-4">
-	  <div class="footer-copyright text-center py-3">Â© 2020 Copyright:
+	  <div class="footer-copyright text-center py-3">© 2020 Copyright:
 	    <a href="https://mdbootstrap.com/education/bootstrap/"> progettoSIW.it</a>
 	  </div>
 	</footer>

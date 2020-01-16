@@ -74,7 +74,7 @@
 
 .smartphoneCategory {
 	background-color: white;
-	color: brown;
+	color: #942525;
 }
 
 .laptopCategory {
@@ -141,7 +141,6 @@ div.imageSmartphone {
 	transform: translate(-50%, -50%); 
 	-ms-transform: translate(-50%, -50%);
 	z-index: -1;
-	 
 } 
 
 div.imageLaptop {
@@ -182,6 +181,20 @@ div.imageAccessory {
 	-ms-transform: translate(-50%, -50%); 
 	z-index: -1;
 }
+
+#accessoryLink, #laptopLink {
+	color: white;
+}
+
+#smartphoneLink {
+	color: brown;
+}
+
+#hardwareLink {
+	color: #014ac5;
+}
+
+
 	
 /* // FINE CATEGORIE */
 
