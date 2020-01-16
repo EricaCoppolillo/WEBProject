@@ -1,23 +1,31 @@
 @charset "UTF-8";
 
-#carousel1 {
-	background-color: white;
-	text-align: center;
+img{
+	position : relative;
 }
 
-#carousel2 {
+.carousel-item {
 	background-color: white;
-	text-align: left;
 }
 
-#carousel3 {
-	background-color: white;
-	text-align: right;
+#carousel2{
+	text-align: center;	
+}
+
+#img3 {
+	float : right;	
 }
 
 
-#carouselBox div {
-	height: 50vh; 
+
+#img1{
+	float: left;
+}
+
+
+
+#carouselBoxSearch div {
+	height: 25vh; 
 	z-index: 0;
 }
 
@@ -29,5 +37,6 @@
 #pagination {
 	margin: 20 px;	
 }
-	
+
+
 

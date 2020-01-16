@@ -12,6 +12,7 @@
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/home.css">
 
         <!-- link per lo slider a 2 cursori -->
         <link rel="stylesheet" href="css/wrunner-default-theme.css">
@@ -23,7 +24,7 @@
 
         
 
-        <div id="carouselBox" class="row">
+        <div id="carouselBoxSearch" class="row">
 		<div class="col">
 			<div id="demo" class="carousel slide" data-ride="carousel">
 		  		<!-- Indicators -->
@@ -35,14 +36,15 @@
 			
 			  <!-- The slideshow -->
 			  <div class="carousel-inner">
+			  	<div id="carousel2" class="carousel-item active">
+			      <img id="img2" class="carousel-img" src="img/carousel/smartphone/2.jpg">
+			  	</div>
 			    <div id="carousel1" class="carousel-item">
-			      <img class="carousel-img" src="img/carousel/smartphone/2.jpg">
+			      <img class="carousel-img" id="img1" src="img/carousel/smartphone/1.jpg">
 			    </div>
-			    <div id="carousel2" class="carousel-item active">
-			      <img id="carouselImg2" class="carousel-img" src="img/carousel/smartphone/1.jpg">
-				  </div>
+			    
 			    <div id="carousel3" class="carousel-item">
-			      <img class="carousel-img" src="img/carousel/smartphone/3.jpg">
+			      <img class="carousel-img" id="img3" src="img/carousel/smartphone/3.jpg">
 				</div>
 				</div>
 			  </div>
@@ -60,9 +62,9 @@
 
 
 
-        <div class="jumbotron text-center">
-            <h1>TechnoWorld</h1>
-            <h3>${category.name} in vendita</h3>
+        <div class="jumbotron text-center" id="jumb">
+            <h1>${category.name}</h1>
+            <h3>in vendita</h3>
         </div>
 
 
@@ -101,7 +103,7 @@
                                 <div id="brandCollapse" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <c:forEach var="manufacturer" items="${manufacturers}">
-                                            <a class="list-group-item d-flex justify-content-between align-items-center">${manufacturer.name}<span class="badge badge-primary badge-pill">${manufacturer.products}</span></a>
+                                            <a href="#" class="list-group-item d-flex justify-content-between align-items-center">${manufacturer.name}<span class="badge badge-primary badge-pill">${manufacturer.products}</span></a>
                                         </c:forEach>
                                     </div>
                                 </div>

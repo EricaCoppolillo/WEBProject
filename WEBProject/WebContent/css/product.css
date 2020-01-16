@@ -15,7 +15,7 @@
 
 .modal-content {
   width: 500px;
-  height: 460px;
+  height: 430px;
   background-color: white;
   border-radius: 4px;
   text-align: center;
@@ -68,4 +68,9 @@ textarea {
 #quantityDiv {
 	margin: 0;
 	margin-bottom: 2%;
+}
+
+#addToCart {
+	background-color: #feac01;
+	color: white;
 }

@@ -58,7 +58,7 @@
 		         </div>
 		         <a href="#" onclick="#">Altre recensioni...</a>
 		         <hr>
-		         <a href="#" class="btn btn-success" id="writeReview">Scrivi una recensione</a>
+		         <a href="#" class="btn btn-primary" id="writeReview">Scrivi una recensione</a>
 	          </div>
 	        </div>
 	      </div>
@@ -90,7 +90,7 @@
 	            </select>
 	          </div>
 	          
-	          <button type="button" class="btn btn-success">Aggiungi al carrello</button>
+	          <button type="button" id="addToCart" class="btn">Aggiungi al carrello</button>
 	
 	        </div>
 	      </div> <!-- lg-3 -->
