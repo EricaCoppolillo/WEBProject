@@ -87,19 +87,21 @@ public class DBManager {
 		return getProductDao().findProduct(productId);
 	}
 
-	public ArrayList<Product> getProducts(int categoryId){
-		return getProductDao().findProducts(categoryId);
+	public ArrayList<Product> getProducts(int start, int end, int categoryId){
+		return getProductDao().findProducts(start, end, categoryId);
 	}
 
-	public ArrayList<Product> getProductsByManufacturer(String manufacturer){
-		return getProductDao().findProductsByManufacturer(manufacturer);
+	public ArrayList<Product> getProductsByManufacturer(int start, int end, String manufacturer){
+		return getProductDao().findProductsByManufacturer(start, end, manufacturer);
 	}
 
 	public ArrayList<Manufacturer> getManufacturers(){ return getProductDao().findManufacturers(); }
 
-	public ArrayList<Product> getProductsByPriceRange(float lowerBound, float upperBound){
-		return getProductDao().findProductsByPriceRange(lowerBound, upperBound);
+	public ArrayList<Product> getProductsByPriceRange(int start, int end, float lowerBound, float upperBound){
+		return getProductDao().findProductsByPriceRange(start, end, lowerBound, upperBound);
 	}
 
 	public ArrayList<Review> getLastReviews(int productId){ return getProductDao().findLastReviews(productId); }
+
+	public int getProductsCount(){ return getProductDao().findProductsNumber(); }
 }
