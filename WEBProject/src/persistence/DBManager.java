@@ -87,21 +87,29 @@ public class DBManager {
 		return getProductDao().findProduct(productId);
 	}
 
-	public ArrayList<Product> getProducts(int start, int end, int categoryId){
-		return getProductDao().findProducts(start, end, categoryId);
+	public ArrayList<Product> getProducts(int categoryId, int page){
+		return getProductDao().findProducts(categoryId, page);
 	}
 
-	public ArrayList<Product> getProductsByManufacturer(int start, int end, String manufacturer){
-		return getProductDao().findProductsByManufacturer(start, end, manufacturer);
+	public ArrayList<Product> getProductsByManufacturer(String manufacturer, int categoryId, int page){
+		return getProductDao().findProductsByManufacturer(manufacturer, categoryId, page);
 	}
 
 	public ArrayList<Manufacturer> getManufacturers(){ return getProductDao().findManufacturers(); }
 
-	public ArrayList<Product> getProductsByPriceRange(int start, int end, float lowerBound, float upperBound){
-		return getProductDao().findProductsByPriceRange(start, end, lowerBound, upperBound);
+	public ArrayList<Product> getProductsByPriceRange(float lowerBound, float upperBound, int categoryId, int page){
+		return getProductDao().findProductsByPriceRange(lowerBound, upperBound, categoryId, page);
 	}
 
 	public ArrayList<Review> getLastReviews(int productId){ return getProductDao().findLastReviews(productId); }
 
 	public int getProductsCount(){ return getProductDao().findProductsNumber(); }
+
+	public int getProductsCountInAPriceRange(float lowerBound, float upperBound, int categoryId){
+		return getProductDao().findProductsNumberInAPriceRange(lowerBound, upperBound, categoryId);
+	}
+
+	public int getProductsCountByAManufacturer(String manufacturer, int categoryId){
+		return getProductDao().findProductsNumberByAManufacturer(manufacturer, categoryId);
+	}
 }

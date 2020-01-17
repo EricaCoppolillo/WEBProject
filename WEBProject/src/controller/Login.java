@@ -22,26 +22,27 @@ public class Login extends HttpServlet {
 		String isAdmin = req.getParameter("admin");
 		
 		if(isAdmin != null && isAdmin.equals("true")) {
-			req.getSession().setAttribute("amministratoreNonAutenticato", true);
+			req.getSession().setAttribute("adminNotAuthenticated", true);
 //			Amministratore admin = new Amministratore();//poi lo prenderò dal db
 //			req.getSession().setAttribute("amministratore", admin);
 			rd = req.getRequestDispatcher("login.jsp");
 		}
 		
 		else if(isAdmin != null && isAdmin.equals("false")) {
-			req.getSession().removeAttribute("amministratoreNonAutenticato");
+			req.getSession().removeAttribute("adminNotAuthenticated");
 		}
 		
 		String logout = req.getParameter("logout");
-		Object o1 = req.getSession().getAttribute("utente");
-		Object o2 = req.getSession().getAttribute("amministratore");
+		Object o1 = req.getSession().getAttribute("user");
+		Object o2 = req.getSession().getAttribute("administrator");
 		
 		if(logout != null && logout.equals("true")) {
 			
+			req.getSession().removeAttribute("firstLogin");
 			if(o1 != null)
-				req.getSession().removeAttribute("utente");
+				req.getSession().removeAttribute("user");
 			else if(o2 != null) 
-				req.getSession().removeAttribute("amministratore");
+				req.getSession().removeAttribute("administrator");
 			
 			rd = req.getRequestDispatcher("home.jsp");
 		}
@@ -70,12 +71,13 @@ public class Login extends HttpServlet {
 			String id = req.getParameter("id");
 			Administrator admin = db.getAdministrator(id, password);
 			if(admin != null) {
-				req.getSession().removeAttribute("amministratoreNonAutenticato");
-				req.getSession().setAttribute("amministratore", admin);
+				req.getSession().removeAttribute("adminNotAuthenticated");
+				req.getSession().setAttribute("administrator", admin);
+				req.getSession().setAttribute("firstLogin", true);
 				rd = req.getRequestDispatcher("home.jsp");
 			}
 			else {
-				req.setAttribute("erroreLogin", true);
+				req.setAttribute("loginError", true);
 				rd = req.getRequestDispatcher("login.jsp");
 			}
 		}
@@ -84,11 +86,12 @@ public class Login extends HttpServlet {
 			String username = req.getParameter("username");
 			User user = new User(username, password);
 			if(db.userRegistered(user)) {
-				req.getSession().setAttribute("utente", user);
+				req.getSession().setAttribute("user", user);
+				req.getSession().setAttribute("firstLogin", true);
 				rd = req.getRequestDispatcher("home.jsp");
 			}
 			else {
-				req.setAttribute("erroreLogin", true);
+				req.setAttribute("loginError", true);
 				rd = req.getRequestDispatcher("login.jsp");
 			}
 		}
