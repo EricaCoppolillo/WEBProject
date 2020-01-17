@@ -37,11 +37,11 @@
                             </thead>
                             <tbody>
                             <!-- questi dovrebbero essere delle specie di bottoni in cui in pratica cliccando si caricano i corretti collapse (non so se si possa fare) -->
-                                <tr><td id = "Registrazione" onclick="creaDomandeRegistrazione()">Registrazione e Accesso</td></tr>
-                                <tr><td id = "GestioneProfilo" onclick="creaDomandeGestioneProfilo()">Gestione profilo</td></tr>
-                                <tr><td id = "Acquisti" onclick="creaDomandeAcquisti()">Acquisti</td></tr>
-                                <tr><td id = "Spedizioni" onclick = "creaDomandeSpedizioni()">Informazioni sulle spedizioni</td></tr>
-                                <tr><td id = "ResiRimborsi" onclick = "creaDomandeResiRimborsi()">Resi e rimborsi</td></tr>
+                                <tr><td id = "Registrazione" onclick="createQuestionsRegistrazione()">Registrazione e Accesso</td></tr>
+                                <tr><td id = "GestioneProfilo" onclick="createQuestionsGestioneProfilo()">Gestione profilo</td></tr>
+                                <tr><td id = "Acquisti" onclick="createQuestionsAcquisti()">Acquisti</td></tr>
+                                <tr><td id = "Spedizioni" onclick = "createQuestionsSpedizioni()">Informazioni sulle spedizioni</td></tr>
+                                <tr><td id = "ResiRimborsi" onclick = "createQuestionsResiRimborsi()">Resi e rimborsi</td></tr>
                             </tbody>
                     </table>
                 </div>
@@ -113,7 +113,7 @@
             	</tr>
             	</table>
             		<br>
-                	<button onclick="creaDomandeRegistrazione()" id = "buttonCenterFaq" type="button" class="btn btn-secondary">Inizia</button>
+                	<button onclick="createQuestionsRegistrazione()" id = "buttonCenterFaq" type="button" class="btn btn-secondary">Inizia</button>
                 	
                 </div>
             </div>

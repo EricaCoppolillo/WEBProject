@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+#leftRowInsertProduct{
+
+}
+
+#rightRowInsertProduct{
+	
+}
+
+div {
+	position: relative;
+}
+
+div.photoCameraInsertProduct{
+	position: relative;
+	content: url("../img/camera.jpg");
+	max-width: 50%;	
+	cursor: pointer;
+}
+
+#rowSubmitInsertProduct{
+	position: relative;
+	left: 50%;
+}
