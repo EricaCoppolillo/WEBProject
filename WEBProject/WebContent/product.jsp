@@ -54,7 +54,7 @@
 		         </div>
 		         <a href="#" onclick="#">Altre recensioni...</a>
 		         <hr>
-		         <a href="#" class="btn btn-primary" id="writeReview">Scrivi una recensione</a>
+		         <button class="btn btn-primary" id="writeReview">Scrivi una recensione</button>
 	          </div>
 	        </div>
 	      </div>

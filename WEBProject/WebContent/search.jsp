@@ -12,6 +12,7 @@
 
         <!-- link per lo slider a 2 cursori -->
         <link rel="stylesheet" href="css/wrunner-default-theme.css">
+        <script src="js/search.js"></script>
 </head>
 <body>
 
@@ -160,26 +161,23 @@
 	
 	<div id="paginationDiv">
 		<ul class="pagination justify-content-center" id="pagination">
-	            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-	            <c:forEach var="pages" items="${}" varStatus="loop">
-	            	<li class="page-item"><a class="page-link" href="#">${loop.index}</a></li>
+	            <li class="page-item"><a class="page-link" id="previous" onclick="changePage(false,${actual},${fn:length(pages)})">Precedente</a></li>
+	            <c:forEach var="pages" items="${pages}" varStatus="loop">
+	            <c:choose>	
+	            	<c:when test="${loop.index < 1}">
+    					<li class="page-item active" id="page${loop.index + 1}"><a class="page-link">${loop.index + 1}</a></li>
+  					</c:when>
+  					<c:otherwise>
+  						<li class="page-item" id="page${loop.index + 1}"><a class="page-link">${loop.index + 1}</a></li>
+  					</c:otherwise>
+  				</c:choose>
 	            </c:forEach>
+	            	<li class="page-item" id="page2"><a class="page-link">2</a></li>
+	            <li class="page-item"><a class="page-link" id="next" onclick="changePage(true,${actual},${fn:length(pages)})">Successiva</a>
 	            
-	            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-	            <li class="page-item"><a class="page-link" href="#">3</a></li>
-	            <li class="page-item"><a class="page-link" href="#">Next</a></li>
 	    </ul>
     </div>
 
-   <!--  <footer>
-        <ul class="pagination justify-content-center" id="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </footer> -->
     
     <%@ include file="footer.jsp" %>
     

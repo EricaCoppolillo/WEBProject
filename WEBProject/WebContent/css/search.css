@@ -43,6 +43,10 @@ img{
 	margin-top:10vh;
 }
 
+.page-item {
+	cursor : pointer;
+}
+
 
 
 
