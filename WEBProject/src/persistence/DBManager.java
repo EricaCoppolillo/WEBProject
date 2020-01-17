@@ -3,17 +3,17 @@ package persistence;
 import java.util.ArrayList;
 
 import model.*;
-import persistence.dao.AmministratoreDao;
+import persistence.dao.AdministratorDao;
 import persistence.dao.CategoryDao;
 import persistence.dao.ProductDao;
-import persistence.dao.jdbc.AmministratoreDaoJDBC;
+import persistence.dao.jdbc.AdministratorDaoJDBC;
 import persistence.dao.jdbc.CategoryDaoJDBC;
 import persistence.dao.jdbc.ProductDaoJDBC;
 
 public class DBManager {
 	
 	private static DBManager instance;
-	private static  DataSource dataSource;
+	private static DataSource dataSource;
 	
 	static {
 		try {
@@ -28,12 +28,12 @@ public class DBManager {
 		}
 	}
 	
-	private ArrayList<Utente> utenti;
-	private ArrayList<Amministratore> amministratori;
+	private ArrayList<User> users;
+	private ArrayList<Administrator> administrators;
 	
 	private DBManager() {
-		utenti = new ArrayList<Utente>();
-		amministratori = new ArrayList<Amministratore>();
+		users = new ArrayList<User>();
+		administrators = new ArrayList<Administrator>();
 	}
 	
 	public static DBManager getInstance() {
@@ -43,25 +43,25 @@ public class DBManager {
 		return instance;
 	} 
 	
-	public void registraUtente(Utente u) {
+	public void registerUser(User u) {
 		if(u!=null)
-			utenti.add(u);
+			users.add(u);
 	}
 	
-	public boolean utenteRegistrato(Utente utente) {
-		for(Utente u : utenti) {
-			if(utente.getUsername().equals(u.getUsername()) && utente.getPassword().equals(u.getPassword()))
+	public boolean userRegistered(User user) {
+		for(User u : users) {
+			if(user.getUsername().equals(u.getUsername()) && user.getPassword().equals(u.getPassword()))
 				return true;
 		}
 		return false;
 	}
 	
-	public Amministratore getAmministratore(String id, String password) {
-		return getAmministratoreDao().findAdmin(id, password);
+	public Administrator getAdministrator(String id, String password) {
+		return getAdministratorDao().findAdmin(id, password);
 	}
 	
-	public AmministratoreDao getAmministratoreDao() {
-		return new AmministratoreDaoJDBC(dataSource);
+	public AdministratorDao getAdministratorDao() {
+		return new AdministratorDaoJDBC(dataSource);
 		
 	}
 
@@ -73,8 +73,8 @@ public class DBManager {
 		return new CategoryDaoJDBC(this.dataSource);
 	}
 
-	public void stampaUtenti() {
-		for(Utente u : utenti) {
+	public void printUsers() {
+		for(User u : users) {
 			System.out.println(u.getUsername() + " " + u.getPassword());
 		}
 	}

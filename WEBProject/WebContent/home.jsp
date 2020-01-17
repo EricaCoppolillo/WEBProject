@@ -12,7 +12,7 @@
 <title>Home</title>
 	
 	<%@ include file="include.jsp" %>
-	<link rel="stylesheet" href="css/home.css">
+		<link rel="stylesheet" href="css/home.css">
 	
 </head>
 <body>
