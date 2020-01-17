@@ -10,3 +10,5 @@ var setting = {
                 limits : {     minLimit: 0,      maxLimit: 1000   },
                }
  var slider = wRunner(setting);
+
+

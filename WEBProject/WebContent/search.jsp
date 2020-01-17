@@ -91,7 +91,7 @@
                     <div id="accordion">
                         <div class="card">
                             <div class="card-header">
-                                <a class="card-link" data-toggle="collapse" href="#brandCollapse">Brand: </a>
+                                <a class="card-link" data-toggle="collapse" href="#brandCollapse">Brand </a>
                             </div>
                             <div id="brandCollapse" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
@@ -157,6 +157,19 @@
         </div><!-- row -->
     </div> <!--container-->
 
+	
+	<div id="paginationDiv">
+		<ul class="pagination justify-content-center" id="pagination">
+	            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+	            <c:forEach var="pages" items="${}" varStatus="loop">
+	            	<li class="page-item"><a class="page-link" href="#">${loop.index}</a></li>
+	            </c:forEach>
+	            
+	            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+	            <li class="page-item"><a class="page-link" href="#">3</a></li>
+	            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+	    </ul>
+    </div>
 
    <!--  <footer>
         <ul class="pagination justify-content-center" id="pagination">
