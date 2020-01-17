@@ -14,9 +14,13 @@ public class Home extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
-		Object admin = req.getSession().getAttribute("amministratoreNonAutenticato");
+		Object admin = req.getSession().getAttribute("adminNotAuthenticated");
+		Object firstLogin = req.getSession().getAttribute("firstLogin");
 		if(admin != null && admin.equals(true)) {
-			req.getSession().removeAttribute("amministratoreNonAutenticato");
+			req.getSession().removeAttribute("adminNotAuthenticated");
+		}
+		if(firstLogin != null && firstLogin.equals(true)) {
+			req.getSession().removeAttribute("firstLogin");
 		}
 		rd.forward(req, resp);
 	}
