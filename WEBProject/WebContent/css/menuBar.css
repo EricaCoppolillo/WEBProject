@@ -22,6 +22,7 @@ body {
 }
 
 .searchbar {
+	position: relative;
     margin-bottom: auto;
     margin-top: auto;
     height: 60px;
@@ -30,9 +31,6 @@ body {
     padding: 10px;
 }
 
-.searchbar:hover {
-    width: 300px;
-}
 
 .search_input {
     color: black;
@@ -47,7 +45,7 @@ body {
 
 .searchbar:hover > .search_input{
     padding: 0 10px;
-    width: 80%;
+    width: 20vh;
     transition: width 0.4s linear;
 }
 
@@ -58,8 +56,9 @@ body {
 }
 
 .search_icon {
+	position: relative;
 	height: 40px;
-    width: 40px;
+	width: 40px;
     float: right;
     display: flex;
     justify-content: center;
@@ -77,6 +76,31 @@ body {
 	background-color: #0080ff;
 	color: white;
 	font-weight: lighter;
+}
+
+#modal {
+	position: absolute;
+}
+
+.modal-title {
+	font-size: 2vw;
+	font-weight: lighter;
+}
+
+.modal-body {
+	font-weight: lighter;
+	font-size: 1vw;
+}
+
+.modal-dialog {
+	float: right;
+	width: 20%;
+	right: 12vh;
+}
+
+.modal-content {
+	background-color: #208fff;
+	color: white;
 }
 
 #buttonAddProduct {

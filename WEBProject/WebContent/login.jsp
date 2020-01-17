@@ -23,7 +23,7 @@
 			</a>
 		</div>
 		
-		<c:if test="${erroreLogin != null}">
+		<c:if test="${loginError != null}">
 		<div class="alert alert-danger alert-dismissible fade show">
 	    	<div>
 	    		<i class="fa fa-exclamation-triangle"></i>
@@ -33,25 +33,25 @@
 	    </div>
 	    </c:if>
 	    
-		<form method="post" <c:if test="${amministratoreNonAutenticato == null}"> action="login" </c:if> <c:if test="${amministratoreNonAutenticato != null}"> action="login?admin=true" </c:if> class="needs-validation" novalidate>
+		<form method="post" <c:if test="${adminNotAuthenticated == null}"> action="login" </c:if> <c:if test="${adminNotAuthenticated != null}"> action="login?admin=true" </c:if> class="needs-validation" novalidate>
 		  <div class="form-group">
-		 	 <c:if test="${amministratoreNonAutenticato == null}">
+		 	 <c:if test="${adminNotAuthenticated == null}">
 		    	<label for="uname">Inserisci il tuo Username</label>
 		    	<a class="adminLogin" href="login?admin=true">
 			  		Sei un amministratore?
 			  	</a>
 			</c:if>
-			<c:if test="${amministratoreNonAutenticato != null}">
+			<c:if test="${adminNotAuthenticated != null}">
 				<label for="uname">Inserisci il tuo ID</label>
 				<a class="adminLogin" href="login?admin=false">
 			  		Non sei un amministratore?
 			  	</a>
 			</c:if>
-			<c:if test="${amministratoreNonAutenticato == null}">
+			<c:if test="${adminNotAuthenticated == null}">
 		    	<input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
 		    	<div class="valid-feedback">Username valido.</div>
 		    </c:if>
-		    <c:if test="${amministratoreNonAutenticato != null}">
+		    <c:if test="${adminNotAuthenticated != null}">
 		    	<input type="text" class="form-control" id="id" placeholder="ID" name="id" required>
 		    	<div class="valid-feedback">ID valido.</div>
 		    </c:if>
@@ -61,7 +61,7 @@
 		  
 		  <div class="form-group">
 		    <label class="insert" for="pwd">Inserisci la tua Password</label>
-		   	<c:if test="${amministratoreNonAutenticato == null}">
+		   	<c:if test="${adminNotAuthenticated == null}">
 		   		<a class="forgottenPassword" href="...passwordDimenticata">
 		  			Password dimenticata?
 		  		</a>
@@ -79,7 +79,7 @@
 <!-- 		    </label> -->
 <!-- 		  </div> -->
 
-		  <c:if test="${amministratoreNonAutenticato == null}">
+		  <c:if test="${adminNotAuthenticated == null}">
 			  <div class="registration">
 			  	Non hai ancora un account? 
 			  	<a href="registration">
