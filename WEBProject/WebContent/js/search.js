@@ -11,22 +11,23 @@ $(document).ready(function(){
 
 
 function createProduct(id, img, manufacturer, model, price, description, starsAvg){
-	$("#productBox").append("<div class=\"col-lg-4 col-md-6 mb-4\">");
-    $(".col-lg-4").append("<div id=\"card\" class=\"card h-100\">");
-    $("#card").append("<a href=\"product?id="+id+"\"><img class=\"card-img-top img-thumbnail\" src=img/products/"+img+" alt=\"\"></a>");
-    $("#card").append("<div id=\"card-body\" class=\"card-body\">");
-    $("#card-body").append("<h4 class=\"card-title\"><a href=\"product?id="+id+"\">"+manufacturer+" "+model+"</a></h4><h5>"+price+"€</h5><p class=\"card-text\">"+description+"</p>");
-    $("#card-body").append("<div class=\"card-footer\"><small id=\"stars\" class=\"text-muted\"></small></div>");
+	$("#productBox").append("<div id=product"+id+" class=\"col-lg-4 col-md-6 mb-4\">");
+	var sel = "#product"+id;
+    $(sel).append("<div id=\"card"+id+"\" class=\"card h-100\">");
+    $("#card"+id).append("<a href=\"product?id="+id+"\"><img class=\"card-img-top img-thumbnail\" src=img/products/"+img+" alt=\"\"></a>");
+    $("#card"+id).append("<div id=\"card-body"+id+"\" class=\"card-body\">");
+    $("#card-body"+id).append("<h4 class=\"card-title\"><a href=\"product?id="+id+"\">"+manufacturer+" "+model+"</a></h4><h5>"+price+"€</h5><p class=\"card-text\">"+description+"</p>");
+    $("#card-body"+id).append("<div class=\"card-footer\"><small id=\"stars"+id+"\" class=\"text-muted\"></small></div>");
    
     for(var i = 1; i<=5; i++){
         if(i<=starsAvg){
-        	$("#stars").html($("#stars").html()+"&#9733;");
+        	$("#stars"+id).html($("#stars"+id).html()+"&#9733;");
         }
         else {
-        	$("#stars").html($("#stars").html()+"&#9734;");
+        	$("#stars"+id).html($("#stars"+id).html()+"&#9734;");
         }
     }
-    $("#stars").css("margin-left", "0");
+    $("#stars"+id).css("margin-left", "0");
 	
 	
 	
@@ -49,9 +50,9 @@ function goToPage(page){
 		$(actualA).addClass("active");
 		
 		$("#productBox").html("");
-		$.get("searchjson?p="+page, function(responseJson) {         
+		$.get("searchjson?category=2&p="+page, function(responseJson) {         
 		    $.each(responseJson, function(index, product) { 
-		       createProduct(product.id, product.img, product.manufacturer, product.model, product.price, product.description, product.stars);
+		       createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
 		    });
 		});
 	} 
@@ -93,8 +94,15 @@ function changePage(next, totalPages) {
 		}
 	}
 	actualPage = $("a.active").text();
-	console.log(actualPage);
-	return outcome;
+	
+	if(outcome === true){
+		$("#productBox").html("");
+		$.get("searchjson?category=2&p="+actualPage, function(responseJson) {         
+		    $.each(responseJson, function(index, product) { 
+		       createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
+		    });
+		});
+	}
 	
 }
 

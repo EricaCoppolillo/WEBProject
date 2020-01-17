@@ -13,11 +13,11 @@
         <!-- link per lo slider a 2 cursori -->
         <link rel="stylesheet" href="css/wrunner-default-theme.css">
         <script src="js/search.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 
     <%@ include file="menuBar.jsp" %>
-
       <div id="carouselBoxSearch" class="row">
 	<div class="col">
 		<div id="demo" class="carousel slide" data-ride="carousel">
@@ -158,14 +158,15 @@
 	
 	<div id="paginationDiv">
 		<ul class="pagination justify-content-center" id="pagination">
-	            <li class="page-item"><a class="page-link" id="previous" onclick="changePage(false,2)">Precedente</a></li> <!--${fn:length(pages)}-->
-	            <c:forEach var="pages" items="${pages}" varStatus="loop">
+			
+	            <li class="page-item"><a class="page-link" id="previous" onclick="changePage(false,2)">Precedente</a></li>
+	            <c:forEach var = "page" begin = "1" end = "${pages}">
 	            <c:choose>	
-	            	<c:when test="${loop.index < 1}">
-    					<li class="page-item active" id="page${loop.index + 1}"><a onclick="goToPage(${loop.index + 1})" class="page-link active" id="a${loop.index + 1}">${loop.index + 1}</a></li>
+	            	<c:when test="${page < 2}">
+    					<li class="page-item active" id="page${page}"><a onclick="goToPage(${page})" class="page-link active" id="a${page}">${page}</a></li>
   					</c:when>
   					<c:otherwise>
-  						<li class="page-item" id="page${loop.index + 1}"><a onclick="goToPage(${loop.index + 1})"   class="page-link" id="a${loop.index + 1}">${loop.index + 1}</a></li>
+  						<li class="page-item" id="page${page}"><a onclick="goToPage(${page})"   class="page-link" id="a${page}">${page}</a></li>
   					</c:otherwise>
   				</c:choose>
 	            </c:forEach>

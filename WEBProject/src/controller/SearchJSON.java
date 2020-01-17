@@ -12,7 +12,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class SearchJSON extends HttpServlet {
-
     private Gson gson = new Gson();
 
     private int getPagesNumber(int productCount){
