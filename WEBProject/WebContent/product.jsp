@@ -65,11 +65,11 @@
 	          <div class="card-title">
 	            <h3 id="summary"><strong>Riepilogo:</strong></h3>
 	          </div>
-	          <div class="card-text">
-	            <p>${product.manufacturer} ${product.model}</p>
-	            <div class="row card-text" id="priceDiv">
-	              <h4 id="price2"><strong>€ 999<!--  ${product.price}--></strong></h4>
-	              <h6 id="shipment">&nbsp; + spedizione gratuita</h6>
+	          <div class="card-text" id="summaryBody">
+	            <h5 id="productInSummary">${product.manufacturer} ${product.model}</h5>
+	            <div class="card-text" id="priceDiv">
+	              <h4 id="price2"><strong>€${product.price}</strong></h4>
+	              <small id="shipment">+ spedizione gratuita</small>
 	            </div>
 	
 	

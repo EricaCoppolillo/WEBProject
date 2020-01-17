@@ -70,7 +70,7 @@
 
 
 
-                <div class="form-group">
+     <div class="form-group">
 	  <label for="sel1">Ordina per:</label>
 	  <select class="form-control" id="sel1">
 	    <option>Prezzo: crescente</option>
@@ -109,8 +109,9 @@
 
                 <h4><br>Prezzo:</h4>
                 <div class="my-js-slider"></div>
-	<script src="js/wrunner-native.js"></script>
+				<script src="js/wrunner-native.js"></script>
                 <script>
+                	
                     var setting = {
                         roots: document.querySelector('.my-js-slider'),
                         type: 'range',
@@ -119,15 +120,11 @@
                         limits : {     minLimit: 0,      maxLimit: 1000   },
                     }
                     var slider = wRunner(setting);
-
-
-
-
                 </script>    
             </div><!-- col -->
 
             <div class="col-sm-9">
-                <div class="row">
+                <div class="row" id="productBox">
                     <!-- iterare du tutti gli elementi e prendere info -->
                     <c:forEach var="product" items="${products}">
                         <div class="col-lg-4 col-md-6 mb-4">
@@ -161,19 +158,19 @@
 	
 	<div id="paginationDiv">
 		<ul class="pagination justify-content-center" id="pagination">
-	            <li class="page-item"><a class="page-link" id="previous" onclick="changePage(false,${actual},${fn:length(pages)})">Precedente</a></li>
+	            <li class="page-item"><a class="page-link" id="previous" onclick="changePage(false,2)">Precedente</a></li> <!--${fn:length(pages)}-->
 	            <c:forEach var="pages" items="${pages}" varStatus="loop">
 	            <c:choose>	
 	            	<c:when test="${loop.index < 1}">
-    					<li class="page-item active" id="page${loop.index + 1}"><a class="page-link">${loop.index + 1}</a></li>
+    					<li class="page-item active" id="page${loop.index + 1}"><a onclick="goToPage(${loop.index + 1})" class="page-link active" id="a${loop.index + 1}">${loop.index + 1}</a></li>
   					</c:when>
   					<c:otherwise>
-  						<li class="page-item" id="page${loop.index + 1}"><a class="page-link">${loop.index + 1}</a></li>
+  						<li class="page-item" id="page${loop.index + 1}"><a onclick="goToPage(${loop.index + 1})"   class="page-link" id="a${loop.index + 1}">${loop.index + 1}</a></li>
   					</c:otherwise>
   				</c:choose>
 	            </c:forEach>
-	            	<li class="page-item" id="page2"><a class="page-link">2</a></li>
-	            <li class="page-item"><a class="page-link" id="next" onclick="changePage(true,${actual},${fn:length(pages)})">Successiva</a>
+	            <li class="page-item" id="page2"><a onclick="goToPage(2)" class="page-link" id="a2">2</a></li>
+	            <li class="page-item"><a class="page-link" id="next" onclick="changePage(true,2)">Successiva</a>
 	            
 	    </ul>
     </div>
