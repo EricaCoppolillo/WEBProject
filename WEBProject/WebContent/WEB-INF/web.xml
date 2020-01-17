@@ -61,4 +61,14 @@
 		<url-pattern>/product</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>SearchJSON</servlet-name>
+		<servlet-class>controller.SearchJSON</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SearchJSON</servlet-name>
+		<url-pattern>/searchjson</url-pattern>
+	</servlet-mapping>
+
 </web-app>
