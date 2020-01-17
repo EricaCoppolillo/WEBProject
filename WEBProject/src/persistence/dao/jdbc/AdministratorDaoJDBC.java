@@ -6,33 +6,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.Amministratore;
+import model.Administrator;
 import persistence.DataSource;
-import persistence.dao.AmministratoreDao;
+import persistence.dao.AdministratorDao;
 
-public class AmministratoreDaoJDBC implements AmministratoreDao {
+public class AdministratorDaoJDBC implements AdministratorDao {
 
 	private DataSource dataSource;
 	private Connection connection;
 	
-	public AmministratoreDaoJDBC(DataSource dataS) {
+	public AdministratorDaoJDBC(DataSource dataS) {
 		dataSource = dataS;
 		connection = null;
 	}
 	
 	@Override
-	public Amministratore findAdmin(String id, String password) {
-		Amministratore amministratore = null;
+	public Administrator findAdmin(String id, String password) {
+		Administrator administrator = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "select * from \"Amministratore\" where id = ? and password = ?";
+			String query = "select * from administrator where id = ? and password = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, id);
 			statement.setString(2, password);
 			ResultSet result = statement.executeQuery();
 			if(result.next()) {
-				amministratore = new Amministratore(result.getString(1), result.getString(2));
+				administrator = new Administrator(result.getString(1), result.getString(2));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -43,12 +43,12 @@ public class AmministratoreDaoJDBC implements AmministratoreDao {
 				e.printStackTrace();
 			}
 		}
-		return amministratore;
+		return administrator;
 	}
 
 	@Override
-	public ArrayList<Amministratore> findAll() {
-		ArrayList<Amministratore> amministratori = new ArrayList<Amministratore>();
+	public ArrayList<Administrator> findAll() {
+		ArrayList<Administrator> administrators = new ArrayList<Administrator>();
 		
 		try {
 			connection = dataSource.getConnection();
@@ -56,14 +56,14 @@ public class AmministratoreDaoJDBC implements AmministratoreDao {
 			PreparedStatement statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while(result.next()) {
-				Amministratore admin = new Amministratore(result.getString(0), result.getString(1));
-				amministratori.add(admin);
+				Administrator admin = new Administrator(result.getString(0), result.getString(1));
+				administrators.add(admin);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return amministratori;
+		return administrators;
 	}
 
 }

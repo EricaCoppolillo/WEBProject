@@ -55,7 +55,7 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
-    public ArrayList<Product> findProducts(int categoryId) {
+    public ArrayList<Product> findProducts(int categoryId, int start, int end) {
         ArrayList<Product> products = new ArrayList<>();
         try {
             connection = dataSource.getConnection();
@@ -63,9 +63,11 @@ public class ProductDaoJDBC implements ProductDao {
                     "category.name, category.id as cid, avg(review.stars) as avstars, product.image " +
                     "from product left outer join review on product.id = review.product, category " +
                     "where category.id = ? and product.category = category.id " +
-                    "group by product.id, category.id";
+                    "and product.id between ? and ? group by product.id, category.id";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, categoryId);
+            statement.setInt(2, start);
+            statement.setInt(3, end);
             ResultSet result = statement.executeQuery();
             while(result.next()) {
                 Category category = new Category(result.getInt("cid"), result.getString("name"));
@@ -90,7 +92,7 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
-    public ArrayList<Product> findProductsByManufacturer(String manufacturer) {
+    public ArrayList<Product> findProductsByManufacturer(int start, int end, String manufacturer) {
         ArrayList<Product> products = new ArrayList<>();
 
         try {
@@ -100,9 +102,11 @@ public class ProductDaoJDBC implements ProductDao {
                     "category.name, category.id as cid, avg(review.stars) as avstars, product.image " +
                     "from product left outer join review on product.id = review.product, category where " +
                     "LOWER(product.manufacturer) = ? and product.category = category.id " +
-                    "group by product.id, category.id";
+                    "and product.id between ? and ? group by product.id, category.id";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, manufacturer.toLowerCase());
+            statement.setInt(2, start);
+            statement.setInt(3, end);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 Category category = new Category(result.getInt("cid"), result.getString("name"));
@@ -127,7 +131,7 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
-    public ArrayList<Product> findProductsByPriceRange(float lowerBound, float upperBound) {
+    public ArrayList<Product> findProductsByPriceRange(int start, int end, float lowerBound, float upperBound) {
         ArrayList<Product> products = new ArrayList<>();
 
         try {
@@ -137,10 +141,12 @@ public class ProductDaoJDBC implements ProductDao {
                     "category.name, category.id as cid, avg(review.stars) as avstars, product.image " +
                     "from product left outer join review on product.id = review.product, category where " +
                     "product.price >= ? and product.price <= ? and product.category = category.id " +
-                    "group by product.id, category.id";
+                    "and product.id between ? and ? group by product.id, category.id";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setFloat(1, lowerBound);
             statement.setFloat(2, upperBound);
+            statement.setInt(3, start);
+            statement.setInt(4, end);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 Category category = new Category(result.getInt("cid"), result.getString("name"));
@@ -217,5 +223,29 @@ public class ProductDaoJDBC implements ProductDao {
         }
 
         return reviews;
+    }
+
+    @Override
+    public int findProductsNumber() {
+        int count = -1;
+        try {
+            connection = dataSource.getConnection();
+            String query = "select count(*) as cp from product group by product.id";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            if(result.next()) {
+                count = result.getInt("cp");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return count;
     }
 }

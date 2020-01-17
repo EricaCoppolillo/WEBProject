@@ -1,13 +1,13 @@
 package model;
 
-public class Amministratore {
+public class Administrator {
 	
 	private String id;
 	private String password;
 	
-	public Amministratore() {}
+	public Administrator() {}
 	
-	public Amministratore(String id, String password) {
+	public Administrator(String id, String password) {
 		this.id = id;
 		this.password = password;
 	}

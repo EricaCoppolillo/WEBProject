@@ -4,7 +4,6 @@ body {
 
 #menuBar div {
 	position: relative;
-	height: 80px;
 }
 
 #logo {
@@ -12,38 +11,31 @@ body {
 	position: relative;
 	cursor: pointer;
 	width: 90px;
-	
 }
 
-#whoWeAre, #faq, #map, #assistance, #register, #login, #logout {
-	height: 40px;
-	top: 28px;
+#whoWeAre:hover, #faq>a:hover, #map:hover, #assistance:hover {
+	text-decoration: none;
 }
 
-#welcomeAdm {
-	position: fixed;
-	height: 40px;
-	font-family: "Tw Cen MT";
-	font-weight: lighter; 
-	font-size: 25px;
-	color: white;
-	background-color: #feac01;
-	border-radius: 0px 0px 22px 22px;
-	top: 0;
-	z-index: 10;
+#faq > a {
+	color: inherit;
 }
 
- .searchbar{
+.searchbar {
     margin-bottom: auto;
     margin-top: auto;
     height: 60px;
-    background-color: #353b48;
+    background-color: #e4e4e4;
     border-radius: 30px;
     padding: 10px;
-    }
+}
 
-    .search_input{
-    color: white;
+.searchbar:hover {
+    width: 300px;
+}
+
+.search_input {
+    color: black;
     border: 0;
     outline: 0;
     background: none;
@@ -51,41 +43,48 @@ body {
     caret-color:transparent;
     line-height: 40px;
     transition: width 0.4s linear;
-    }
+}
 
-    .searchbar:hover > .search_input{
+.searchbar:hover > .search_input{
     padding: 0 10px;
-    width: 150px;
-    caret-color:red;
+    width: 80%;
     transition: width 0.4s linear;
-    }
+}
 
-    .searchbar:hover > .search_icon{
+.searchbar:hover > .search_icon:not(:hover){
     background: white;
-    color: #e74c3c;
-    }
+    color: #0080ff;
+    text-decoration: none;
+}
 
-    .search_icon{
-    height: 40px;
+.search_icon {
+	height: 40px;
     width: 40px;
     float: right;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    color:white;
-    text-decoration:none;
-    }
-
-#register, #login, #logout {
-	position: relative;
-	top: 20px;	
 }
 
-#register {
+.search_icon:hover { 
+	background-color: #0080ff;
+    color: white;
+    text-decoration: none;
+}
+
+#welcomeAdm {
+	background-color: #0080ff;
+	color: white;
+	font-weight: lighter;
+}
+
+#buttonAddProduct {
+	background-color: #feac01;
+	color: white;
+	white-space: nowrap;	
+}
+
+#register, #buttonAddProduct {
 	float: right;
-}
-
-#faq > a {
-	color: inherit;
 }

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Utente;
+import model.User;
 import persistence.DBManager;
 
 public class Registration extends HttpServlet {
@@ -34,20 +34,20 @@ public class Registration extends HttpServlet {
 		String question = req.getParameter("question");
 		String answer = req.getParameter("answer");
 		
-		Utente user = new Utente(username, password);
+		User user = new User(username, password);
 		user.setEmail(email);
-		user.setDomandaSicurezza(question);
-		user.setRispostaSicurezza(answer);
+		user.setSecurityQuestion(question);
+		user.setSecurityAnswer(answer);
 		
 		String name = req.getParameter("name");
 		String surname = req.getParameter("surname");
 		String date = req.getParameter("date");
 		
 		if(!name.equals("")) {
-			user.setNome(name);
+			user.setName(name);
 		}
 		if(!surname.equals("")) {
-			user.setCognome("surname");
+			user.setSurname("surname");
 		}
 		if(!date.equals("")) {
 			Date d = null;
@@ -56,12 +56,12 @@ public class Registration extends HttpServlet {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			user.setDataNascita(d);
+			user.setBirthDate(d);
 		}
 		
 		req.getSession().setAttribute("utente", user);
-		db.registraUtente(user);
-		db.stampaUtenti();
+		db.registerUser(user);
+		db.printUsers();
 		RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
 		rd.forward(req, resp);
 	} 
