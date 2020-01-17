@@ -230,7 +230,7 @@ public class ProductDaoJDBC implements ProductDao {
         int count = -1;
         try {
             connection = dataSource.getConnection();
-            String query = "select count(*) as cp from product group by product.id";
+            String query = "select count(*) as cp from product";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             if(result.next()) {
