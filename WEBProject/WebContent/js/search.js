@@ -54,7 +54,7 @@ function createProduct(id, img, manufacturer, model, price, description, starsAv
 
 
 function updateProducts(){
-	
+	var keyword = (window.location.href.match(/keyword=.*/g));
 	var categoryID = $("#categoryId").text();
 	var orderBy = $("#orderBy").val();
 	var filterBy = $("#prodActive").html();
@@ -78,11 +78,21 @@ function updateProducts(){
 		orderBy = "priceDesc";
 	}
 	$("#productBox").html("");
-	$.get("searchjson?category="+categoryID+"&p=1"+"&orderBy="+orderBy+"&filterBy="+filterBy+"&priceFrom="+priceLower+"&priceTo="+priceUpper, function(responseJson) {         
-	    $.each(responseJson, function(index, product) { 
-	       createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
-	    });
-	});
+	if(keyword != null){
+		$.get("searchjson?keyword="+keyword+"&p=1"+"&orderBy="+orderBy+"&filterBy="+filterBy+"&priceFrom="+priceLower+"&priceTo="+priceUpper, function(responseJson) {         
+		    $.each(responseJson, function(index, product) { 
+		       createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
+		    });
+		});
+	}
+	else {
+		$.get("searchjson?category="+categoryID+"&p=1"+"&orderBy="+orderBy+"&filterBy="+filterBy+"&priceFrom="+priceLower+"&priceTo="+priceUpper, function(responseJson) {         
+		    $.each(responseJson, function(index, product) { 
+		       createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
+		    });
+		});
+	}
+	
 }
 
 
