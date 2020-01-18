@@ -30,7 +30,7 @@ public class SearchJSON extends HttpServlet {
         try {
             categoryId = Integer.parseInt(req.getParameter("category"));
         } catch (NumberFormatException e){
-            categoryId = 1;
+            categoryId = -1;
         }
 
         try {
@@ -61,6 +61,9 @@ public class SearchJSON extends HttpServlet {
         if(filterBy == null)
             filterBy = "";
 
+        String keyword = req.getParameter("keyword");
+        if(keyword == null)
+            keyword = "";
 
         float lowerBound, upperBound;
 
@@ -80,10 +83,10 @@ public class SearchJSON extends HttpServlet {
         int productCount = 0;
         int pagesNumber = 0;
 
-        productCount = DBManager.getInstance().getProductsCount(categoryId, filterBy, lowerBound, upperBound);
+        productCount = DBManager.getInstance().getProductsCount(categoryId, filterBy, lowerBound, upperBound, keyword);
         pagesNumber = getPagesNumber(productCount);
         ArrayList<Product> products = DBManager.getInstance().getProducts(categoryId, page, filterBy, lowerBound,
-                upperBound, orderType);
+                upperBound, orderType, keyword);
 
         String json = this.gson.toJson(products);
         PrintWriter out = resp.getWriter();

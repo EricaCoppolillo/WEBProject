@@ -88,15 +88,17 @@ public class DBManager {
 	}
 
 	public ArrayList<Product> getProducts(int categoryId, int page, String manufacturer, float lowerBound,
-										  float upperBound, int orderType){
-		return getProductDao().findProducts(categoryId, page, manufacturer, lowerBound, upperBound, orderType);
+										  float upperBound, int orderType, String keyword){
+		return getProductDao().findProducts(categoryId, page, manufacturer, lowerBound, upperBound, orderType, keyword);
 	}
 
-	public int getProductsCount(int categoryId, String manufacturer, float lowerBound, float upperBound){
-		return getProductDao().findProductsNumber(categoryId, manufacturer, lowerBound, upperBound);
+	public int getProductsCount(int categoryId, String manufacturer, float lowerBound, float upperBound, String keyword){
+		return getProductDao().findProductsNumber(categoryId, manufacturer, lowerBound, upperBound, keyword);
 	}
 
 	public ArrayList<Review> getLastReviews(int productId){ return getProductDao().findLastReviews(productId); }
 
-	public ArrayList<Manufacturer> getManufacturers(){ return getProductDao().findManufacturers(); }
+	public ArrayList<Manufacturer> getManufacturers(int categoryId){
+		return getProductDao().findManufacturers(categoryId);
+	}
 }

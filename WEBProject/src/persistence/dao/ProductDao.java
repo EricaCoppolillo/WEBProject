@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public interface ProductDao {
     Product findProduct(int productId);
     ArrayList<Product> findProducts(int categoryId, int page, String manufacturer, float lowerBound, float upperBound,
-                                    int orderType);
-    int findProductsNumber(int categoryId, String manufacturer, float lowerBound, float upperBound);
-    ArrayList<Manufacturer> findManufacturers();
+                                    int orderType, String keyword);
+    int findProductsNumber(int categoryId, String manufacturer, float lowerBound, float upperBound, String ketword);
+    ArrayList<Manufacturer> findManufacturers(int categoryID);
     ArrayList<Review> findLastReviews(int productId);
 }
