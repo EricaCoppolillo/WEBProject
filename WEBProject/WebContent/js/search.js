@@ -53,7 +53,7 @@ function createProduct(id, img, manufacturer, model, price, description, starsAv
 }
 
 
-function updateProducts(){
+function updateProducts(page){
 	var keyword = (window.location.href.match(/keyword=.*/g));
 	var categoryID = $("#categoryId").text();
 	var orderBy = $("#orderBy").val();
@@ -79,14 +79,15 @@ function updateProducts(){
 	}
 	$("#productBox").html("");
 	if(keyword != null){
-		$.get("searchjson?keyword="+keyword+"&p=1"+"&orderBy="+orderBy+"&filterBy="+filterBy+"&priceFrom="+priceLower+"&priceTo="+priceUpper, function(responseJson) {         
+		console.log(keyword);
+		$.get("searchjson?"+keyword+"&p="+page+"&orderBy="+orderBy+"&filterBy="+filterBy+"&priceFrom="+priceLower+"&priceTo="+priceUpper, function(responseJson) {         
 		    $.each(responseJson, function(index, product) { 
 		       createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
 		    });
 		});
 	}
 	else {
-		$.get("searchjson?category="+categoryID+"&p=1"+"&orderBy="+orderBy+"&filterBy="+filterBy+"&priceFrom="+priceLower+"&priceTo="+priceUpper, function(responseJson) {         
+		$.get("searchjson?category="+categoryID+"&p="+page+"&orderBy="+orderBy+"&filterBy="+filterBy+"&priceFrom="+priceLower+"&priceTo="+priceUpper, function(responseJson) {         
 		    $.each(responseJson, function(index, product) { 
 		       createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
 		    });
@@ -99,6 +100,8 @@ function updateProducts(){
 
 
 function goToPage(page){ 
+	
+	
 	var actualPage = $("a.active").text();
 	console.log(page);
 	if(actualPage != page){
@@ -114,12 +117,7 @@ function goToPage(page){
 		$(actualPage).addClass("active");
 		$(actualA).addClass("active");
 		
-		$("#productBox").html("");
-		$.get("searchjson?category=2&p="+page, function(responseJson) {  //TODO category = categoryID       
-		    $.each(responseJson, function(index, product) { 
-		       createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
-		    });
-		});
+		updateProducts(page);
 	} 
 	
 }
@@ -161,12 +159,7 @@ function changePage(next, totalPages) {
 	actualPage = $("a.active").text();
 	
 	if(outcome === true){
-		$("#productBox").html("");
-		$.get("searchjson?category=2&p="+actualPage, function(responseJson) {         
-		    $.each(responseJson, function(index, product) { 
-		       createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
-		    });
-		});
+		updateProducts(actualPage);
 	}
 	
 }
