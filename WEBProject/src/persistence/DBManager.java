@@ -6,9 +6,11 @@ import model.*;
 import persistence.dao.AdministratorDao;
 import persistence.dao.CategoryDao;
 import persistence.dao.ProductDao;
+import persistence.dao.UserDao;
 import persistence.dao.jdbc.AdministratorDaoJDBC;
 import persistence.dao.jdbc.CategoryDaoJDBC;
 import persistence.dao.jdbc.ProductDaoJDBC;
+import persistence.dao.jdbc.UserDaoJDBC;
 
 public class DBManager {
 	
@@ -28,13 +30,7 @@ public class DBManager {
 		}
 	}
 	
-	private ArrayList<User> users;
-	private ArrayList<Administrator> administrators;
-	
-	private DBManager() {
-		users = new ArrayList<User>();
-		administrators = new ArrayList<Administrator>();
-	}
+	private DBManager() {}
 	
 	public static DBManager getInstance() {
 		if(instance == null) {
@@ -43,16 +39,21 @@ public class DBManager {
 		return instance;
 	} 
 	
-	public void registerUser(User u) {
-		if(u!=null)
-			users.add(u);
+	public User getUser(String username) {
+		return getUserDao().findUser(username);
 	}
 	
-	public boolean userRegistered(User user) {
-		for(User u : users) {
-			if(user.getUsername().equals(u.getUsername()) && user.getPassword().equals(u.getPassword()))
-				return true;
-		}
+	public User getUserByEmail(String email) {
+		return getUserDao().findUserByEmail(email);
+	}
+	
+	public UserDao getUserDao() {
+		return new UserDaoJDBC(dataSource);
+	}
+	
+	public boolean registeredUser(User user) {
+		if(getUser(user.getUsername()) != null)
+			return true;
 		return false;
 	}
 	
@@ -62,7 +63,6 @@ public class DBManager {
 	
 	public AdministratorDao getAdministratorDao() {
 		return new AdministratorDaoJDBC(dataSource);
-		
 	}
 
 	public ProductDao getProductDao(){
@@ -71,12 +71,6 @@ public class DBManager {
 
 	public CategoryDao getCategoryDao(){
 		return new CategoryDaoJDBC(this.dataSource);
-	}
-
-	public void printUsers() {
-		for(User u : users) {
-			System.out.println(u.getUsername() + " " + u.getPassword());
-		}
 	}
 
 	public Category getCategory(int categoryId){

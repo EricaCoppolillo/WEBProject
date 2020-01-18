@@ -28,41 +28,55 @@ public class Registration extends HttpServlet {
 		
 		DBManager db = DBManager.getInstance();
 		
+		RequestDispatcher rd = null;
+		
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		String email = req.getParameter("email");
 		String question = req.getParameter("question");
 		String answer = req.getParameter("answer");
-		
-		User user = new User(username, password);
-		user.setEmail(email);
-		user.setSecurityQuestion(question);
-		user.setSecurityAnswer(answer);
-		
 		String name = req.getParameter("name");
 		String surname = req.getParameter("surname");
 		String date = req.getParameter("date");
 		
-		if(!name.equals("")) {
-			user.setName(name);
-		}
-		if(!surname.equals("")) {
-			user.setSurname("surname");
-		}
-		if(!date.equals("")) {
-			Date d = null;
-			try {
-				d = new SimpleDateFormat("dd/mm/yyyy").parse(date);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			user.setBirthDate(d);
+		Date d = null;
+		try {
+			d = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 		
-		req.getSession().setAttribute("utente", user);
-		db.registerUser(user);
-		db.printUsers();
-		RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
+		User alreadyUser = db.getUser(username);
+		User alreadyUserEmail = db.getUserByEmail(email);
+		
+		if(alreadyUser == null && alreadyUserEmail == null) {
+			User user = new User(username, password, name, surname, email, d, question, answer);
+			req.getSession().setAttribute("user", user);
+			req.getSession().removeAttribute("sameUsername");
+			req.getSession().removeAttribute("sameEmail");
+			db.registeredUser(user);
+			
+			rd = req.getRequestDispatcher("home.jsp");
+		}
+		
+		else {
+			
+			if(alreadyUser != null)
+				req.getSession().setAttribute("sameUsername", true);
+			
+			if(alreadyUserEmail != null)
+				req.getSession().setAttribute("sameEmail", true);
+			
+			req.getSession().setAttribute("name", name);
+			req.getSession().setAttribute("surname", surname);
+			req.getSession().setAttribute("email", email);
+			req.getSession().setAttribute("username", username);
+			req.getSession().setAttribute("date", date);
+			req.getSession().setAttribute("question", question);
+			req.getSession().setAttribute("answer", answer);
+			rd = req.getRequestDispatcher("registration.jsp");
+		}
+		
 		rd.forward(req, resp);
 	} 
 }

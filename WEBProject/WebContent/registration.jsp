@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,54 +9,63 @@
 <title>Registrazione</title>
 
 	<%@ include file="include.jsp" %>  
+	<script src="js/registration.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="bootstrap/js/all.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/fontawesome.min.js"></script>
 	<link rel="stylesheet" href="css/login.css">
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css">
+		
 </head>
-<body>
-
+<body onload="writeTexts('${name}', '${surname}', '${date}', '${username}', '${email}', '${question}', '${answer}', '${sameUsername}', '${sameEmail}')" >
+	
 	<div id="container">
 		<div id="divLogo">
 			<a href="home">
 				<img id="logoLogin" src="img/logo2.png">
 			</a>
 		</div>
-		<form method="post" action="registration" class="needs-validation" novalidate>
+		<form method="post" action="registration">
 		
 		  <div class="form-group">
 		 	<label for="name">Inserisci il tuo Nome</label>
 			<input type="text" class="form-control" id="name" placeholder="Nome" name="name" required>	    
-		    <!-- <div class="invalid-feedback">Per favore, riempi questo campo</div> -->
+		    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 		  </div>
 		  
 		  <div class="form-group">
 		 	<label for="surname">Inserisci il tuo Cognome</label>
 			<input type="text" class="form-control" id="surname" placeholder="Cognome" name="surname" required>		    
-		    <!-- <div class="invalid-feedback">Per favore, riempi questo campo</div> -->
+		    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 		  </div>
 		
 		  <div class="form-group">
 			 <label>Seleziona la tua Data di Nascita</label>
-			 <input type="date" name="date" class="form-control" required>
+			 <input type="date" name="date" id="date" class="form-control" required>
+		    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 		  </div>
 		  
 		  <div class="form-group">
 		 	<label for="uname">Inserisci il tuo Indirizzo e-mail</label>
-			<input type="text" class="form-control" id="email" placeholder="Email" name="email" required>
-		    <div class="valid-feedback">Indirizzo e-mail valido.</div>		    
+			<input type="text" class="form-control" id="email" placeholder="email@esempio.it" name="email" required>
+			<c:if test="${sameEmail == true}">
+				<div class="invalid-feedback d-block">Indirizzo e-mail già in uso</div>
+			</c:if>
 		    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 		  </div>
 		  
 		  <div class="form-group">
 		 	<label for="uname">Inserisci il tuo Username</label>
 			<input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
-		    <div class="valid-feedback">Username valido.</div>		    
+		   	<c:if test="${sameUsername == true}">
+		   		<div class="invalid-feedback d-block">Username già in uso</div>
+		   	</c:if>
 		    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 		  </div>
 		  
 		  <div class="form-group">
 		    <label class="insert" for="pwd">Inserisci la tua Password</label>
 		    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
-		    <div class="valid-feedback">Password valida.</div>
 		    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 		  </div>
 		  
@@ -68,14 +81,6 @@
 		    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 		  </div>
 		  
-<!-- 		  <div class="form-group form-check"> -->
-<!-- 		    <label class="form-check-label"> -->
-<!-- 		      <input class="form-check-input" type="checkbox" name="remember" required>Accetto le Condizioni d'Uso -->
-<!-- 		      <div class="valid-feedback">Valida</div> -->
-<!-- 		      <div class="invalid-feedback">Accetta le condizioni per accedere</div> -->
-<!-- 		    </label> -->
-<!-- 		  </div> -->
-		  
 		  <div class="col text-center">
 		  	<input type="submit" class="btn btn-primary" value="Registrati" />
 		  </div>
@@ -85,39 +90,13 @@
 	<!-- Footer -->
 	<hr>
 	<footer class="page-footer font-small blue pt-4">
-	  <div class="footer-copyright text-center py-3">� 2020 Copyright:
+	  <div class="footer-copyright text-center py-3">© 2020 Copyright:
 	    <a href="https://mdbootstrap.com/education/bootstrap/"> progettoSIW.it</a>
 	  </div>
 	</footer>
 	<!-- Footer -->
 
-	<script>
-	// Disable form submissions if there are invalid fields
-		(function() {
-		  'use strict';
-		  window.addEventListener('load', function() {
-		    // Get the forms we want to add validation styles to
-		    var forms = document.getElementsByClassName('needs-validation');
-		    // Loop over them and prevent submission
-		    var validation = Array.prototype.filter.call(forms, function(form) {
-		      form.addEventListener('submit', function(event) {
-		        if (form.checkValidity() === false) {
-		          event.preventDefault();
-		          event.stopPropagation();
-		        }
-		        form.classList.add('was-validated');
-		      }, false);
-		    });
-		  }, false);
-		  
-		  
-		})();
-	</script>
-	
-	
-	
-	
 
-
+		
 </body>
 </html>
