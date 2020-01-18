@@ -77,7 +77,7 @@ public class ProductDaoJDBC implements ProductDao {
                 query += "and product.price >= ? and product.price <= ? ";
 
             if(!keyword.equals(""))
-                query += "and lower(product.model) similar to ? ";
+                query += "and lower(concat(product.manufacturer, ' ', product.model)) similar to ? ";
 
 
 
@@ -172,7 +172,7 @@ public class ProductDaoJDBC implements ProductDao {
             }
 
             if(!keyword.equals("")){
-                query += queryChars + " lower(product.model) similar to ? ";
+                query += queryChars + " lower(concat(product.manufacturer, ' ', product.model)) similar to ?";
                 queryChars = " and";
             }
 

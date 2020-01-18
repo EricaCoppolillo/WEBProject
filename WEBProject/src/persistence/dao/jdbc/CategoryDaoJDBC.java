@@ -22,27 +22,30 @@ public class CategoryDaoJDBC implements CategoryDao {
     @Override
     public Category findCategory(int categoryId) {
         Category category = null;
-
-        try {
-            this.connection = this.dataSource.getConnection();
-            String query = "select * from \"category\" where id = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, categoryId);
-            ResultSet result = statement.executeQuery();
-            if(result.next()) {
-                category = new Category(categoryId, result.getString(2));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
+        if(categoryId > 0) {
             try {
-                this.connection.close();
+                this.connection = this.dataSource.getConnection();
+                String query = "select * from \"category\" where id = ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setInt(1, categoryId);
+                ResultSet result = statement.executeQuery();
+                if (result.next()) {
+                    category = new Category(categoryId, result.getString(2));
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    this.connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-        }
 
-        return category;
+            return category;
+        } else {
+            return new Category(0, "Prodotti");
+        }
     }
 
     @Override
