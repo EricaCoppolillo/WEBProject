@@ -44,7 +44,7 @@ public class Search extends HttpServlet {
         ArrayList<Product> products = DBManager.getInstance().getProducts(categoryId, page, "",
                 -1, -1, 0, keyword);
         Category category = DBManager.getInstance().getCategory(categoryId);
-        ArrayList<Manufacturer> manufacturers = DBManager.getInstance().getManufacturers(categoryId);
+        ArrayList<Manufacturer> manufacturers = DBManager.getInstance().getManufacturers(categoryId, keyword);
         req.setAttribute("category", category);
         req.setAttribute("products", products);
         req.setAttribute("manufacturers", manufacturers);

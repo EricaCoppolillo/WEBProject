@@ -98,7 +98,7 @@ public class DBManager {
 
 	public ArrayList<Review> getLastReviews(int productId){ return getProductDao().findLastReviews(productId); }
 
-	public ArrayList<Manufacturer> getManufacturers(int categoryId){
-		return getProductDao().findManufacturers(categoryId);
+	public ArrayList<Manufacturer> getManufacturers(int categoryId, String keyword){
+		return getProductDao().findManufacturers(categoryId, keyword);
 	}
 }

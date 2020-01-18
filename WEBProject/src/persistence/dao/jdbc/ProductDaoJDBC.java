@@ -221,7 +221,7 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
-    public ArrayList<Manufacturer> findManufacturers(int categoryId) {
+    public ArrayList<Manufacturer> findManufacturers(int categoryId, String keyword) {
         ArrayList<Manufacturer> manufacturers = new ArrayList<>();
 
         try {
@@ -235,6 +235,11 @@ public class ProductDaoJDBC implements ProductDao {
                 queryChars = " and";
             }
 
+            if(!keyword.equals("")){
+                query += queryChars + " lower(concat(product.manufacturer, ' ', product.model)) similar to ?";
+                queryChars = " and";
+            }
+
             query += " group by manufacturer";
 
             PreparedStatement statement = connection.prepareStatement(query);
@@ -243,6 +248,11 @@ public class ProductDaoJDBC implements ProductDao {
 
             if(categoryId != -1) {
                 statement.setInt(parameterIndex, categoryId);
+                parameterIndex++;
+            }
+
+            if(!keyword.equals("")){
+                statement.setString(parameterIndex, "%" + keyword.toLowerCase() + "%");
                 parameterIndex++;
             }
 
