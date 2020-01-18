@@ -16,42 +16,30 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+	<%@ include file="menuBar.jsp" %>
+	<p id="categoryId" style="display: none;">${category.id}</p>
+		<div id="carouselBoxSearch" class="row">
+			<div class="col">
+				<div id="demo" class="carousel slide" data-ride="carousel">
+		  			<!-- Indicators -->
+					<ul class="carousel-indicators">
+					  <li data-target="#demo" data-slide-to="0" class="active"></li>
+					  <li data-target="#demo" data-slide-to="1"></li>
+					  <li data-target="#demo" data-slide-to="2"></li>
+					</ul>
+	
+					<div class="carousel-inner">
+					 	<div id="carousel2" class="carousel-item active"><img id="img2" class="carousel-img" src="img/carousel/${fn:toLowerCase(category.name)}/2.jpg"></div>
+						<div id="carousel1" class="carousel-item"><img class="carousel-img" id="img1" src="img/carousel/${fn:toLowerCase(category.name)}/1.jpg"></div> 
+						<div id="carousel3" class="carousel-item"><img class="carousel-img" id="img3" src="img/carousel/${fn:toLowerCase(category.name)}/3.jpg"></div>
+					</div>
+				</div>
+			</div>
 
-    <%@ include file="menuBar.jsp" %>
-      <div id="carouselBoxSearch" class="row">
-	<div class="col">
-		<div id="demo" class="carousel slide" data-ride="carousel">
-	  		<!-- Indicators -->
-	 <ul class="carousel-indicators">
-	   <li data-target="#demo" data-slide-to="0" class="active"></li>
-	   <li data-target="#demo" data-slide-to="1"></li>
-	   <li data-target="#demo" data-slide-to="2"></li>
-	 </ul>
-
- <!-- The slideshow -->
-	 <div class="carousel-inner">
-	 	<div id="carousel2" class="carousel-item active">
-	     <img id="img2" class="carousel-img" src="img/carousel/${fn:toLowerCase(category.name)}/2.jpg">
-	 	</div>
-	   <div id="carousel1" class="carousel-item">
-	     <img class="carousel-img" id="img1" src="img/carousel/${fn:toLowerCase(category.name)}/1.jpg">
-	   </div>
-	   
-	   <div id="carousel3" class="carousel-item">
-	     <img class="carousel-img" id="img3" src="img/carousel/${fn:toLowerCase(category.name)}/3.jpg">
-		</div>
-		</div>
-	  </div>
-	</div>
-
-  <!-- Left and right controls -->
-	  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-	    <span class="carousel-control-prev-icon"></span>
-	  </a>
-	  <a class="carousel-control-next" href="#demo" data-slide="next">
-	    <span class="carousel-control-next-icon"></span>
-	  </a>
-</div>
+ 			 <!-- Left and right controls -->
+			 <a class="carousel-control-prev" href="#demo" data-slide="prev"><span class="carousel-control-prev-icon"></span></a>
+			 <a class="carousel-control-next" href="#demo" data-slide="next"><span class="carousel-control-next-icon"></span></a>
+		</div> <!-- carousel Box -->
 
 
 
@@ -59,50 +47,35 @@
       <div class="jumbotron text-center" id="jumb">
           <h1>${category.name}</h1>
         <h3>in vendita</h3>
-    </div>
-
+      </div>
 
 
     <div class="container-fluid">
-        <div class="row">
+    	<div class="row">
             <div class="col-sm-3">
 
-
-
-
-     <div class="form-group">
-	  <label for="sel1">Ordina per:</label>
-	  <select class="form-control" id="sel1">
-	    <option>Prezzo: crescente</option>
-	    <option>Prezzo: Decrescente</option>
-	  </select>
-	</div>
-
-
-
-
-
-
-
-
+				<div class="form-group">
+					<label for="sel1">Ordina per:</label>
+						<select class="form-control" id="orderBy" onchange="updateProducts(2)">
+							<option>Consigliati</option>
+							<option>Prezzo crescente</option>  <!--  TODO implement ajax function orderBy -->
+							<option>Prezzo decrescente</option>
+						</select>
+				</div>
 
                 <h4><br></br>Filtra per:</h4>
-
-                <div class="container">
+				<div class="container">
                     <div id="accordion">
                         <div class="card">
-                            <div class="card-header">
-                                <a class="card-link" data-toggle="collapse" href="#brandCollapse">Brand </a>
-                            </div>
+                            <div class="card-header"><a class="card-link" data-toggle="collapse" href="#brandCollapse">Brand </a></div>
                             <div id="brandCollapse" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
                                     <c:forEach var="manufacturer" items="${manufacturers}">
-                                        <a href="#" class="list-group-item d-flex justify-content-between align-items-center">${manufacturer.name}<span class="badge badge-primary badge-pill">${manufacturer.products}</span></a>
+                                        <a class="list-group-item d-flex justify-content-between align-items-center">${manufacturer.name}<span class="badge badge-primary badge-pill">${manufacturer.products}</span></a>
                                     </c:forEach>
                                 </div>
                             </div>
-                        </div>
-                  
+                        </div>                 
                     </div>
                 </div>
 
@@ -121,6 +94,8 @@
                     }
                     var slider = wRunner(setting);
                 </script>    
+                
+                <button class="btn btn-primary" id="apply">Applica</button>
             </div><!-- col -->
 
             <div class="col-sm-9">

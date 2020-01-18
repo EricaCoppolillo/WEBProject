@@ -48,5 +48,9 @@ img{
 }
 
 
+.list-group-item {
+	cursor : pointer;
+}
+
 
 
