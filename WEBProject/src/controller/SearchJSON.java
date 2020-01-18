@@ -39,51 +39,51 @@ public class SearchJSON extends HttpServlet {
             page = 1;
         }
 
-        String mode = req.getParameter("mode");
+        String orderBy = req.getParameter("orderBy");
+        int orderType;
 
-        if(mode == null)
-            mode = "normal";
+        try {
+            switch (orderBy) {
+                case "priceAsc":
+                    orderType = 1;
+                    break;
+                case "priceDesc":
+                    orderType = 2;
+                    break;
+                default:
+                    orderType = 0;
+            }
+        } catch (NullPointerException e){
+            orderType = 0;
+        }
+
+        String filterBy = req.getParameter("filterBy");
+        if(filterBy == null)
+            filterBy = "";
+
+
+        float lowerBound, upperBound;
+
+        try {
+            lowerBound = Float.parseFloat(req.getParameter("priceFrom"));
+        } catch (NumberFormatException | NullPointerException e){
+            lowerBound = -1;
+        }
+
+        try {
+            upperBound = Float.parseFloat(req.getParameter("priceTo"));
+        } catch (NumberFormatException | NullPointerException e){
+            upperBound = -1;
+        }
+
 
         int productCount = 0;
         int pagesNumber = 0;
 
-        ArrayList<Product> products = new ArrayList<>();
-
-        if(mode.equals("normal")) {
-            productCount = DBManager.getInstance().getProductsCount();
-            pagesNumber = getPagesNumber(productCount);
-            products = DBManager.getInstance().getProducts(categoryId, page);
-
-        } else if(mode.equals("byPriceRange")){
-
-            float lowerBound, upperBound;
-
-            try {
-                lowerBound = Float.parseFloat(req.getParameter("from"));
-            } catch (NumberFormatException e){
-                lowerBound = 0;
-            }
-
-            try {
-                upperBound = Float.parseFloat(req.getParameter("to"));
-            } catch (NumberFormatException e){
-                upperBound = 10000;
-            }
-
-            productCount = DBManager.getInstance().getProductsCountInAPriceRange(lowerBound, upperBound, categoryId);
-            pagesNumber = getPagesNumber(productCount);
-            products = DBManager.getInstance().getProductsByPriceRange(lowerBound, upperBound, categoryId, page);
-
-
-        } else if(mode.equals("byManufacturer")){
-            String manufacturer = req.getParameter("manufacturer");
-            if(manufacturer == null)
-                manufacturer = "";
-
-            productCount = DBManager.getInstance().getProductsCountByAManufacturer(manufacturer, categoryId);
-            pagesNumber = getPagesNumber(productCount);
-            products = DBManager.getInstance().getProductsByManufacturer(manufacturer, categoryId, page);
-        }
+        productCount = DBManager.getInstance().getProductsCount(categoryId, filterBy, lowerBound, upperBound);
+        pagesNumber = getPagesNumber(productCount);
+        ArrayList<Product> products = DBManager.getInstance().getProducts(categoryId, page, filterBy, lowerBound,
+                upperBound, orderType);
 
         String json = this.gson.toJson(products);
         PrintWriter out = resp.getWriter();
