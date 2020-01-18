@@ -4,6 +4,7 @@
 
 $(document).ready(function(){
   
+	
 	/*set the price range*/
 	$("#apply").click(function() {
 		updateProducts();
