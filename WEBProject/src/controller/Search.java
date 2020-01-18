@@ -30,13 +30,15 @@ public class Search extends HttpServlet {
             page = 1;
         }
 
-        int productCount = DBManager.getInstance().getProductsCount();
+        int productCount = DBManager.getInstance().getProductsCount(categoryId, "", -1,
+                -1);
         int productsInAPage = 9;
         int numPages = productCount / productsInAPage;
         if(productCount % productsInAPage != 0)
             numPages++;
 
-        ArrayList<Product> products = DBManager.getInstance().getProducts(categoryId, page);
+        ArrayList<Product> products = DBManager.getInstance().getProducts(categoryId, page, "",
+                -1, -1, 0);
         Category category = DBManager.getInstance().getCategory(categoryId);
         ArrayList<Manufacturer> manufacturers = DBManager.getInstance().getManufacturers();
         req.setAttribute("category", category);
