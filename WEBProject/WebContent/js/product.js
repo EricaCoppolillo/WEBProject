@@ -9,10 +9,12 @@ function Review(text, author){
 
 $(document).ready(function(){
 	  $("#writeReview").click(function(){
-	    $(".bg-modal").css("display", "flex");
+		  $(".bg-modal").css("display", "flex");
 	  });
 
 	  $(".close").click(function(){
-	    $(".bg-modal").css("display", "none");
+		  $(".bg-modal").css("display", "none");
 	  });
+	  
+	  
 });

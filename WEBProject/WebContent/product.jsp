@@ -65,11 +65,11 @@
 	          <div class="card-title">
 	            <h3 id="summary"><strong>Riepilogo:</strong></h3>
 	          </div>
-	          <div class="card-text">
-	            <p>${product.manufacturer} ${product.model}</p>
-	            <div class="row card-text" id="priceDiv">
-	              <h4 id="price2"><strong>€ 999<!--  ${product.price}--></strong></h4>
-	              <h6 id="shipment">&nbsp; + spedizione gratuita</h6>
+	          <div class="card-text" id="summaryBody">
+	            <h5 id="productInSummary">${product.manufacturer} ${product.model}</h5>
+	            <div class="card-text" id="priceDiv">
+	              <h4 id="price2"><strong>€${product.price}</strong></h4>
+	              <small id="shipment">+ spedizione gratuita</small>
 	            </div>
 	
 	
@@ -96,33 +96,35 @@
       </div> <!-- mainContainer -->
       
       
-      <div class="bg-modal">
-        <div class="modal-content">
-          <div id="title">
-          <div class="close">+</div>
-            <h3>Scrivi una recensione</h3>
-            </div>
-            <div class="form-group">
-              <label for="usr">Titolo:</label>
-              <input type="text" class="form-control" id="usr">
-          </div>
-          <div class="form-group">
-              <label for="sel1">Valutazione: </label>
-              <select class="form-control" id="sel1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          <div class="form-group">
-              <label for="comment">Commento:</label>
-              <textarea class="form-control" rows="5" id="comment"></textarea>
-          </div>
-          <button class="btn btn-primary">Invia recensione</button>
-        </div>
-      </div>
+	<div class="bg-modal">
+		<div class="modal-content">
+	  		<form action="postReview" method="post">
+	    		<div id="title">
+	    			<div class="close">+</div>
+	      				<h3>Scrivi una recensione</h3>
+	    			</div>
+	      		<div class="form-group">
+	        		<label for="usr">Titolo:</label>
+	        		<input type="text" class="form-control" id="tit" name="title" required></input>
+	    		</div>
+	    		<div class="form-group">
+	        		<label for="sel1">Valutazione: </label>
+	        		<select class="form-control" id="stars" name="stars">
+	          			<option>1</option>
+	          			<option>2</option>
+	          			<option>3</option>
+	          			<option>4</option>
+	          			<option>5</option>
+	        		</select>
+	      		</div>
+	    		<div class="form-group">
+	        		<label for="comment" name="comment">Commento:</label>
+	        		<textarea class="form-control" rows="5" id="comment"></textarea>
+	    		</div>
+	    		<button class="btn btn-primary" id = "sendReview">Invia recensione</button>
+	   		</form> 
+	  	</div> 
+	</div>
       
       <%@ include file="footer.jsp" %>
       

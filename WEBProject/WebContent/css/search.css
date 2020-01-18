@@ -48,5 +48,14 @@ img{
 }
 
 
+.list-group-item {
+	cursor : pointer;
+}
+
+#apply {
+	margin-top: 7%;
+	margin-left:  40%;
+}
+
 
 

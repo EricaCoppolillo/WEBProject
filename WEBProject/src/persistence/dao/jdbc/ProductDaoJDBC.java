@@ -55,19 +55,74 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
-    public ArrayList<Product> findProducts(int categoryId, int start, int end) {
+    public ArrayList<Product> findProducts(int categoryId, int page, String manufacturer, float lowerBound,
+                                           float upperBound, int orderType, String keyword) {
         ArrayList<Product> products = new ArrayList<>();
         try {
             connection = dataSource.getConnection();
-            String query = "select product.id as pid, product.model, product.manufacturer, product.price, product.specs, product.description, " +
+
+            String query = "select product.id as pid, product.model, product.manufacturer, product.price, product.specs, " +
+                    "product.description, " +
                     "category.name, category.id as cid, avg(review.stars) as avstars, product.image " +
                     "from product left outer join review on product.id = review.product, category " +
-                    "where category.id = ? and product.category = category.id " +
-                    "and product.id between ? and ? group by product.id, category.id";
+                    "where product.category = category.id ";
+
+            if(categoryId != -1)
+                query += "and category.id = ? ";
+
+            if(!manufacturer.equals(""))
+                query += "and LOWER(product.manufacturer) = ? ";
+
+            if(!(lowerBound < 0 || upperBound < 0))
+                query += "and product.price >= ? and product.price <= ? ";
+
+            if(!keyword.equals(""))
+                query += "and lower(concat(product.manufacturer, ' ', product.model)) similar to ? ";
+
+
+
+            String orderBy;
+
+            switch (orderType){
+                case 1:
+                    orderBy = "product.price ASC";
+                    break;
+                case 2:
+                    orderBy = "product.price DESC";
+                    break;
+                default:
+                    orderBy = "avstars DESC NULLS LAST";
+                    break;
+            }
+
+            query += " group by product.id, category.id order by " + orderBy + " limit 9 offset ?";
+
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, categoryId);
-            statement.setInt(2, start);
-            statement.setInt(3, end);
+            int parameterIndex = 1;
+
+            if(categoryId != -1) {
+                statement.setInt(parameterIndex, categoryId);
+                parameterIndex++;
+            }
+
+            if(!manufacturer.equals("")){
+                statement.setString(parameterIndex, manufacturer.toLowerCase());
+                parameterIndex++;
+            }
+
+            if(!(lowerBound < 0 || upperBound < 0)){
+                statement.setFloat(parameterIndex, lowerBound);
+                parameterIndex++;
+                statement.setFloat(parameterIndex, upperBound);
+                parameterIndex++;
+            }
+
+            if(!keyword.equals("")){
+                statement.setString(parameterIndex, "%" + keyword.toLowerCase() + "%");
+                parameterIndex++;
+            }
+
+            statement.setInt(parameterIndex, (page - 1) * 9);
             ResultSet result = statement.executeQuery();
             while(result.next()) {
                 Category category = new Category(result.getInt("cid"), result.getString("name"));
@@ -92,30 +147,65 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
-    public ArrayList<Product> findProductsByManufacturer(int start, int end, String manufacturer) {
-        ArrayList<Product> products = new ArrayList<>();
-
+    public int findProductsNumber(int categoryId, String manufacturer, float lowerBound, float upperBound,
+                                  String keyword) {
+        int count = -1;
         try {
             connection = dataSource.getConnection();
+            String query = "select count(*) as cp from product";
 
-            String query = "select product.id as pid, product.model, product.manufacturer, product.price, product.specs, product.description, " +
-                    "category.name, category.id as cid, avg(review.stars) as avstars, product.image " +
-                    "from product left outer join review on product.id = review.product, category where " +
-                    "LOWER(product.manufacturer) = ? and product.category = category.id " +
-                    "and product.id between ? and ? group by product.id, category.id";
+            String queryChars = " where";
+
+            if(categoryId != -1) {
+                query += queryChars + " product.category = ?";
+                queryChars = " and";
+            }
+
+            if(!manufacturer.equals("")) {
+                query += queryChars + " LOWER(product.manufacturer) = ?";
+                queryChars = " and";
+            }
+
+            if(lowerBound > 0 && upperBound > 0) {
+                query += queryChars + " and product.price >= ? and product.price <= ?";
+                queryChars = " and";
+            }
+
+            if(!keyword.equals("")){
+                query += queryChars + " lower(concat(product.manufacturer, ' ', product.model)) similar to ?";
+                queryChars = " and";
+            }
+
+
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, manufacturer.toLowerCase());
-            statement.setInt(2, start);
-            statement.setInt(3, end);
+
+            int parameterIndex = 1;
+
+            if(categoryId != -1) {
+                statement.setInt(parameterIndex, categoryId);
+                parameterIndex++;
+            }
+
+            if(!manufacturer.equals("")){
+                statement.setString(parameterIndex, manufacturer.toLowerCase());
+                parameterIndex++;
+            }
+
+            if(lowerBound > 0 && upperBound > 0){
+                statement.setFloat(parameterIndex, lowerBound);
+                parameterIndex++;
+                statement.setFloat(parameterIndex, upperBound);
+                parameterIndex++;
+            }
+
+            if(!keyword.equals("")){
+                statement.setString(parameterIndex, "%" + keyword.toLowerCase() + "%");
+                parameterIndex++;
+            }
+
             ResultSet result = statement.executeQuery();
-            while (result.next()) {
-                Category category = new Category(result.getInt("cid"), result.getString("name"));
-                Product product = new ProductProxy(result.getInt("pid"), result.getString("model"),
-                        result.getString("manufacturer"),
-                        result.getFloat("price"), result.getString("specs"),
-                        result.getString("description"),
-                        category, (int) result.getFloat("avstars"), result.getString("image"));
-                products.add(product);
+            if(result.next()) {
+                count = result.getInt("cp");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -127,57 +217,45 @@ public class ProductDaoJDBC implements ProductDao {
             }
         }
 
-        return products;
+        return count;
     }
 
     @Override
-    public ArrayList<Product> findProductsByPriceRange(int start, int end, float lowerBound, float upperBound) {
-        ArrayList<Product> products = new ArrayList<>();
-
-        try {
-            connection = dataSource.getConnection();
-
-            String query = "select product.id as pid, product.model, product.manufacturer, product.price, product.specs, product.description, " +
-                    "category.name, category.id as cid, avg(review.stars) as avstars, product.image " +
-                    "from product left outer join review on product.id = review.product, category where " +
-                    "product.price >= ? and product.price <= ? and product.category = category.id " +
-                    "and product.id between ? and ? group by product.id, category.id";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setFloat(1, lowerBound);
-            statement.setFloat(2, upperBound);
-            statement.setInt(3, start);
-            statement.setInt(4, end);
-            ResultSet result = statement.executeQuery();
-            while (result.next()) {
-                Category category = new Category(result.getInt("cid"), result.getString("name"));
-                Product product = new ProductProxy(result.getInt("pid"), result.getString("model"),
-                        result.getString("manufacturer"),
-                        result.getFloat("price"), result.getString("specs"),
-                        result.getString("description"),
-                        category, (int) result.getFloat("avstars"), result.getString("image"));
-                products.add(product);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return products;
-    }
-
-    @Override
-    public ArrayList<Manufacturer> findManufacturers() {
+    public ArrayList<Manufacturer> findManufacturers(int categoryId, String keyword) {
         ArrayList<Manufacturer> manufacturers = new ArrayList<>();
 
         try {
             connection = dataSource.getConnection();
-            String query = "select distinct(manufacturer), count(id) as cid from product group by manufacturer";
+            String query = "select distinct(manufacturer), count(id) as cid from product";
+
+            String queryChars = " where";
+
+            if(categoryId != -1) {
+                query += queryChars + " product.category = ?";
+                queryChars = " and";
+            }
+
+            if(!keyword.equals("")){
+                query += queryChars + " lower(concat(product.manufacturer, ' ', product.model)) similar to ?";
+                queryChars = " and";
+            }
+
+            query += " group by manufacturer";
+
             PreparedStatement statement = connection.prepareStatement(query);
+
+            int parameterIndex = 1;
+
+            if(categoryId != -1) {
+                statement.setInt(parameterIndex, categoryId);
+                parameterIndex++;
+            }
+
+            if(!keyword.equals("")){
+                statement.setString(parameterIndex, "%" + keyword.toLowerCase() + "%");
+                parameterIndex++;
+            }
+
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 manufacturers.add(new Manufacturer(result.getString("manufacturer"),
@@ -201,7 +279,8 @@ public class ProductDaoJDBC implements ProductDao {
         ArrayList<Review> reviews = new ArrayList<>();
         try {
             connection = dataSource.getConnection();
-            String query = "select * from review, utente where review.product = ? and review.author = utente.id order by " +
+            String query = "select * from review, \"user\" where review.product = ? and review.author = \"user\".id " +
+                    "order by " +
                     "review.id desc limit 5";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, productId);
@@ -223,29 +302,5 @@ public class ProductDaoJDBC implements ProductDao {
         }
 
         return reviews;
-    }
-
-    @Override
-    public int findProductsNumber() {
-        int count = -1;
-        try {
-            connection = dataSource.getConnection();
-            String query = "select count(*) as cp from product";
-            PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet result = statement.executeQuery();
-            if(result.next()) {
-                count = result.getInt("cp");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return count;
     }
 }
