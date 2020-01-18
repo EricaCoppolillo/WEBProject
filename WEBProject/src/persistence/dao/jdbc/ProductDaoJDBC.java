@@ -56,7 +56,7 @@ public class ProductDaoJDBC implements ProductDao {
 
     @Override
     public ArrayList<Product> findProducts(int categoryId, int page, String manufacturer, float lowerBound,
-                                           float upperBound, int orderType) {
+                                           float upperBound, int orderType, String keyword) {
         ArrayList<Product> products = new ArrayList<>();
         try {
             connection = dataSource.getConnection();
@@ -65,13 +65,20 @@ public class ProductDaoJDBC implements ProductDao {
                     "product.description, " +
                     "category.name, category.id as cid, avg(review.stars) as avstars, product.image " +
                     "from product left outer join review on product.id = review.product, category " +
-                    "where category.id = ? and product.category = category.id ";
+                    "where product.category = category.id ";
+
+            if(categoryId != -1)
+                query += "and category.id = ? ";
 
             if(!manufacturer.equals(""))
                 query += "and LOWER(product.manufacturer) = ? ";
 
             if(!(lowerBound < 0 || upperBound < 0))
                 query += "and product.price >= ? and product.price <= ? ";
+
+            if(!keyword.equals(""))
+                query += "and lower(product.model) similar to ? ";
+
 
 
             String orderBy;
@@ -91,9 +98,12 @@ public class ProductDaoJDBC implements ProductDao {
             query += " group by product.id, category.id order by " + orderBy + " limit 9 offset ?";
 
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, categoryId);
+            int parameterIndex = 1;
 
-            int parameterIndex = 2;
+            if(categoryId != -1) {
+                statement.setInt(parameterIndex, categoryId);
+                parameterIndex++;
+            }
 
             if(!manufacturer.equals("")){
                 statement.setString(parameterIndex, manufacturer.toLowerCase());
@@ -104,6 +114,11 @@ public class ProductDaoJDBC implements ProductDao {
                 statement.setFloat(parameterIndex, lowerBound);
                 parameterIndex++;
                 statement.setFloat(parameterIndex, upperBound);
+                parameterIndex++;
+            }
+
+            if(!keyword.equals("")){
+                statement.setString(parameterIndex, "%" + keyword.toLowerCase() + "%");
                 parameterIndex++;
             }
 
@@ -132,24 +147,44 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
-    public int findProductsNumber(int categoryId, String manufacturer, float lowerBound, float upperBound) {
+    public int findProductsNumber(int categoryId, String manufacturer, float lowerBound, float upperBound,
+                                  String keyword) {
         int count = -1;
         try {
             connection = dataSource.getConnection();
-            String query = "select count(*) as cp from product where product.category = ?";
+            String query = "select count(*) as cp from product";
 
-            if(!manufacturer.equals(""))
-                query += " and LOWER(product.manufacturer) = ?";
+            String queryChars = " where";
 
-            if(lowerBound > 0 && upperBound > 0)
-                query += " and product.price >= ? and product.price <= ?";
+            if(categoryId != -1) {
+                query += queryChars + " product.category = ?";
+                queryChars = " and";
+            }
+
+            if(!manufacturer.equals("")) {
+                query += queryChars + " LOWER(product.manufacturer) = ?";
+                queryChars = " and";
+            }
+
+            if(lowerBound > 0 && upperBound > 0) {
+                query += queryChars + " and product.price >= ? and product.price <= ?";
+                queryChars = " and";
+            }
+
+            if(!keyword.equals("")){
+                query += queryChars + " lower(product.model) similar to ? ";
+                queryChars = " and";
+            }
 
 
             PreparedStatement statement = connection.prepareStatement(query);
 
-            statement.setInt(1, categoryId);
+            int parameterIndex = 1;
 
-            int parameterIndex = 2;
+            if(categoryId != -1) {
+                statement.setInt(parameterIndex, categoryId);
+                parameterIndex++;
+            }
 
             if(!manufacturer.equals("")){
                 statement.setString(parameterIndex, manufacturer.toLowerCase());
@@ -160,6 +195,11 @@ public class ProductDaoJDBC implements ProductDao {
                 statement.setFloat(parameterIndex, lowerBound);
                 parameterIndex++;
                 statement.setFloat(parameterIndex, upperBound);
+                parameterIndex++;
+            }
+
+            if(!keyword.equals("")){
+                statement.setString(parameterIndex, "%" + keyword.toLowerCase() + "%");
                 parameterIndex++;
             }
 
@@ -181,13 +221,31 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
-    public ArrayList<Manufacturer> findManufacturers() {
+    public ArrayList<Manufacturer> findManufacturers(int categoryId) {
         ArrayList<Manufacturer> manufacturers = new ArrayList<>();
 
         try {
             connection = dataSource.getConnection();
-            String query = "select distinct(manufacturer), count(id) as cid from product group by manufacturer";
+            String query = "select distinct(manufacturer), count(id) as cid from product";
+
+            String queryChars = " where";
+
+            if(categoryId != -1) {
+                query += queryChars + " product.category = ?";
+                queryChars = " and";
+            }
+
+            query += " group by manufacturer";
+
             PreparedStatement statement = connection.prepareStatement(query);
+
+            int parameterIndex = 1;
+
+            if(categoryId != -1) {
+                statement.setInt(parameterIndex, categoryId);
+                parameterIndex++;
+            }
+
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 manufacturers.add(new Manufacturer(result.getString("manufacturer"),
@@ -211,7 +269,8 @@ public class ProductDaoJDBC implements ProductDao {
         ArrayList<Review> reviews = new ArrayList<>();
         try {
             connection = dataSource.getConnection();
-            String query = "select * from review, utente where review.product = ? and review.author = utente.id order by " +
+            String query = "select * from review, \"user\" where review.product = ? and review.author = \"user\".id " +
+                    "order by " +
                     "review.id desc limit 5";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, productId);

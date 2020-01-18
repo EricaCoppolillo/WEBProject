@@ -21,7 +21,7 @@ public class Search extends HttpServlet {
         try {
             categoryId = Integer.parseInt(req.getParameter("category"));
         } catch (NumberFormatException e){
-            categoryId = 1;
+            categoryId = -1;
         }
 
         try {
@@ -30,17 +30,21 @@ public class Search extends HttpServlet {
             page = 1;
         }
 
+        String keyword = req.getParameter("keyword");
+        if(keyword == null)
+            keyword = "";
+
         int productCount = DBManager.getInstance().getProductsCount(categoryId, "", -1,
-                -1);
+                -1, keyword);
         int productsInAPage = 9;
         int numPages = productCount / productsInAPage;
         if(productCount % productsInAPage != 0)
             numPages++;
 
         ArrayList<Product> products = DBManager.getInstance().getProducts(categoryId, page, "",
-                -1, -1, 0);
+                -1, -1, 0, keyword);
         Category category = DBManager.getInstance().getCategory(categoryId);
-        ArrayList<Manufacturer> manufacturers = DBManager.getInstance().getManufacturers();
+        ArrayList<Manufacturer> manufacturers = DBManager.getInstance().getManufacturers(categoryId);
         req.setAttribute("category", category);
         req.setAttribute("products", products);
         req.setAttribute("manufacturers", manufacturers);
