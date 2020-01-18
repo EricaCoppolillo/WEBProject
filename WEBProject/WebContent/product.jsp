@@ -96,33 +96,35 @@
       </div> <!-- mainContainer -->
       
       
-      <div class="bg-modal">
-        <div class="modal-content">
-          <div id="title">
-          <div class="close">+</div>
-            <h3>Scrivi una recensione</h3>
-            </div>
-            <div class="form-group">
-              <label for="usr">Titolo:</label>
-              <input type="text" class="form-control" id="usr">
-          </div>
-          <div class="form-group">
-              <label for="sel1">Valutazione: </label>
-              <select class="form-control" id="sel1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          <div class="form-group">
-              <label for="comment">Commento:</label>
-              <textarea class="form-control" rows="5" id="comment"></textarea>
-          </div>
-          <button class="btn btn-primary">Invia recensione</button>
-        </div>
-      </div>
+	<div class="bg-modal">
+		<div class="modal-content">
+	  		<form action="" method="post">
+	    		<div id="title">
+	    			<div class="close">+</div>
+	      				<h3>Scrivi una recensione</h3>
+	    		</div>
+	      		<div class="form-group">
+	        		<label for="usr">Titolo:</label>
+	        		<input type="text" class="form-control" id="tit"></input>
+	    		</div>
+	    		<div class="form-group">
+	        		<label for="sel1">Valutazione: </label>
+	        		<select class="form-control" id="stars">
+	          			<option>1</option>
+	          			<option>2</option>
+	          			<option>3</option>
+	          			<option>4</option>
+	          			<option>5</option>
+	        		</select>
+	      		</div>
+	    		<div class="form-group">
+	        		<label for="comment">Commento:</label>
+	        		<textarea class="form-control" rows="5" id="comment"></textarea>
+	    		</div>
+	    		<button class="btn btn-primary" id = "sendReview">Invia recensione</button>
+	   		</form> 
+	  	</div> 
+	</div>
       
       <%@ include file="footer.jsp" %>
       
