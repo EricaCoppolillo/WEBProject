@@ -98,18 +98,18 @@
       
 	<div class="bg-modal">
 		<div class="modal-content">
-	  		<form action="" method="post">
+	  		<form action="postReview" method="post">
 	    		<div id="title">
 	    			<div class="close">+</div>
 	      				<h3>Scrivi una recensione</h3>
-	    		</div>
+	    			</div>
 	      		<div class="form-group">
 	        		<label for="usr">Titolo:</label>
-	        		<input type="text" class="form-control" id="tit"></input>
+	        		<input type="text" class="form-control" id="tit" name="title" required></input>
 	    		</div>
 	    		<div class="form-group">
 	        		<label for="sel1">Valutazione: </label>
-	        		<select class="form-control" id="stars">
+	        		<select class="form-control" id="stars" name="stars">
 	          			<option>1</option>
 	          			<option>2</option>
 	          			<option>3</option>
@@ -118,7 +118,7 @@
 	        		</select>
 	      		</div>
 	    		<div class="form-group">
-	        		<label for="comment">Commento:</label>
+	        		<label for="comment" name="comment">Commento:</label>
 	        		<textarea class="form-control" rows="5" id="comment"></textarea>
 	    		</div>
 	    		<button class="btn btn-primary" id = "sendReview">Invia recensione</button>

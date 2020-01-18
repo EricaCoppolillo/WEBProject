@@ -56,7 +56,7 @@
 
 				<div class="form-group">
 					<h4><br>Ordina per:</h4>
-						<select class="form-control" id="orderBy" onchange="updateProducts(2)">
+						<select class="form-control" id="orderBy" onchange="updateProducts()">
 							<option>Consigliati</option>
 							<option>Prezzo crescente</option>  <!--  TODO implement ajax function orderBy -->
 							<option>Prezzo decrescente</option>
