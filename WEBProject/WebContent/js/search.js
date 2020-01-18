@@ -14,12 +14,15 @@ $(document).ready(function(){
 		if($(this).attr("id") != "prodActive"){
 			$("#prodActive").attr("id", "not");
 			$(".list-group-item").removeClass("active");
+			$(".list-group-item").children().css("background-color", "#007bff");
 			$(this).addClass("active");
 			$(this).attr("id", "prodActive")
+			$(this).children().css("background-color", "#feac01");
 		}
 		else {
 			$("#prodActive").attr("id", "not");
 			$(".list-group-item").removeClass("active");
+			$(this).children().css("background-color", "#007bff");
 		}
 		
 		
@@ -65,11 +68,6 @@ function updateProducts(){
 	var priceLower = ($(".wrunner__valueNote")[0].innerText);
 	var priceUpper = ($(".wrunner__valueNote")[1].innerText);
 	
-	console.log(priceLower + " " + priceUpper);
-	
-	
-	//, filterBy, priceLower, priceUpper
-	/*
 	if(orderBy == "Consigliati"){
 		orderBy = "stars";
 	}
@@ -84,7 +82,7 @@ function updateProducts(){
 	    $.each(responseJson, function(index, product) { 
 	       createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
 	    });
-	});*/
+	});
 }
 
 
