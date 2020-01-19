@@ -107,7 +107,65 @@ public class UserDaoJDBC implements UserDao {
 		
 		return user;
 	}
+	
 
+	@Override
+	public String findSecurityQuestion(String username) {
+		String question = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select \"securityQuestion\" from \"user\" where username = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, username);
+			ResultSet result = statement.executeQuery();
+			if(result.next()) 
+				question = result.getString(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return question;
+	}
+	
+	
+	@Override
+	public String findPassword(String username, String answer) {
+		String password = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select password from \"user\" where username = ? and \"securityAnswer\" = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, username);
+			statement.setString(2, answer);
+			
+			ResultSet result = statement.executeQuery();
+			if(result.next()) 
+				password = result.getString(1);
+			
+			} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return password;
+	}
+	
+	
 	@Override
 	public List<User> findAll() {
 		return null;

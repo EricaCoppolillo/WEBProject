@@ -11,10 +11,8 @@
 	<%@ include file="include.jsp" %>  
 	<script src="js/registration.js"></script>
 	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="bootstrap/js/all.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/fontawesome.min.js"></script>
 	<link rel="stylesheet" href="css/login.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css">
 		
 </head>
 <body onload="writeTexts('${name}', '${surname}', '${date}', '${username}', '${email}', '${question}', '${answer}', '${sameUsername}', '${sameEmail}', '${invalidPassword}')" >

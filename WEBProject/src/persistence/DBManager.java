@@ -51,6 +51,14 @@ public class DBManager {
 		return new UserDaoJDBC(dataSource);
 	}
 	
+	public String getSecurityQuestion(String username) {
+		return getUserDao().findSecurityQuestion(username);
+	}
+	
+	public String getPassword(String username, String answer) {
+		return getUserDao().findPassword(username, answer);
+	}
+	
 	public boolean registeredUser(User user) {
 		if(getUser(user.getUsername()) != null)
 			return true;
