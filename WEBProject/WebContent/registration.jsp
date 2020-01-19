@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css">
 		
 </head>
-<body onload="writeTexts('${name}', '${surname}', '${date}', '${username}', '${email}', '${question}', '${answer}', '${sameUsername}', '${sameEmail}')" >
+<body onload="writeTexts('${name}', '${surname}', '${date}', '${username}', '${email}', '${question}', '${answer}', '${sameUsername}', '${sameEmail}', '${invalidPassword}')" >
 	
 	<div id="container">
 		<div id="divLogo">
@@ -66,6 +66,9 @@
 		  <div class="form-group">
 		    <label class="insert" for="pwd">Inserisci la tua Password</label>
 		    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+		    <c:if test="${invalidPassword == true}">
+		   		<div class="invalid-feedback d-block">La password deve contenere almeno 8 caratteri, almeno una lettera maiuscola e almeno una minuscola</div>
+		   	</c:if>
 		    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 		  </div>
 		  

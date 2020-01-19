@@ -57,6 +57,10 @@ public class DBManager {
 		return false;
 	}
 	
+	public void registerUser(User user) {
+		getUserDao().registerUser(user);
+	}
+	
 	public Administrator getAdministrator(String id, String password) {
 		return getAdministratorDao().findAdmin(id, password);
 	}
