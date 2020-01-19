@@ -5,23 +5,7 @@ var switchedOn = "null";
 // ATTENZIONE: questa classe potrebbe essere migliorata estraendo le stringhe delle domande e delle risposte dal database (COSA CHE ATTUALMENTE NON HO FATTO e non so se lo farò)
 
 //funzione di creazione di un collapse
-function createCollapse(question,  answer, dataToggle, id ){
-	
-	var collapse = document.createElement("button");
-	collapse.innerHTML = question; 
-	collapse.className = "btn btn-outline-secondary";
-	collapse.setAttribute("data-toggle","collapse");
-	collapse.setAttribute("data-target","#"+dataToggle);
-	document.getElementById("istanzaDomande").appendChild(collapse);
-	
-	var div = document.createElement("div");
-	div.innerHTML = answer;
-	div.setAttribute("class","collapse");
-	div.setAttribute("id",dataToggle);
-	document.getElementById("istanzaDomande").appendChild(div);
-	var br = document.createElement("br");
-	document.getElementById("istanzaDomande").appendChild(br);
-}
+
 
 function createQuestionsResiRimborsi()
 {
@@ -242,6 +226,25 @@ function createQuestionsRegistrazione() {
 	var td = document.getElementById(id);
 	td.style.fontWeight = 700;
 	switchedOn = id;
-	
-	
 }
+
+function createCollapse(question,  answer, dataToggle, id ){
+	
+	var collapse = document.createElement("button");
+	collapse.innerHTML = question; 
+	collapse.className = "btn btn-outline-secondary";
+	collapse.setAttribute("data-toggle","collapse");
+	collapse.setAttribute("data-target","#"+dataToggle);
+	document.getElementById("istanzaDomande").appendChild(collapse);
+	
+	var div = document.createElement("div");
+	div.innerHTML = answer;
+	div.setAttribute("class","collapse");
+	div.setAttribute("id",dataToggle);
+	document.getElementById("istanzaDomande").appendChild(div);
+	var br = document.createElement("br");
+	document.getElementById("istanzaDomande").appendChild(br);
+}
+
+
+

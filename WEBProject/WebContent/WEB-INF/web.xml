@@ -81,4 +81,14 @@
 		<url-pattern>/findreviews</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>InsertProduct</servlet-name>
+		<servlet-class>controller.InsertProduct</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>InsertProduct</servlet-name>
+		<url-pattern>/insertproduct</url-pattern>
+	</servlet-mapping>
+
 </web-app>
