@@ -109,4 +109,6 @@ public class DBManager {
 	public ArrayList<Manufacturer> getManufacturers(int categoryId, String keyword){
 		return getProductDao().findManufacturers(categoryId, keyword);
 	}
+
+	public void insertProduct(Product p){ getProductDao().saveProduct(p);}
 }

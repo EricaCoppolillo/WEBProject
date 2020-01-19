@@ -304,4 +304,29 @@ public class ProductDaoJDBC implements ProductDao {
 
         return reviews;
     }
+
+    @Override
+    public void saveProduct(Product p) {
+        try {
+            connection = dataSource.getConnection();
+            String query = "insert into product(model,manufacturer,price,specs,description,category,image) values(?,?,?,?,?,?,?)";
+            PreparedStatement stat = connection.prepareStatement(query);
+            stat.setString(1, p.getModel());
+            stat.setString(2, p.getManufacturer());
+            stat.setFloat(3, p.getPrice());
+            stat.setString(4, p.getSpecs());
+            stat.setString(5, p.getDescription());
+            stat.setInt(6, p.getCategory().getId());
+            stat.setString(7, p.getImagePath());
+            stat.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
