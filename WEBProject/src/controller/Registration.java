@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,7 +21,35 @@ public class Registration extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		RequestDispatcher rd = req.getRequestDispatcher("registration.jsp");
+		req.getSession().removeAttribute("name");
+		req.getSession().removeAttribute("surname");
+		req.getSession().removeAttribute("date");
+		req.getSession().removeAttribute("email");
+		req.getSession().removeAttribute("username");
+		req.getSession().removeAttribute("question");
+		req.getSession().removeAttribute("answer");
+		req.getSession().removeAttribute("sameUsername");
+		req.getSession().removeAttribute("sameEmail");
+		req.getSession().removeAttribute("invalidPassword");
 		rd.forward(req, resp);
+	}
+	
+	protected boolean validPassword(String password) {
+		if(password.length() < 8)
+			return false;
+		
+		boolean lower = false, upper = false;
+		for(int i=0; i<password.length() && (!lower || !upper); i++) {
+			if(Character.isLowerCase(password.charAt(i)))
+				lower = true;
+			if(Character.isUpperCase(password.charAt(i)))
+				upper = true;
+		}
+		if(!lower || !upper) {
+			System.out.println("not");
+			return false;
+		}
+		return true;
 	}
 	
 	@Override
@@ -48,13 +77,23 @@ public class Registration extends HttpServlet {
 		
 		User alreadyUser = db.getUser(username);
 		User alreadyUserEmail = db.getUserByEmail(email);
+		boolean valid = validPassword(password);
 		
-		if(alreadyUser == null && alreadyUserEmail == null) {
+		if(alreadyUser == null && alreadyUserEmail == null && valid) {
 			User user = new User(username, password, name, surname, email, d, question, answer);
 			req.getSession().setAttribute("user", user);
+			req.getSession().removeAttribute("name");
+			req.getSession().removeAttribute("surname");
+			req.getSession().removeAttribute("date");
+			req.getSession().removeAttribute("email");
+			req.getSession().removeAttribute("username");
+			req.getSession().removeAttribute("question");
+			req.getSession().removeAttribute("answer");
 			req.getSession().removeAttribute("sameUsername");
 			req.getSession().removeAttribute("sameEmail");
-			db.registeredUser(user);
+			req.getSession().removeAttribute("invalidPassword");
+			
+			db.registerUser(user);
 			
 			rd = req.getRequestDispatcher("home.jsp");
 		}
@@ -66,6 +105,9 @@ public class Registration extends HttpServlet {
 			
 			if(alreadyUserEmail != null)
 				req.getSession().setAttribute("sameEmail", true);
+			
+			if(!valid)
+				req.getSession().setAttribute("invalidPassword", true);
 			
 			req.getSession().setAttribute("name", name);
 			req.getSession().setAttribute("surname", surname);

@@ -31,7 +31,6 @@ body {
     padding: 10px;
 }
 
-
 .search_input {
     color: black;
     border: 0;
@@ -75,12 +74,14 @@ body {
 
 .search_icon:hover { 
 	background-color: #0080ff;
-    color: white;
     text-decoration: none;
 }
 
+.search_icon:hover > i {
+	color: white;
+}
+
 #welcomeAdm {
-	background-color: #0080ff;
 	color: white;
 	font-weight: lighter;
 }
@@ -92,6 +93,7 @@ body {
 .modal-title {
 	font-size: 2vw;
 	font-weight: lighter;
+	white-space: nowrap;
 }
 
 .modal-body {
@@ -101,13 +103,12 @@ body {
 
 .modal-dialog {
 	float: right;
-	width: 20%;
+	max-width: 100%;
 	right: 12vh;
 }
 
 .modal-content {
-	/*background-color: #208fff;*/
-	/*color: white;*/
+	color: white;
 }
 
 #buttonAddProduct {
@@ -118,4 +119,9 @@ body {
 
 #register, #buttonAddProduct {
 	float: right;
+}
+
+#logout {
+	position: relative;
+	left: 10%;
 }
