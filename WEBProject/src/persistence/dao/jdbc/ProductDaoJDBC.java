@@ -275,15 +275,16 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
-    public ArrayList<Review> findLastReviews(int productId) {
+    public ArrayList<Review> findLastReviews(int productId, int offset) {
         ArrayList<Review> reviews = new ArrayList<>();
         try {
             connection = dataSource.getConnection();
             String query = "select * from review, \"user\" where review.product = ? and review.author = \"user\".id " +
                     "order by " +
-                    "review.id desc limit 5";
+                    "review.id desc limit 5 offset ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, productId);
+            statement.setInt(2, offset * 5);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 Review review = new Review(result.getInt(1), result.getString("title"),

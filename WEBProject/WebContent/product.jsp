@@ -13,6 +13,7 @@
 <!-- 	<link rel="stylesheet" href="css/home.css"> -->
 	<link rel="stylesheet" href="css/product.css">
 	<script src="js/product.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	
@@ -52,8 +53,10 @@
 						<hr>
 					</c:forEach>
 		         </div>
-		         <a href="#" onclick="#">Altre recensioni...</a>
-		         <hr>
+				  <span id="otherReviewsButton">
+				  	<a href="#" onclick="loadOtherReviews(${product.id})">Altre recensioni...</a>
+					<hr>
+				  </span>
 		         <button class="btn btn-primary" id="writeReview">Scrivi una recensione</button>
 	          </div>
 	        </div>

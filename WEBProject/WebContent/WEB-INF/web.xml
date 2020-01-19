@@ -71,4 +71,14 @@
 		<url-pattern>/searchjson</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>FindReviews</servlet-name>
+		<servlet-class>controller.FindReviews</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FindReviews</servlet-name>
+		<url-pattern>/findreviews</url-pattern>
+	</servlet-mapping>
+
 </web-app>

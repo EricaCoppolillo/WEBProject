@@ -12,5 +12,5 @@ public interface ProductDao {
                                     int orderType, String keyword);
     int findProductsNumber(int categoryId, String manufacturer, float lowerBound, float upperBound, String ketword);
     ArrayList<Manufacturer> findManufacturers(int categoryID, String keyword);
-    ArrayList<Review> findLastReviews(int productId);
+    ArrayList<Review> findLastReviews(int productId, int offset);
 }
