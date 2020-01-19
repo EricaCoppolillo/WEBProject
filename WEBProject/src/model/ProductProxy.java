@@ -13,7 +13,7 @@ public class ProductProxy extends Product {
     @Override
     public ArrayList<Review> getReviews() {
         if(reviews == null)
-            setReviews(DBManager.getInstance().getLastReviews(super.getId()));
+            setReviews(DBManager.getInstance().getLastReviews(super.getId(), 0));
 
         return super.reviews;
     }
