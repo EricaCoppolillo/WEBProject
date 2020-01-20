@@ -5,20 +5,36 @@ public class Review {
     private String title;
     private String body;
     private int stars;
-    private String author;
+    private int author;
+    private int product;
+    
+    private String username;
 
     
     public Review() {}
     
-    public Review(int id, String title, String body, int stars, String author) {
+    public Review(int id, String title, String body, int stars, int author, int product) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.stars = stars;
         this.author = author;
+        this.product = product;
     }
+    
+    
 
-    public int getId() {
+    public Review(int id, String title, String body, int stars, int product, String username) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.body = body;
+		this.stars = stars;
+		this.product = product;
+		this.username = username;
+	}
+
+	public int getId() {
         return id;
     }
 
@@ -50,11 +66,29 @@ public class Review {
         this.stars = stars;
     }
 
-    public String getAuthor() {
+    public int getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthor(int user) {
+        this.author = user;
     }
+    
+    public void setProduct(int product) {
+		this.product = product;
+	}
+    
+    public int getProduct() {
+		return product;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+    
+    
 }
