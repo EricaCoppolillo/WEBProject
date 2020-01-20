@@ -30,6 +30,7 @@ public class DBManager {
 		}
 	}
 	
+
 	private DBManager() {}
 	
 	public static DBManager getInstance() {
@@ -111,4 +112,5 @@ public class DBManager {
 	}
 
 	public void insertProduct(Product p){ getProductDao().saveProduct(p);}
+
 }

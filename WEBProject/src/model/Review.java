@@ -7,6 +7,9 @@ public class Review {
     private int stars;
     private String author;
 
+    
+    public Review() {}
+    
     public Review(int id, String title, String body, int stars, String author) {
         this.id = id;
         this.title = title;
