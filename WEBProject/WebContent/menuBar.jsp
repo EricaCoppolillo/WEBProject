@@ -4,9 +4,11 @@
     <div class="modal-content">
       <div class="modal-header">
       	<c:if test="${administrator != null}">
+      		<script>$(".modal-content").css('background-color', '#0080ff')</script>
         	<h5 class="modal-title"">Benvenuto, ${administrator.id}</h5>
         </c:if>
         <c:if test="${user != null}">
+        	<script>$(".modal-content").css('background-color', '#feac01')</script>
         	<h5 class="modal-title"">Benvenuto, ${user.username}</h5>
         </c:if>
       </div>
@@ -16,7 +18,6 @@
     </div>
   </div>
 </div>
-
 
 <div id="menuBar" class="row align-items-center">
 	
@@ -36,11 +37,11 @@
       <div class="d-flex justify-content-center">
         <div class="searchbar">
           <input class="search_input col-sm-9" type="text" name="" placeholder="Cerca...">
-          <a id="search" class="search_icon col-sm-3"><i class="fa fa-search"></i></a>
+          <a class="search_icon col-sm-3"><i class="fa fa-search"></i></a>
         </div>
       </div>
     </div>
-    	<c:choose>
+    <c:choose>
 		<c:when test="${(user == null) && (administrator == null)}">
 			<div class="col">
 				<a href="registration">
@@ -69,7 +70,7 @@
 				</div>
 			</c:if>
 		</c:otherwise>
-		</c:choose>
+	</c:choose>
 	
 	<div class="col">
 		<c:if test="${(user == null) && (administrator == null)}">

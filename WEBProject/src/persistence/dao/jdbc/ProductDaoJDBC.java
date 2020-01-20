@@ -221,7 +221,7 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
-    public ArrayList<Manufacturer> findManufacturers(int categoryId) {
+    public ArrayList<Manufacturer> findManufacturers(int categoryId, String keyword) {
         ArrayList<Manufacturer> manufacturers = new ArrayList<>();
 
         try {
@@ -235,6 +235,11 @@ public class ProductDaoJDBC implements ProductDao {
                 queryChars = " and";
             }
 
+            if(!keyword.equals("")){
+                query += queryChars + " lower(concat(product.manufacturer, ' ', product.model)) similar to ?";
+                queryChars = " and";
+            }
+
             query += " group by manufacturer";
 
             PreparedStatement statement = connection.prepareStatement(query);
@@ -243,6 +248,11 @@ public class ProductDaoJDBC implements ProductDao {
 
             if(categoryId != -1) {
                 statement.setInt(parameterIndex, categoryId);
+                parameterIndex++;
+            }
+
+            if(!keyword.equals("")){
+                statement.setString(parameterIndex, "%" + keyword.toLowerCase() + "%");
                 parameterIndex++;
             }
 
@@ -265,15 +275,16 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
-    public ArrayList<Review> findLastReviews(int productId) {
+    public ArrayList<Review> findLastReviews(int productId, int offset) {
         ArrayList<Review> reviews = new ArrayList<>();
         try {
             connection = dataSource.getConnection();
             String query = "select * from review, \"user\" where review.product = ? and review.author = \"user\".id " +
                     "order by " +
-                    "review.id desc limit 5";
+                    "review.id desc limit 5 offset ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, productId);
+            statement.setInt(2, offset * 5);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 Review review = new Review(result.getInt(1), result.getString("title"),
@@ -292,5 +303,30 @@ public class ProductDaoJDBC implements ProductDao {
         }
 
         return reviews;
+    }
+
+    @Override
+    public void saveProduct(Product p) {
+        try {
+            connection = dataSource.getConnection();
+            String query = "insert into product(model,manufacturer,price,specs,description,category,image) values(?,?,?,?,?,?,?)";
+            PreparedStatement stat = connection.prepareStatement(query);
+            stat.setString(1, p.getModel());
+            stat.setString(2, p.getManufacturer());
+            stat.setFloat(3, p.getPrice());
+            stat.setString(4, p.getSpecs());
+            stat.setString(5, p.getDescription());
+            stat.setInt(6, p.getCategory().getId());
+            stat.setString(7, p.getImagePath());
+            stat.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

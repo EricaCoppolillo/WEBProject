@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FAQ</title>
 
 	<%@ include file="include.jsp" %>
@@ -14,7 +15,7 @@
 	<link rel="stylesheet" href="css/faq.css"> <!-- qua non so perchè lo sfondo rimane bianco se io ho incluso dei caratteri di merda buoni -->
 	<link rel="stylesheet" href="css/CSShake.css">
 </head>
-<body>
+<body onload="createSpecialTable();">
 	<%@ include file="menuBar.jsp" %>
 
 
@@ -48,74 +49,77 @@
 
                 	
                 <div id="istanzaDomande" class = "col-sm-9" >
-            	<table>
-            	<tr>
-            		<td> <img src = "img/tastiFAQ/l.png" class = "tasti shake-slow"> </td>
-            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-little"> </td>
-            		<td><div class = "tasti"></div><td>
-            		<td> <img src = "img/tastiFAQ/d.png" class = "tasti shake-hard"> </td>
-            		<td> <img src = "img/tastiFAQ/o.png" class = "tasti shake-rotate"> </td>
-            		<td> <img src = "img/tastiFAQ/m.png" class = "tasti shake-horizontal"> </td>
-            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-slow"> </td>
-            		<td> <img src = "img/tastiFAQ/n.png" class = "tasti shake-chunk"> </td>
-            		<td> <img src = "img/tastiFAQ/d.png" class = "tasti shake-opacity"> </td>
-            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-crazy"> </td>
-            	</tr>
-            	<tr>
-            		<td> <img src = "img/tastiFAQ/n.png" class = "tasti shake-little"> </td>
-            		<td> <img src = "img/tastiFAQ/o.png" class = "tasti shake-slow"> </td>
-            		<td> <img src = "img/tastiFAQ/n.png" class = "tasti shake-hard"> </td>
-            		<td><div class = "tasti"></div><td>
-            		<td> <img src = "img/tastiFAQ/e2.png" class = "tasti shake-crazy"> </td>
-            		<td><div class = "tasti"></div><td>
-            		<td> <img src = "img/tastiFAQ/m.png" class = "tasti shake-crazy"> </td>
-            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-slow"> </td>
-            		<td> <img src = "img/tastiFAQ/i.png" class = "tasti shake-vertical"> </td>
-            	</tr>
-            	<tr>
-            		<td> <img src = "img/tastiFAQ/s.png" class = "tasti shake-rotate"> </td>
-            		<td> <img src = "img/tastiFAQ/t.png" class = "tasti shake-little"> </td>
-            		<td> <img src = "img/tastiFAQ/u.png" class = "tasti shake-hard"> </td>
-            		<td> <img src = "img/tastiFAQ/p.png" class = "tasti shake-slow"> </td>
-            		<td> <img src = "img/tastiFAQ/i.png" class = "tasti shake-opacity"> </td>
-            		<td> <img src = "img/tastiFAQ/d.png" class = "tasti shake-chunk"> </td>
-            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-slow"> </td>
-            	</tr>
-            	<tr>
-            		<td> <img src = "img/tastiFAQ/c.png" class = "tasti shake-rotate"> </td>
-            		<td> <img src = "img/tastiFAQ/l.png" class = "tasti shake-little"> </td>
-            		<td> <img src = "img/tastiFAQ/i.png" class = "tasti shake-hard"> </td>
-            		<td> <img src = "img/tastiFAQ/c.png" class = "tasti shake-slow"> </td>
-            		<td> <img src = "img/tastiFAQ/c.png" class = "tasti shake-opacity"> </td>
-            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-chunk"> </td>
-            		<td><div class = "tasti"></div><td>
-            		<td> <img src = "img/tastiFAQ/u.png" class = "tasti shake-slow"> </td>
-            		<td> <img src = "img/tastiFAQ/n.png" class = "tasti shake-opacity"> </td>
-            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-chunk"> </td>
-            		<td><div class = "tasti"></div><td>
-            		<td> <img src = "img/tastiFAQ/v.png" class = "tasti shake-slow"> </td>
-            		<td> <img src = "img/tastiFAQ/o.png" class = "tasti shake-opacity"> </td>
-            		<td> <img src = "img/tastiFAQ/c.png" class = "tasti shake-chunk"> </td>
-            		<td> <img src = "img/tastiFAQ/e.png" class = "tasti shake-slow"> </td>
-            	</tr>
-            	<tr>
-            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-slow"> </td>
-            		<td><div class = "tasti"></div><td>
-            		<td> <img src = "img/tastiFAQ/s.png" class = "tasti shake-opacity"> </td>
-            		<td> <img src = "img/tastiFAQ/i.png" class = "tasti shake-chunk"> </td>
-            		<td> <img src = "img/tastiFAQ/n.png" class = "tasti shake-slow"> </td>
-            		<td> <img src = "img/tastiFAQ/i.png" class = "tasti shake-opacity"> </td>
-            		<td> <img src = "img/tastiFAQ/s.png" class = "tasti shake-opacity"> </td>
-            		<td> <img src = "img/tastiFAQ/t.png" class = "tasti shake-chunk"> </td>
-            		<td> <img src = "img/tastiFAQ/r.png" class = "tasti shake-slow"> </td>
-            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-opacity"> </td>
-            		
-            	</tr>
-            	</table>
+                <div id = "specialTable" class = "row">
+                	<table>
+		            	<tr>
+		            		<td> <img src = "img/tastiFAQ/l.png" class = "tasti shake-slow"> </td>
+		            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-little"> </td>
+		            		<td><div class = "tasti"></div><td>
+		            		<td> <img src = "img/tastiFAQ/d.png" class = "tasti shake-hard"> </td>
+		            		<td> <img src = "img/tastiFAQ/o.png" class = "tasti shake-rotate"> </td>
+		            		<td> <img src = "img/tastiFAQ/m.png" class = "tasti shake-horizontal"> </td>
+		            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-slow"> </td>
+		            		<td> <img src = "img/tastiFAQ/n.png" class = "tasti shake-chunk"> </td>
+		            		<td> <img src = "img/tastiFAQ/d.png" class = "tasti shake-opacity"> </td>
+		            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-crazy"> </td>
+		            	</tr>
+		            	<tr>
+		            		<td> <img src = "img/tastiFAQ/n.png" class = "tasti shake-little"> </td>
+		            		<td> <img src = "img/tastiFAQ/o.png" class = "tasti shake-slow"> </td>
+		            		<td> <img src = "img/tastiFAQ/n.png" class = "tasti shake-hard"> </td>
+		            		<td><div class = "tasti"></div><td>
+		            		<td> <img src = "img/tastiFAQ/e2.png" class = "tasti shake-crazy"> </td>
+		            		<td><div class = "tasti"></div><td>
+		            		<td> <img src = "img/tastiFAQ/m.png" class = "tasti shake-crazy"> </td>
+		            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-slow"> </td>
+		            		<td> <img src = "img/tastiFAQ/i.png" class = "tasti shake-vertical"> </td>
+		            	</tr>
+		            	<tr>
+		            		<td> <img src = "img/tastiFAQ/s.png" class = "tasti shake-rotate"> </td>
+		            		<td> <img src = "img/tastiFAQ/t.png" class = "tasti shake-little"> </td>
+		            		<td> <img src = "img/tastiFAQ/u.png" class = "tasti shake-hard"> </td>
+		            		<td> <img src = "img/tastiFAQ/p.png" class = "tasti shake-slow"> </td>
+		            		<td> <img src = "img/tastiFAQ/i.png" class = "tasti shake-opacity"> </td>
+		            		<td> <img src = "img/tastiFAQ/d.png" class = "tasti shake-chunk"> </td>
+		            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-slow"> </td>
+		            	</tr>
+		            	<tr>
+		            		<td> <img src = "img/tastiFAQ/c.png" class = "tasti shake-rotate"> </td>
+		            		<td> <img src = "img/tastiFAQ/l.png" class = "tasti shake-little"> </td>
+		            		<td> <img src = "img/tastiFAQ/i.png" class = "tasti shake-hard"> </td>
+		            		<td> <img src = "img/tastiFAQ/c.png" class = "tasti shake-slow"> </td>
+		            		<td> <img src = "img/tastiFAQ/c.png" class = "tasti shake-opacity"> </td>
+		            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-chunk"> </td>
+		            		<td><div class = "tasti"></div><td>
+		            		<td> <img src = "img/tastiFAQ/u.png" class = "tasti shake-slow"> </td>
+		            		<td> <img src = "img/tastiFAQ/n.png" class = "tasti shake-opacity"> </td>
+		            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-chunk"> </td>
+		            		<td><div class = "tasti"></div><td>
+		            		<td> <img src = "img/tastiFAQ/v.png" class = "tasti shake-slow"> </td>
+		            		<td> <img src = "img/tastiFAQ/o.png" class = "tasti shake-opacity"> </td>
+		            		<td> <img src = "img/tastiFAQ/c.png" class = "tasti shake-chunk"> </td>
+		            		<td> <img src = "img/tastiFAQ/e.png" class = "tasti shake-slow"> </td>
+		            	</tr>
+		            	<tr>
+		            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-slow"> </td>
+		            		<td><div class = "tasti"></div><td>
+		            		<td> <img src = "img/tastiFAQ/s.png" class = "tasti shake-opacity"> </td>
+		            		<td> <img src = "img/tastiFAQ/i.png" class = "tasti shake-chunk"> </td>
+		            		<td> <img src = "img/tastiFAQ/n.png" class = "tasti shake-slow"> </td>
+		            		<td> <img src = "img/tastiFAQ/i.png" class = "tasti shake-opacity"> </td>
+		            		<td> <img src = "img/tastiFAQ/s.png" class = "tasti shake-opacity"> </td>
+		            		<td> <img src = "img/tastiFAQ/t.png" class = "tasti shake-chunk"> </td>
+		            		<td> <img src = "img/tastiFAQ/r.png" class = "tasti shake-slow"> </td>
+		            		<td> <img src = "img/tastiFAQ/a.png" class = "tasti shake-opacity"> </td>
+		            		
+		            	</tr>
+	            	</table>
+                </div>
+            	
             		<br>
                 	<button onclick="createQuestionsRegistrazione()" id = "buttonCenterFaq" type="button" class="btn btn-secondary">Inizia</button>
                 	
-                </div>
+                </div> <!-- chiude il div di istanze domande -->
             </div>
         </div>
          <br>

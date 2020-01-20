@@ -26,6 +26,8 @@ public abstract class Product {
         this.imagePath = imagePath;
     }
 
+    public Product(){}
+
     public String getDescription() {
         return description;
     }

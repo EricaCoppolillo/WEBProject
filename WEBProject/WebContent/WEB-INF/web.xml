@@ -22,6 +22,26 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>ForgottenPassword</servlet-name>
+	  	<servlet-class>controller.ForgottenPassword</servlet-class>
+	</servlet>
+	  
+	<servlet-mapping>
+	  	<servlet-name>ForgottenPassword</servlet-name>
+	  	<url-pattern>/forgottenPassword</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PasswordRecovery</servlet-name>
+	  	<servlet-class>controller.PasswordRecovery</servlet-class>
+	</servlet>
+	  
+	<servlet-mapping>
+	  	<servlet-name>PasswordRecovery</servlet-name>
+	  	<url-pattern>/passwordRecovery</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>Registration</servlet-name>
 	  	<servlet-class>controller.Registration</servlet-class>
 	</servlet>
@@ -79,6 +99,26 @@
 	<servlet-mapping>
 	  	<servlet-name>PostReview</servlet-name>
 	  	<url-pattern>/postReview</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FindReviews</servlet-name>
+		<servlet-class>controller.FindReviews</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FindReviews</servlet-name>
+		<url-pattern>/findreviews</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>InsertProduct</servlet-name>
+		<servlet-class>controller.InsertProduct</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>InsertProduct</servlet-name>
+		<url-pattern>/insertproduct</url-pattern>
 	</servlet-mapping>
 
 </web-app>

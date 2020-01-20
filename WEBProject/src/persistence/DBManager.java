@@ -6,9 +6,11 @@ import model.*;
 import persistence.dao.AdministratorDao;
 import persistence.dao.CategoryDao;
 import persistence.dao.ProductDao;
+import persistence.dao.UserDao;
 import persistence.dao.jdbc.AdministratorDaoJDBC;
 import persistence.dao.jdbc.CategoryDaoJDBC;
 import persistence.dao.jdbc.ProductDaoJDBC;
+import persistence.dao.jdbc.UserDaoJDBC;
 
 public class DBManager {
 	
@@ -28,16 +30,8 @@ public class DBManager {
 		}
 	}
 	
-	private ArrayList<User> users;
-	private ArrayList<Administrator> administrators;
-	private ArrayList<Review> reviews;
-	
-	
-	private DBManager() {
-		users = new ArrayList<User>();
-		administrators = new ArrayList<Administrator>();
-		reviews = new ArrayList<Review>();
-	}
+
+	private DBManager() {}
 	
 	public static DBManager getInstance() {
 		if(instance == null) {
@@ -46,17 +40,34 @@ public class DBManager {
 		return instance;
 	} 
 	
-	public void registerUser(User u) {
-		if(u!=null)
-			users.add(u);
+	public User getUser(String username) {
+		return getUserDao().findUser(username);
 	}
 	
-	public boolean userRegistered(User user) {
-		for(User u : users) {
-			if(user.getUsername().equals(u.getUsername()) && user.getPassword().equals(u.getPassword()))
-				return true;
-		}
+	public User getUserByEmail(String email) {
+		return getUserDao().findUserByEmail(email);
+	}
+	
+	public UserDao getUserDao() {
+		return new UserDaoJDBC(dataSource);
+	}
+	
+	public String getSecurityQuestion(String username) {
+		return getUserDao().findSecurityQuestion(username);
+	}
+	
+	public String getPassword(String username, String answer) {
+		return getUserDao().findPassword(username, answer);
+	}
+	
+	public boolean registeredUser(User user) {
+		if(getUser(user.getUsername()) != null)
+			return true;
 		return false;
+	}
+	
+	public void registerUser(User user) {
+		getUserDao().registerUser(user);
 	}
 	
 	public Administrator getAdministrator(String id, String password) {
@@ -65,7 +76,6 @@ public class DBManager {
 	
 	public AdministratorDao getAdministratorDao() {
 		return new AdministratorDaoJDBC(dataSource);
-		
 	}
 
 	public ProductDao getProductDao(){
@@ -74,12 +84,6 @@ public class DBManager {
 
 	public CategoryDao getCategoryDao(){
 		return new CategoryDaoJDBC(this.dataSource);
-	}
-
-	public void printUsers() {
-		for(User u : users) {
-			System.out.println(u.getUsername() + " " + u.getPassword());
-		}
 	}
 
 	public Category getCategory(int categoryId){
@@ -99,20 +103,14 @@ public class DBManager {
 		return getProductDao().findProductsNumber(categoryId, manufacturer, lowerBound, upperBound, keyword);
 	}
 
-	public ArrayList<Review> getLastReviews(int productId){ return getProductDao().findLastReviews(productId); }
-
-	public ArrayList<Manufacturer> getManufacturers(int categoryId){
-		return getProductDao().findManufacturers(categoryId);
+	public ArrayList<Review> getLastReviews(int productId, int offset){
+		return getProductDao().findLastReviews(productId, offset);
 	}
-	
-	
-	public boolean postReview(Review r, int productId) {
-		if(r != null) {
-			reviews.add(r);
-			System.out.println(r.getTitle() + " " + r.getBody());
 
-			return true;
-		}
-		return false;
+	public ArrayList<Manufacturer> getManufacturers(int categoryId, String keyword){
+		return getProductDao().findManufacturers(categoryId, keyword);
 	}
+
+	public void insertProduct(Product p){ getProductDao().saveProduct(p);}
+
 }

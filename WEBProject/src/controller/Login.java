@@ -85,7 +85,7 @@ public class Login extends HttpServlet {
 		else if(isAdmin == null) {
 			String username = req.getParameter("username");
 			User user = new User(username, password);
-			if(db.userRegistered(user)) {
+			if(db.registeredUser(user)) {
 				req.getSession().setAttribute("user", user);
 				req.getSession().setAttribute("firstLogin", true);
 				rd = req.getRequestDispatcher("home.jsp");

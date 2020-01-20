@@ -62,7 +62,7 @@
 		  <div class="form-group">
 		    <label class="insert" for="pwd">Inserisci la tua Password</label>
 		   	<c:if test="${adminNotAuthenticated == null}">
-		   		<a class="forgottenPassword" href="...passwordDimenticata">
+		   		<a class="forgottenPassword" href="forgottenPassword">
 		  			Password dimenticata?
 		  		</a>
 		  	</c:if>
@@ -70,14 +70,6 @@
 		    <div class="valid-feedback">Password valida.</div>
 		    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 		  </div>
-		  
-<!-- 		  <div class="form-group form-check"> -->
-<!-- 		    <label class="form-check-label"> -->
-<!-- 		      <input class="form-check-input" type="checkbox" name="remember" required>Accetto le Condizioni d'Uso -->
-<!-- 		      <div class="valid-feedback">Valida</div> -->
-<!-- 		      <div class="invalid-feedback">Accetta le condizioni per accedere</div> -->
-<!-- 		    </label> -->
-<!-- 		  </div> -->
 
 		  <c:if test="${adminNotAuthenticated == null}">
 			  <div class="registration">

@@ -10,10 +10,12 @@ public class ProductProxy extends Product {
         super(id, model, manufacturer, price, specs, description, category, starsAvg, imagePath);
     }
 
+    public ProductProxy(){}
+
     @Override
     public ArrayList<Review> getReviews() {
         if(reviews == null)
-            setReviews(DBManager.getInstance().getLastReviews(super.getId()));
+            setReviews(DBManager.getInstance().getLastReviews(super.getId(), 0));
 
         return super.reviews;
     }
