@@ -70,5 +70,15 @@
 		<servlet-name>SearchJSON</servlet-name>
 		<url-pattern>/searchjson</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PostReview</servlet-name>
+	  	<servlet-class>controller.PostReview</servlet-class>
+	</servlet>
+	  
+	<servlet-mapping>
+	  	<servlet-name>PostReview</servlet-name>
+	  	<url-pattern>/postReview</url-pattern>
+	</servlet-mapping>
 
 </web-app>

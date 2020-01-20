@@ -30,10 +30,13 @@ public class DBManager {
 	
 	private ArrayList<User> users;
 	private ArrayList<Administrator> administrators;
+	private ArrayList<Review> reviews;
+	
 	
 	private DBManager() {
 		users = new ArrayList<User>();
 		administrators = new ArrayList<Administrator>();
+		reviews = new ArrayList<Review>();
 	}
 	
 	public static DBManager getInstance() {
@@ -100,5 +103,16 @@ public class DBManager {
 
 	public ArrayList<Manufacturer> getManufacturers(int categoryId){
 		return getProductDao().findManufacturers(categoryId);
+	}
+	
+	
+	public boolean postReview(Review r, int productId) {
+		if(r != null) {
+			reviews.add(r);
+			System.out.println(r.getTitle() + " " + r.getBody());
+
+			return true;
+		}
+		return false;
 	}
 }
