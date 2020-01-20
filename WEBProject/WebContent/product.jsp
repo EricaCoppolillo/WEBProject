@@ -49,7 +49,7 @@
 					<c:forEach var="review" items="${product.reviews}">
 						<h6 id="reviewTitle">${review.title}</h6>
 						<p id="reviewText">${review.body}</p>
-						<small id="author" class="text-muted">Scritta da ${review.author}</small>
+						<small id="author" class="text-muted">Scritta da ${review.username}</small>
 						<hr>
 					</c:forEach>
 		         </div>
@@ -120,9 +120,14 @@
 	          			<option>5</option>
 	        		</select>
 	      		</div>
+	      		<div class="form-group" style="display: none;">
+	      			<select style="display: none;" name="product">
+	      				<option>${product.id}</option>
+	      			</select>
+	      		</div>
 	    		<div class="form-group">
-	        		<label for="comment" name="comment">Commento:</label>
-	        		<textarea class="form-control" rows="5" id="comment"></textarea>
+	        		<label for="comment">Commento:</label>
+	        		<textarea class="form-control" rows="5" name="comment" id="comment"></textarea>
 	    		</div>
 	    		<button class="btn btn-primary" id = "sendReview">Invia recensione</button>
 	   		</form> 

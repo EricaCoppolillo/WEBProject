@@ -6,11 +6,14 @@ import model.*;
 import persistence.dao.AdministratorDao;
 import persistence.dao.CategoryDao;
 import persistence.dao.ProductDao;
+import persistence.dao.ReviewDao;
 import persistence.dao.UserDao;
 import persistence.dao.jdbc.AdministratorDaoJDBC;
 import persistence.dao.jdbc.CategoryDaoJDBC;
 import persistence.dao.jdbc.ProductDaoJDBC;
+import persistence.dao.jdbc.ReviewDaoJDBC;
 import persistence.dao.jdbc.UserDaoJDBC;
+import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 
 public class DBManager {
 	
@@ -112,5 +115,11 @@ public class DBManager {
 	}
 
 	public void insertProduct(Product p){ getProductDao().saveProduct(p);}
+	
+	public ReviewDao getReviewDao() {
+		return new ReviewDaoJDBC(this.dataSource);
+	}
+	
+	public void postReview(Review r) { getReviewDao().postReview(r);}
 
 }
