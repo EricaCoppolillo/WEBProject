@@ -125,3 +125,9 @@ body {
 	position: relative;
 	left: 10%;
 }
+
+#cart {
+	background-color: #feac01;
+	float: right;
+	color: white;
+}

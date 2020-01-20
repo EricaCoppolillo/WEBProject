@@ -14,7 +14,7 @@ var loadOtherReviews = function(productId){
 			$.each(data, function (key, val) {
 				$("#reviewBox").append("<h6 id=\"reviewTitle\">" + val.title + "</h6>" +
 					"<p id=\"reviewText\">" + val.body + "</p>" +
-					"<small id=\"author\" class=\"text-muted\">Scritta da " + val.author + "</small>" +
+					"<small id=\"author\" class=\"text-muted\">Scritta da " + val.username + "</small>" +
 					"<hr>")
 			});
 			reviewsOffset++;

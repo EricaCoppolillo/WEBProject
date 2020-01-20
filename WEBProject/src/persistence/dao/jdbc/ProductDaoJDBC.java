@@ -288,7 +288,7 @@ public class ProductDaoJDBC implements ProductDao {
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 Review review = new Review(result.getInt(1), result.getString("title"),
-                        result.getString("body"), result.getInt("stars"),productId, result.getString("username"));
+                        result.getString("body"), result.getInt("stars"), productId, result.getString("username"));
                 reviews.add(review);
             }
         } catch (SQLException e) {

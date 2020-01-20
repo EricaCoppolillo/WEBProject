@@ -41,6 +41,9 @@
         </div>
       </div>
     </div>
+    <div class = "col">
+		<button type="button" class="btn" id="cart">Carrello <i style="color: white;" class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+	</div>
     <c:choose>
 		<c:when test="${(user == null) && (administrator == null)}">
 			<div class="col">
