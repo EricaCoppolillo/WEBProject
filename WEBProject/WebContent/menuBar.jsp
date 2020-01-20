@@ -1,7 +1,7 @@
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="false">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div id="modalContent" class="modal-content">
       <div class="modal-header">
       	<c:if test="${administrator != null}">
       		<script>$(".modal-content").css('background-color', '#0080ff')</script>
