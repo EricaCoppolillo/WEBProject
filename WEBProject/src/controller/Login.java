@@ -23,8 +23,6 @@ public class Login extends HttpServlet {
 		
 		if(isAdmin != null && isAdmin.equals("true")) {
 			req.getSession().setAttribute("adminNotAuthenticated", true);
-//			Amministratore admin = new Amministratore();//poi lo prenderò dal db
-//			req.getSession().setAttribute("amministratore", admin);
 			rd = req.getRequestDispatcher("login.jsp");
 		}
 		
@@ -38,7 +36,6 @@ public class Login extends HttpServlet {
 		
 		if(logout != null && logout.equals("true")) {
 			
-			req.getSession().removeAttribute("firstLogin");
 			if(o1 != null)
 				req.getSession().removeAttribute("user");
 			else if(o2 != null) 

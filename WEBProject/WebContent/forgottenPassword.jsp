@@ -15,9 +15,10 @@
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	
 	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="css/forgottenPassword.css">
 	
 </head>
-<body>
+<body onload=disable()>
 
 	<div id="container">
 		<div id="divLogo">
@@ -46,9 +47,6 @@
 				 <input id="buttonPassword" class="btn btn-primary" onclick="getPassword()" value="Recupera Password"/>
 			  </div>
 		  </div>
-		  	
-		  
-		  
 		</form>
 		
 	</div> 

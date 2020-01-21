@@ -1,4 +1,4 @@
-@charset "ISO-8859-1";
+@charset "UTF-8";
 
 div {
 	position: relative;
@@ -16,14 +16,14 @@ div {
 }
 
 #buttonCenterFaq{
-	/*questo bottone vorrei che fosse al centro del div istanzaDomande e quindi da esso si possa ottenere qualche funzionalit‡*/
+	/*questo bottone vorrei che fosse al centro del div istanzaDomande e quindi da esso si possa ottenere qualche funzionalit√†*/
 	position: absolute;
 	/*left: 50%;*/
 	right: 50%;	
 	top: 100%;
 }
 
-.tasti{
+.keysFaq{
 	height: 60px;
 	width:60px;
 }
@@ -37,14 +37,14 @@ td {
 	cursor: pointer;
 }
 
-#istanzaDomande{
+#istanceQuestions{
 }
 
 #container{
 	position: relative;
 }
 
-#usbVolante{
+#usbFaq{
 	position: relative;
 	animation: mymove 100s infinite;
 	animation-timing-function: linear;

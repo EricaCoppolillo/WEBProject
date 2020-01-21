@@ -42,6 +42,16 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>Cart</servlet-name>
+	  	<servlet-class>controller.Cart</servlet-class>
+	</servlet>
+	  
+	<servlet-mapping>
+	  	<servlet-name>Cart</servlet-name>
+	  	<url-pattern>/cart</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>Registration</servlet-name>
 	  	<servlet-class>controller.Registration</servlet-class>
 	</servlet>
@@ -120,6 +130,16 @@
 	<servlet-mapping>
 		<servlet-name>InsertProduct</servlet-name>
 		<url-pattern>/insertproduct</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ModifyProduct</servlet-name>
+		<servlet-class>controller.ModifyProduct</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ModifyProduct</servlet-name>
+		<url-pattern>/modifyProduct</url-pattern>
 	</servlet-mapping>
 
 </web-app>

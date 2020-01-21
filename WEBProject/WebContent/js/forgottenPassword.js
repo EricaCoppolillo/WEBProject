@@ -1,3 +1,7 @@
+function disable() {
+	document.getElementById("buttonPassword").disabled = true;
+}
+
 function getSecurityQuestion() {
 	
 	var username = $("#username").val();
@@ -11,21 +15,21 @@ function getSecurityQuestion() {
 					
 					if(data == "invalid") {
 						$("#wrongUsername").css('visibility', 'visible');
-
-						 $("#username").css('color', '#d70000');
+						
 					  	 $("#username").css('border', '1px solid #d70000');
 					  	 $("#username").focusout(function() {
+					  		$("#username").css('color', '#d70000');
 					  		  $("#username").css('box-shadow', '0 0 0');
-					  		  $("#username").css('color', '#d70000');
 					  	  });
 					  	  $("#username").focus(function() {
-					  		  $("#username").css('box-shadow', '0px 0px 0px 3px rgba(215, 0, 0, 0.2)');
 					  		  $("#username").css('color', 'black');
+					  		  $("#username").css('box-shadow', '0px 0px 0px 3px rgba(215, 0, 0, 0.2)');
 					  	  });
 					}
 					
 					else {
 						document.getElementById("buttonUsername").disabled = true;
+						document.getElementById("buttonPassword").disabled = false;
 						
 						$("#wrongUsername").css('visibility', 'hidden');
 						
@@ -45,7 +49,8 @@ function getPassword() {
 		
 	var username = $("#username").val();
 	var answer = $("#securityAnswer").val();
-
+	
+	if(answer != '') {
 	var label = document.createElement("label");
 	label.setAttribute("id", "labelPassword");
 	label.innerHTML = "La tua Password";		
@@ -93,4 +98,5 @@ function getPassword() {
 		}
 	}
 );
+	}
 }

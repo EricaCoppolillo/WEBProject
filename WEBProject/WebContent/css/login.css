@@ -58,24 +58,7 @@ hr {
 	width: 30%;
 }
 
-#buttonUsername {
-	margin-top: 7px;
-	margin-bottom: 7px;
-	width: 25%;
-}
 
-#buttonPassword {
-	margin-top: 7px;
-	margin-bottom: 7px;
-}
-
-#securityAnswer {
-	margin-top: 10px;
-}
-
-#wrongAnswer, #wrongUsername {
-	visibility: hidden;
-}
 
 
 
