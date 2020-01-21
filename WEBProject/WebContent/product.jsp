@@ -89,7 +89,16 @@
 	            </select>
 	          </div>
 	          
-	          <button type="button" id="addToCart" class="btn">Aggiungi al carrello</button>
+	          <c:if test="${administrator == null}">
+	          	<button type="button" id="addToCart" class="btn">Aggiungi al carrello</button>
+	          </c:if>
+	          <c:if test="${administrator != null}">
+	          <a href="modifyProduct?id=${product.id}">
+	          	<button id="modifyProduct" class="btn">Modifica prodotto</button>
+	          	</a>
+	          	<button type="button" id="deleteProduct" class="btn">Elimina prodotto</button>
+	          </c:if>
+	          
 	
 	        </div>
 	      </div> <!-- lg-3 -->

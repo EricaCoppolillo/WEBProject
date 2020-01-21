@@ -120,5 +120,15 @@
 		<servlet-name>InsertProduct</servlet-name>
 		<url-pattern>/insertproduct</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ModifyProduct</servlet-name>
+		<servlet-class>controller.ModifyProduct</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ModifyProduct</servlet-name>
+		<url-pattern>/modifyProduct</url-pattern>
+	</servlet-mapping>
 
 </web-app>
