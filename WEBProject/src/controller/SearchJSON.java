@@ -89,10 +89,12 @@ public class SearchJSON extends HttpServlet {
                 upperBound, orderType, keyword);
 
         String json = this.gson.toJson(products);
+        String completeJSONToSend = "[{\"pages\":" + pagesNumber + "},";
+        completeJSONToSend += json.substring(1);
         PrintWriter out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        out.print(json);
+        out.print(completeJSONToSend);
         out.flush();
 
     }

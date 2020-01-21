@@ -12,7 +12,7 @@
 <title>Home</title>
 	
 	<%@ include file="include.jsp" %>
-		<link rel="stylesheet" href="css/home.css">
+	<link rel="stylesheet" href="css/home.css">
 	
 </head>
 <body>
@@ -86,7 +86,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 		<div class="smartphoneCategory">
-			<h1>SmartPhone</h1>
+			<h1>Smartphone</h1>
     		<p><a id="smartphoneLink" href="search?category=2">Acquista ></a></p>
  	    	<div class="imageSmartphone"></div>
 		</div>

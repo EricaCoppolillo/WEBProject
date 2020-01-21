@@ -41,6 +41,13 @@
         </div>
       </div>
     </div>
+    <c:if test="${administrator == null}">
+	    <div class = "col">
+	    	<a href="cart">
+				<button type="button" class="btn" id="cart">Carrello <i style="color: white;" class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+			</a>
+		</div>
+	</c:if>
     <c:choose>
 		<c:when test="${(user == null) && (administrator == null)}">
 			<div class="col">
@@ -51,12 +58,15 @@
 		</c:when>
 		<c:otherwise>
 			<c:if test="${firstLogin != null}">
+			<c:remove var="firstLogin" scope="session" />
 				<script>
 					$("#modal").modal();
 					
 					 setTimeout(function(){
 					  $('#modal').modal('hide')
 					 }, 2000);  
+					 
+					
 				</script>
 			</c:if>
 			

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
@@ -8,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import model.Review;
 import persistence.DBManager;
@@ -32,13 +34,15 @@ public class PostReview extends HttpServlet{
 			r.setTitle(title);
 			r.setProduct(productID);
 			
-			db.postReview(r);
-			RequestDispatcher rd = req.getRequestDispatcher("product?id="+r.getProduct());
+			
+			Pattern pattern = Pattern.compile(".*(cazz|cul|merd).*", Pattern.CASE_INSENSITIVE);
+		    Matcher matcher = pattern.matcher(comment);
+			if(!matcher.find()) {
+				db.postReview(r);
+			}
+			RequestDispatcher rd = req.getRequestDispatcher("product.jsp");
 			rd.forward(req, resp);
 			
-			/*if(Pattern.matches("cazzo", comment) || Pattern.matches("vaffanculo", comment) || Pattern.matches("merda", comment)) {
-				throw new IllegalArgumentException("il commento contiene parole volgari!");
-			}*/
 		}
 		
 		

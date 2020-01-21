@@ -122,8 +122,8 @@ textarea {
 #addToCart,#modifyProduct,#deleteProduct {
 	width: 100%;
 	background-color: #feac01;
-	color: white;
 	margin-top: 4%;
+	color : white;
 }
 
 #productInSummary {

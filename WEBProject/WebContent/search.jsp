@@ -71,7 +71,7 @@
                             <div id="brandCollapse" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
                                     <c:forEach var="manufacturer" items="${manufacturers}">
-                                        <a class="list-group-item d-flex justify-content-between align-items-center">${manufacturer.name}<span class="badge badge-primary badge-pill">${manufacturer.products}</span></a>
+                                        <a id="${manufcturer.name}" class="list-group-item d-flex justify-content-between align-items-center">${manufacturer.name}<span class="badge badge-primary badge-pill">${manufacturer.products}</span></a>
                                     </c:forEach>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
 
 	
 	<div id="paginationDiv">
-		<ul class="pagination justify-content-center" id="pagination">
+		<!--  <ul class="pagination justify-content-center" id="pagination">
 			
 	            <li class="page-item"><a class="page-link" id="previous" onclick="changePage(false,2)">Precedente</a></li>
 	            <c:forEach var = "page" begin = "1" end = "${pages}">
@@ -141,14 +141,15 @@
     					<li class="page-item active" id="page${page}"><a onclick="goToPage(${page})" class="page-link active" id="a${page}">${page}</a></li>
   					</c:when>
   					<c:otherwise>
-  						<li class="page-item" id="page${page}"><a onclick="goToPage(${page})"   class="page-link" id="a${page}">${page}</a></li>
+  						<li class="page-item" id="page${page}"  onclick="goToPage(${page})"><a class="page-link" id="a${page}">${page}</a></li>
   					</c:otherwise>
   				</c:choose>
 	            </c:forEach>
 	            <li class="page-item" id="page2"><a onclick="goToPage(2)" class="page-link" id="a2">2</a></li>
 	            <li class="page-item"><a class="page-link" id="next" onclick="changePage(true,2)">Successiva</a>
 	            
-	    </ul>
+	    </ul>-->
+	   <script> createPagination(${pages}); </script>
     </div>
 
     
