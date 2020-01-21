@@ -1,0 +1,15 @@
+#goToPayment {
+	text-align: center;
+	right: 10%;
+	background-color: #efefef;
+}
+
+#totalPrice {
+	color: #c10d0d;
+	font-weight: bold;
+}
+
+button {
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
