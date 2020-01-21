@@ -328,4 +328,52 @@ public class ProductDaoJDBC implements ProductDao {
             }
         }
     }
+
+	@Override
+	public void updateProduct(Product p) {
+		 try {
+	            connection = dataSource.getConnection();
+	            String query = "update product set model=?,manufacturer=?,price=?,specs=?,description=?,category=?,image=? where id=?";
+	            PreparedStatement stat = connection.prepareStatement(query);
+	            stat.setString(1, p.getModel());
+	            stat.setString(2, p.getManufacturer());
+	            stat.setFloat(3, p.getPrice());
+	            stat.setString(4, p.getSpecs());
+	            stat.setString(5, p.getDescription());
+	            stat.setInt(6, p.getCategory().getId());
+	            stat.setString(7, p.getImagePath());
+	            stat.setInt(8, p.getId());
+	            stat.executeUpdate();
+	        }catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	            try {
+	                connection.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	}
+
+	@Override
+	public void deleteProduct(int id) {
+		 try {
+	            connection = dataSource.getConnection();
+	            String query = "delete from product where id = ?";
+	            PreparedStatement stat = connection.prepareStatement(query);
+	            stat.setInt(1, id);
+	            stat.executeUpdate();
+	        }catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	            try {
+	                connection.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	}
+    
+    
+    
 }

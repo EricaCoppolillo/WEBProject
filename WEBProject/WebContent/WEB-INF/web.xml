@@ -141,5 +141,15 @@
 		<servlet-name>ModifyProduct</servlet-name>
 		<url-pattern>/modifyProduct</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DeleteProduct</servlet-name>
+		<servlet-class>controller.DeleteProduct</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DeleteProduct</servlet-name>
+		<url-pattern>/deleteProduct</url-pattern>
+	</servlet-mapping>
 
 </web-app>

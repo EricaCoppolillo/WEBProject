@@ -14,4 +14,6 @@ public interface ProductDao {
     ArrayList<Manufacturer> findManufacturers(int categoryID, String keyword);
     ArrayList<Review> findLastReviews(int productId, int offset);
     void saveProduct(Product p);
+    void updateProduct(Product p);
+    void deleteProduct(int id);
 }

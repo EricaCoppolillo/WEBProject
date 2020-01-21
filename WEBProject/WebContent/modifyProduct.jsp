@@ -26,7 +26,7 @@
 		<div class="card">
 			<div class= "col-sm-12 card-body"  id="rightRowInsertProduct">
 			
-		<form id="modulo1" class="form-horizontal" method="post" action="insertproduct">
+		<form id="modulo1" class="form-horizontal" method="post" action="modifyProduct">
 				<div id="titleInsertProduct">
 					<h1>Modifica prodotto</h1>
 				</div>
@@ -43,6 +43,8 @@
 				</div>
 				
 				<br>
+				
+				
 			
 				<div class="row" id="imgChoice">
 					<div class="col-sm-2">Immagine:</div>
@@ -64,6 +66,9 @@
 				<div class="row" id="insertManufacturer">
 					  <div class="col-sm-2">Produttore:</div>
 					  <input type="text" class="form-control col-sm-9" id="usr" name="manufacturer"  value = "${manufacturerProduct}"required>
+						<select name="productId" style = "display:none;">
+	      				<option>${idProduct}</option>
+	      			</select>					  
 				</div>
 				
 			
