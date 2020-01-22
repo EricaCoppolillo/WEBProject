@@ -152,4 +152,14 @@
 		<url-pattern>/deleteProduct</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>CompletedPayment</servlet-name>
+		<servlet-class>controller.CompletedPayment</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CompletedPayment</servlet-name>
+		<url-pattern>/completedpayment</url-pattern>
+	</servlet-mapping>
+
 </web-app>
