@@ -96,8 +96,13 @@
 	          <c:if test="${administrator != null}">
 	          <a href="modifyProduct?id=${product.id}">
 	          	<button id="modifyProduct" class="btn">Modifica prodotto</button>
-	          	</a>
-	          	<button type="button" id="deleteProduct" class="btn">Elimina prodotto</button>
+	          </a>
+	          <form class="form-horizontal" method="post" action = "deleteProduct">
+		         <button type="submit" id="deleteProduct" class="btn">Elimina prodotto</button>
+		         <select name="productId" style = "display:none;">
+ 				 	<option>${product.id}</option>
+ 				 </select>
+	          </form>
 	          </c:if>
 	          
 	
