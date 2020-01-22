@@ -28,7 +28,14 @@ public abstract class Product {
 
     public Product(){}
 
-    public String getDescription() {
+    public Product(int id, String model, String manufacturer, float price) {
+		this.id = id;
+		this.model = model;
+		this.manufacturer = manufacturer;
+		this.price = price;
+	}
+
+	public String getDescription() {
         return description;
     }
 

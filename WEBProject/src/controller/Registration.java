@@ -80,6 +80,8 @@ public class Registration extends HttpServlet {
 		User alreadyUser = db.getUser(username);
 		User alreadyUserEmail = db.getUserByEmail(email);
 		boolean valid = validPassword(password);
+		/*^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])*/
+		/*regex per controllo email*/
 		
 		if(alreadyUser == null && alreadyUserEmail == null && valid) {
 			User user = new User(username, password, name, surname, email, d, question, answer);
@@ -101,6 +103,7 @@ public class Registration extends HttpServlet {
 			} catch (MessagingException e) {
 				e.printStackTrace();
 			}
+			
 			rd = req.getRequestDispatcher("home.jsp");
 		}
 		

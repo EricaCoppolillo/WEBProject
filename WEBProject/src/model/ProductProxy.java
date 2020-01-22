@@ -10,6 +10,9 @@ public class ProductProxy extends Product {
         super(id, model, manufacturer, price, specs, description, category, starsAvg, imagePath);
     }
 
+    public ProductProxy(int id, String model, String manufacturer, float price) {
+    	super(id, model, manufacturer, price);
+    }
     public ProductProxy(){}
 
     @Override
