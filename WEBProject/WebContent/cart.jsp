@@ -86,7 +86,7 @@
 				</div>
 			</div>
 			<a id="anchorPayment" href="..payment">
-				<button class="btn btn-primary">Procedi all'ordine</button>
+				<button class="btn btn-primary"> Procedi all'ordine</button>
 			</a>
 		</div>
 		</c:if>
