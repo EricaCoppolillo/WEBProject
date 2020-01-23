@@ -24,8 +24,37 @@ var loadOtherReviews = function(productId){
 	});
 }
 
+function checkProduct(idProduct, page) {
+	
+	var quantity = $("#productQuantity").val();
+	
+	$.ajax({
+		type: "GET",
+		url: "checkCart",
+		data: {idProduct: idProduct},
+		success: function(data) {
+			
+			if((page == "product" && data == "inCart") || page == "cart") {
+				document.getElementById("addToCart").disabled = true;
+				$("#addToCart").html("Aggiunto al carrello");
+			}
+			
+			if(page == "cart") {
+				if(data != "inCart") {
+					$.ajax({
+						type: "POST",
+						url: "cart",
+						data: {idProduct: idProduct, quantity: quantity},
+						success: function(data){}
+					});
+				}
+			}
+		}
+	});
+}
 
 $(document).ready(function(){
+	  
 	  $("#writeReview").click(function(){
 		  $(".bg-modal").css("display", "flex");
 	  });
@@ -33,6 +62,4 @@ $(document).ready(function(){
 	  $(".close").click(function(){
 		  $(".bg-modal").css("display", "none");
 	  });
-	  
-	  
 });

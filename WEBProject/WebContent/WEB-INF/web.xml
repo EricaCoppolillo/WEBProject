@@ -52,6 +52,26 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>CheckCart</servlet-name>
+	  	<servlet-class>controller.CheckCart</servlet-class>
+	</servlet>
+	  
+	<servlet-mapping>
+	  	<servlet-name>CheckCart</servlet-name>
+	  	<url-pattern>/checkCart</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RemoveCartProduct</servlet-name>
+	  	<servlet-class>controller.RemoveCartProduct</servlet-class>
+	</servlet>
+	  
+	<servlet-mapping>
+	  	<servlet-name>RemoveCartProduct</servlet-name>
+	  	<url-pattern>/removeCartProduct</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>Registration</servlet-name>
 	  	<servlet-class>controller.Registration</servlet-class>
 	</servlet>

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import model.Administrator;
+import model.Product;
 import model.User;
 import persistence.DBManager;
 
@@ -54,6 +58,7 @@ public class Login extends HttpServlet {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -81,10 +86,21 @@ public class Login extends HttpServlet {
 		
 		else if(isAdmin == null) {
 			String username = req.getParameter("username");
-			User user = new User(username, password);
-			if(db.registeredUser(user)) {
+			
+			User user = db.getUser(username);
+			if(user != null) {
 				req.getSession().setAttribute("user", user);
 				req.getSession().setAttribute("firstLogin", true);
+				
+				ArrayList<Product> cart = (ArrayList<Product>) req.getSession().getAttribute("cartArray");
+				
+				if(cart != null) {
+					for(Product p : cart) {
+						DBManager.getInstance().insertIntoCart(user.getId(), p.getId(), p.getOrderQuantity());
+//						DBManager.getInstance().updateQuantity(user.getId(), p.getId(), p.getOrderQuantity());
+					}
+				}
+				
 				rd = req.getRequestDispatcher("home.jsp");
 			}
 			else {

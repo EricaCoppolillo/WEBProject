@@ -15,7 +15,7 @@
 	<script src="js/product.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body>
+<body onload="checkProduct('${product.id}', 'product')">
 	
 	<%@ include file="menuBar.jsp" %>  
 	<div class="container" id="mainContainer">
@@ -91,7 +91,7 @@
 	          </div>
 	          
 	          <c:if test="${administrator == null}">
-	          	<button type="button" id="addToCart" class="btn">Aggiungi al carrello</button>
+	          	<button type="button" id="addToCart" onclick="checkProduct('${product.id}', 'cart')" class="btn">Aggiungi al carrello</button>
 	          </c:if>
 	          <c:if test="${administrator != null}">
 	          <a href="modifyProduct?id=${product.id}">

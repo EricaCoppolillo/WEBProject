@@ -1,19 +1,27 @@
 package persistence;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import model.*;
+import javafx.util.Pair;
+import model.Administrator;
+import model.Category;
+import model.Manufacturer;
+import model.Product;
+import model.Review;
+import model.User;
 import persistence.dao.AdministratorDao;
+import persistence.dao.CartDao;
 import persistence.dao.CategoryDao;
 import persistence.dao.ProductDao;
 import persistence.dao.ReviewDao;
 import persistence.dao.UserDao;
 import persistence.dao.jdbc.AdministratorDaoJDBC;
+import persistence.dao.jdbc.CartDaoJDBC;
 import persistence.dao.jdbc.CategoryDaoJDBC;
 import persistence.dao.jdbc.ProductDaoJDBC;
 import persistence.dao.jdbc.ReviewDaoJDBC;
 import persistence.dao.jdbc.UserDaoJDBC;
-import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 
 public class DBManager {
 	
@@ -63,12 +71,6 @@ public class DBManager {
 		return getUserDao().findPassword(username, answer);
 	}
 	
-	public boolean registeredUser(User user) {
-		if(getUser(user.getUsername()) != null)
-			return true;
-		return false;
-	}
-	
 	public void registerUser(User user) {
 		getUserDao().registerUser(user);
 	}
@@ -116,10 +118,37 @@ public class DBManager {
 
 	public void insertProduct(Product p){ getProductDao().saveProduct(p);}
 	
+	public void insertIntoCart(int idUser, int idProduct, int quantity) {
+		getCartDao().insert(idUser, idProduct, quantity);
+	}
+	
+	public void updateQuantity(int idUser, int idProduct, int quantity) {
+		getCartDao().updateQuantity(idUser, idProduct, quantity);
+	}
+
+	public ArrayList<Product> getCartProducts(int idUser) {
+		return getCartDao().getCartProducts(idUser);
+	}
+	
+	public float getTotalPrice(ArrayList<Product> products) {
+		float sum = 0;
+		for(Product p : products) {
+			sum += p.getPricePerQuantity();
+		}
+		return sum;
+	}
+	
+	public void deleteCartProduct(int idUser, int idProduct) {
+		getCartDao().delete(idUser, idProduct);
+	}
+	
+	public CartDao getCartDao() {
+		return new CartDaoJDBC(dataSource);
+	}
+	
 	public ReviewDao getReviewDao() {
 		return new ReviewDaoJDBC(this.dataSource);
 	}
 	
 	public void postReview(Review r) { getReviewDao().postReview(r);}
-
 }

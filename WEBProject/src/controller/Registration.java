@@ -46,7 +46,6 @@ public class Registration extends HttpServlet {
 				upper = true;
 		}
 		if(!lower || !upper) {
-			System.out.println("not");
 			return false;
 		}
 		return true;
@@ -81,6 +80,7 @@ public class Registration extends HttpServlet {
 		
 		if(alreadyUser == null && alreadyUserEmail == null && valid) {
 			User user = new User(username, password, name, surname, email, d, question, answer);
+			
 			req.getSession().setAttribute("user", user);
 			req.getSession().removeAttribute("name");
 			req.getSession().removeAttribute("surname");

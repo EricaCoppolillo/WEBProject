@@ -13,6 +13,9 @@ public abstract class Product {
     private int starsAvg;
     private String imagePath;
     protected ArrayList<Review> reviews;
+    
+    private int orderQuantity;
+	public float pricePerQuantity;
 
     public Product(int id, String model, String manufacturer, float price, String specs, String description, Category category, int starsAvg, String imagePath) {
         this.id = id;
@@ -104,5 +107,21 @@ public abstract class Product {
 
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
+    }
+    
+    public int getOrderQuantity() {
+    	return orderQuantity;
+    }
+    
+    public void setOrderQuantity(int quantity) {
+    	this.orderQuantity = quantity;
+    }
+    
+    public float getPricePerQuantity() {
+    	return pricePerQuantity;
+    }
+    
+    public void setPricePerQuantity(float pricePerQuantity) {
+    	this.pricePerQuantity = pricePerQuantity;
     }
 }
