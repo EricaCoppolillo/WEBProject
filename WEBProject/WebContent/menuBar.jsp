@@ -9,7 +9,7 @@
         </c:if>
         <c:if test="${user != null}">
         	<script>$(".modal-content").css('background-color', '#feac01')</script>
-        	<h5 class="modal-title"">Benvenuto, ${user.username}</h5>
+        	<h5 class="modal-title">Benvenuto, ${user.username}</h5>
         </c:if>
       </div>
       <div class="modal-body">
