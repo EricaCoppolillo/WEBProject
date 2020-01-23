@@ -41,6 +41,18 @@ function updateFunctions(idProduct) {
 	});
 }
 
+
+$(document).ready(function(){
+	 
+    $("#radio2").click(function() {
+        $("#shipment").css("display","");
+    });
+    $("#radio1").click(function() {
+        $("#shipment").css("display","none");
+    });
+
+});
+
 function updateTotalPrice() {
 
 	
