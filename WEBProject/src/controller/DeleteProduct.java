@@ -17,7 +17,6 @@ public class DeleteProduct  extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("ciao");
 		DBManager db = DBManager.getInstance();
 		
 		int productID = Integer.parseInt(req.getParameter("productId"));

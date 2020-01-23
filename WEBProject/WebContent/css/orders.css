@@ -1,0 +1,48 @@
+@charset "UTF-8";
+div {
+	position: relative;
+}
+#filterOnOrders
+{
+	padding-left: 2%;
+}
+
+#viewOrders
+{
+}
+
+#descriptionOrder{
+	position:relative;
+}
+
+#imageProductContainer{
+	position:relative;
+	float: left;
+}
+
+#titleOrders{
+	text-align: center;
+	height: 30%;
+	position: relative;
+}
+
+.imageTitleOrders{
+	position: relative;
+	height: 100%;
+	float: right;
+}
+
+#imageProduct{
+	position: relative;
+	height: 90%;
+	content: url("../img/package.png");
+}
+
+#rowProduct{
+	height:30vh;
+}
+
+#buttonSubmitOrders
+{
+	text-align: center;
+}
