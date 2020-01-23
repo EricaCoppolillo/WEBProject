@@ -16,9 +16,7 @@ div {
 }
 
 #buttonCenterFaq{
-	/*questo bottone vorrei che fosse al centro del div istanzaDomande e quindi da esso si possa ottenere qualche funzionalità*/
 	position: absolute;
-	/*left: 50%;*/
 	right: 50%;	
 	top: 100%;
 }

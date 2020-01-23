@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Pattern;
 
+import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.User;
 import persistence.DBManager;
+import technicalServices.MailUtility;
 
 public class Registration extends HttpServlet {
 	
@@ -77,6 +79,8 @@ public class Registration extends HttpServlet {
 		User alreadyUser = db.getUser(username);
 		User alreadyUserEmail = db.getUserByEmail(email);
 		boolean valid = validPassword(password);
+		/*^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])*/
+		/*regex per controllo email*/
 		
 		if(alreadyUser == null && alreadyUserEmail == null && valid) {
 			User user = new User(username, password, name, surname, email, d, question, answer);
@@ -94,6 +98,11 @@ public class Registration extends HttpServlet {
 			req.getSession().removeAttribute("invalidPassword");
 			
 			db.registerUser(user);
+			try {
+				MailUtility.sendRegistrationMail(email, username, password);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
 			
 			rd = req.getRequestDispatcher("home.jsp");
 		}

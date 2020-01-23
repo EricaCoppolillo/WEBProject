@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.itextpdf.text.log.SysoCounter;
 
 import model.Product;
 import model.ProductProxy;
@@ -31,7 +32,7 @@ public class Cart extends HttpServlet {
 		double totalPrice = 0;
 
 		if(user != null) {
-			cart = new ArrayList<Product>(DBManager.getInstance().getCartProducts(user.getId()));
+			cart = DBManager.getInstance().getCartProducts(user.getId());
 			totalPrice = DBManager.getInstance().getTotalPrice(cart);
 		}
 		
@@ -46,8 +47,12 @@ public class Cart extends HttpServlet {
 			}
 		}
 		
-		if(cart != null && cart.isEmpty()) {
+		if((cart != null && cart.isEmpty()) || cart == null) {
 			req.getSession().setAttribute("emptyCart", true);
+		}
+		
+		else if(cart != null && !cart.isEmpty()){
+			req.getSession().setAttribute("emptyCart", false);
 		}
 		
 		req.getSession().setAttribute("cartProducts", cart);

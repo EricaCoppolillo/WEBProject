@@ -97,7 +97,6 @@ public class Login extends HttpServlet {
 				if(cart != null) {
 					for(Product p : cart) {
 						DBManager.getInstance().insertIntoCart(user.getId(), p.getId(), p.getOrderQuantity());
-//						DBManager.getInstance().updateQuantity(user.getId(), p.getId(), p.getOrderQuantity());
 					}
 				}
 				

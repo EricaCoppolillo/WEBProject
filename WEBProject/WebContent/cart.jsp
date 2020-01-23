@@ -33,6 +33,8 @@
 				</div>
 				<c:forEach var="cartProduct" items="${cartProducts}">
 					<div id="rowProduct${cartProduct.id}" class="row rowProduct">
+						<hr class="hr">
+						
 						<img class="col-sm-2" src="img/products/${cartProduct.imagePath}" alt="">
 						<div class="col-sm-6">
 							<div id="modelProduct">${cartProduct.model} ${cartProduct.manufacturer}</div>
@@ -42,32 +44,32 @@
 						
 						<div class="col-sm-2">
 							<select id="productQuantity" class="quantity__select">
-				              <option id="val1" value="1">1</option>
-				              <option id="val2" value="2">2</option>
-				              <option id="val3" value="3">3</option>
-				              <option id="val4" value="4">4</option>
-				              <option id="val5" value="5">5</option>
+				              <option id="val1${cartProduct.id}" value="1">1</option>
+				              <option id="val2${cartProduct.id}" value="2">2</option>
+				              <option id="val3${cartProduct.id}" value="3">3</option>
+				              <option id="val4${cartProduct.id}" value="4">4</option>
+				              <option id="val5${cartProduct.id}" value="5">5</option>
 				            </select>
 				            <script>
+				            	var idProduct = ${cartProduct.id};
 				            	var orderQuantity = ${cartProduct.orderQuantity};
 				            	if(orderQuantity == 1) 
-				            		document.getElementById("val1").setAttribute("selected", "");
+				            		document.getElementById("val1"+idProduct).setAttribute("selected", "");
 				            	
 				            	if(orderQuantity == 2)
-				            		document.getElementById("val2").setAttribute("selected", "");
+				            		document.getElementById("val2"+idProduct).setAttribute("selected", "");
 				            	
 				            	if(orderQuantity == 3)
-				            		document.getElementById("val3").setAttribute("selected", "");
+				            		document.getElementById("val3"+idProduct).setAttribute("selected", "");
 				            	
 				            	if(orderQuantity == 4)
-				            		document.getElementById("val4").setAttribute("selected", "");
+				            		document.getElementById("val4"+idProduct).setAttribute("selected", "");
 				            	
 				            	if(orderQuantity == 5)
-				            		document.getElementById("val5").setAttribute("selected", "");
+				            		document.getElementById("val5"+idProduct).setAttribute("selected", "");
 				            </script>
 			            </div>
 			            <div id="productPrice" class="col-sm-2">${cartProduct.pricePerQuantity} €</div>
-			            <hr class="hr">
 					</div>
 				</c:forEach>
 			
