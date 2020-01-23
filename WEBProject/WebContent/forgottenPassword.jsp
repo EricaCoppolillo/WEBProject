@@ -9,7 +9,7 @@
 <title>Password dimenticata</title>
 
 	<%@ include file="include.jsp" %>
-	<script src="js/jquery-3.2.1.min.js"></script>
+	
 	<script type="text/javascript" src="js/login.js"></script>
 	<script type="text/javascript" src="js/forgottenPassword.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>

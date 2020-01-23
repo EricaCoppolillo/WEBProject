@@ -116,7 +116,6 @@ function updateProducts(page){
 		$.get("searchjson?category="+categoryID+"&p="+page+"&orderBy="+orderBy+"&filterBy="+filterBy+"&priceFrom="+priceLower+"&priceTo="+priceUpper, function(responseJson) {         
 		    $.each(responseJson, function(index, product) { 
 		    	if(index == 0){
-		    		//TODO crea pagine
 		    		createPagination(product.pages);
 		    	}else{
 		    		createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);

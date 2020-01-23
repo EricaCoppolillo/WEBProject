@@ -13,7 +13,7 @@
         <!-- link per lo slider a 2 cursori -->
         <link rel="stylesheet" href="css/wrunner-default-theme.css">
         <script src="js/search.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
 </head>
 <body>
 	<%@ include file="menuBar.jsp" %>

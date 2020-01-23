@@ -13,7 +13,7 @@
 <!-- 	<link rel="stylesheet" href="css/home.css"> -->
 	<link rel="stylesheet" href="css/product.css">
 	<script src="js/product.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
 </head>
 <body onload="checkProduct('${product.id}', 'product')">
 	

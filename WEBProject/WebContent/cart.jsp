@@ -9,8 +9,6 @@
 <meta charset="UTF-8">
 <title>Il tuo Carrello</title>
 	<%@ include file="include.jsp" %>
-	
-	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/cart.js"></script>
 	<script src="js/product.js"></script>
 	<link rel="stylesheet" href="css/cart.css">
@@ -98,8 +96,9 @@
 				</a>
 			</div>
 			
-			
+			<br>
 			<div class="container">
+			
 			    <h3>Spedizone</h3>
 					<form>
 				    	<div class="form-check">
