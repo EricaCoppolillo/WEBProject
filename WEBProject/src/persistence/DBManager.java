@@ -151,4 +151,8 @@ public class DBManager {
 	}
 	
 	public void postReview(Review r) { getReviewDao().postReview(r);}
+	
+	public void updateProduct(Product p){ getProductDao().updateProduct(p);}
+	
+	public void deleteProduct(int id) {getProductDao().deleteProduct(id);}
 }
