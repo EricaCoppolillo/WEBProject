@@ -12,6 +12,7 @@
 	
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/cart.js"></script>
+	<script src="js/product.js"></script>
 	<link rel="stylesheet" href="css/cart.css">
 
 </head>
@@ -27,7 +28,7 @@
 		<c:if test="${emptyCart != true}">
 			<div id="products" class="col-sm-9">
 				<div class="row">
-					<div class="col-sm-8"></div>
+					<div class="col-sm-7"></div>
 					<div id="titleQuantity" class="col-sm-2">Quantità</div>
 					<div id="titlePrice" class="col-sm-1">Prezzo</div>
 				</div>
@@ -43,7 +44,7 @@
 						</div>
 						
 						<div class="col-sm-2">
-							<select id="productQuantity" class="quantity__select">
+							<select id="productQuantity${cartProduct.id}" onchange="updateFunctions('${cartProduct.id}')" class="quantity__select">
 				              <option id="val1${cartProduct.id}" value="1">1</option>
 				              <option id="val2${cartProduct.id}" value="2">2</option>
 				              <option id="val3${cartProduct.id}" value="3">3</option>
@@ -69,7 +70,13 @@
 				            		document.getElementById("val5"+idProduct).setAttribute("selected", "");
 				            </script>
 			            </div>
-			            <div id="productPrice" class="col-sm-2">${cartProduct.pricePerQuantity} €</div>
+			            <div id="productPrice${cartProduct.id}" class="productPrice col-sm-2">
+			            <script>
+				            var divProductPrice = "productPrice"+${cartProduct.id};
+				            var productPrice = ${cartProduct.pricePerQuantity}; 
+							document.getElementById(divProductPrice).innerHTML = productPrice.toFixed(2) + " €";
+			            </script>
+			            </div>
 					</div>
 				</c:forEach>
 			

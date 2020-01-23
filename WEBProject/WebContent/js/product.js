@@ -39,6 +39,11 @@ function checkProduct(idProduct, page) {
 				$("#addToCart").html("Aggiunto al carrello");
 			}
 			
+			else if(page == "product" && data != "inCart") {
+				document.getElementById("addToCart").disabled = false;
+				$("#addToCart").html("Aggiunto al carrello");
+			}
+			
 			if(page == "cart") {
 				if(data != "inCart") {
 					$.ajax({

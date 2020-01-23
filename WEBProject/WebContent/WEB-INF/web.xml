@@ -72,6 +72,26 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>UpdateQuantity</servlet-name>
+	  	<servlet-class>controller.UpdateQuantity</servlet-class>
+	</servlet>
+	  
+	<servlet-mapping>
+	  	<servlet-name>UpdateQuantity</servlet-name>
+	  	<url-pattern>/updateQuantity</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UpdateTotalPrice</servlet-name>
+	  	<servlet-class>controller.UpdateTotalPrice</servlet-class>
+	</servlet>
+	  
+	<servlet-mapping>
+	  	<servlet-name>UpdateTotalPrice</servlet-name>
+	  	<url-pattern>/updateTotalPrice</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>Registration</servlet-name>
 	  	<servlet-class>controller.Registration</servlet-class>
 	</servlet>

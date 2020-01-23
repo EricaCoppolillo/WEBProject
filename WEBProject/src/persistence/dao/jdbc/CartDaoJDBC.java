@@ -151,7 +151,7 @@ public class CartDaoJDBC implements CartDao {
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 			try {
 				connection.close();
