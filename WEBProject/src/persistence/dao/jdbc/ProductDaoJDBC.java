@@ -374,7 +374,6 @@ public class ProductDaoJDBC implements ProductDao {
 	        }
 	}
 	
-	//funzione creata il 24 mattina alle ore dal signor farottino che bestemmia il signore appena inizio al mattino
 	@Override
 	public ArrayList<Product> getProductPurchaseForUser(int idUser) {
 		ArrayList<Product>products = new ArrayList<Product>();
@@ -406,6 +405,31 @@ public class ProductDaoJDBC implements ProductDao {
 			System.out.println(products.size());
 		}
 		return products;
+	}
+	@Override
+	public boolean purchasedBy(int userID, int productId) {
+		boolean purchased = false;
+		try {
+			connection = dataSource.getConnection();
+			String query = "select * from \"purchaseProducts\", purchase where purchase.id = \"purchaseProducts\".purchase and \"purchaseProducts\".product = ? and purchase.user = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, productId);
+			statement.setInt(2, userID);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				purchased = true;
+				break;
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+		}
+		return purchased;
 	}
     
     

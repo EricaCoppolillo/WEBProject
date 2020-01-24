@@ -60,16 +60,42 @@ img {
 	width: 93%;
 }
 
+#paypalTitle{
+	display: none;
+}
+
+#shipment{
+	padding-top: 20px;
+}
+
+#shipmentcontainer{
+	margin-top: 20px;
+}
+
+#shipmentAlert{
+	display: none;
+}
+
+#shipmentButton{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 #goToPayment {
 	position: relative;
 	right: 3%;
 	height: 10%;
 }
+#rowTotalPrice{
+	margin: 2px;
+}
 
 #totalPrice {
 	color: #c10d0d;
-	font-weight: bold;
-	font-size: 2vw;
+}
+
+#paypal-button-container{
+	margin: 5px;
 }
 
 #anchorPayment {

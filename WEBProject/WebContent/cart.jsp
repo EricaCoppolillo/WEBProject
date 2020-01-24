@@ -9,13 +9,17 @@
 <meta charset="UTF-8">
 <title>Il tuo Carrello</title>
 	<%@ include file="include.jsp" %>
-	<script src="js/cart.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AUuQsZ6W_kSfRMWY_JWNer6Ho-eU3XDcVAgce3CZYj8LhYJO4ZiL9AME6LMbWHPxGkbTVp3zHpoQudsR"></script>
+    <script src="js/cart.js"></script>
 	<script src="js/product.js"></script>
 	<link rel="stylesheet" href="css/cart.css">
-
 </head>
 
-<body>
+<body onload="<c:forEach var="cartProduct" items="${cartProducts}">
+            addCardProduct(${cartProduct.id}, ${cartProduct.orderQuantity});
+            setUserId(${user.id});
+            setTotalPrice(${totalPrice});
+        </c:forEach>">
 
 	<%@ include file="menuBar.jsp" %>
 	
@@ -36,7 +40,7 @@
 						
 						<img class="col-sm-2" src="img/products/${cartProduct.imagePath}" alt="">
 						<div class="col-sm-6">
-							<div id="modelProduct">${cartProduct.model} ${cartProduct.manufacturer}</div>
+							<div id="modelProduct">${cartProduct.manufacturer} ${cartProduct.model}</div>
 							<div>${cartProduct.description}</div>
 							<div id="trashIcon" onclick="removeCartProduct('${cartProduct.id}')"><i class="fa fa-trash"></i> Rimuovi</div>
 						</div>
@@ -81,67 +85,98 @@
 		</div>
 		
 		<div id="goToPayment" class="col-sm-3">
-			<div class = card id="cardPayment">
+			<div class="card" id="cardPayment">
 				<div id="rowTotalPrice" class="row">
-					<div class="col">Prezzo Totale:</div>
-					<div id="totalPrice" class="col">
+                    <div class="col-sm-7"><h5>Prezzo Totale:</h5></div>
+					<div class="col-sm-5"><h5 id="totalPrice"></h5>
 					<script>
 						var totPrice = ${totalPrice};
 						document.getElementById("totalPrice").innerHTML = totPrice.toFixed(2) + " €";
 					</script>
 					</div>
 				</div>
-				<a id="anchorPayment" href="..payment">
+				<c:if test="${user != null}">
+                    <h5 id="paypalTitle">Paga con PayPal:</h5>
+					<div id="paypal-button-container"></div>
+				</c:if>
+				<c:if test="${user == null}">
+				<a id="anchorPayment" href="login">
 					<button class="btn btn-primary"> Procedi all'ordine</button>
 				</a>
+				</c:if>
 			</div>
 			
 			<br>
-			<div class="container">
-			
-			    <h3>Spedizone</h3>
-					<form>
-				    	<div class="form-check">
-				      		<label class="form-check-label" for="radio1" id="radio">
-				        		<input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Rititro a mano in un nostro store
-				      		</label>
-				    	</div>
-				    	<div class="form-check">
-				      		<label class="form-check-label" for="radio2">
-				        		<input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Spedizone a domicilio
-				      		</label>
-				     		<div id = "shipment" style="display: none;" class = "col">
-				            	<div class="form-group">
-				                <input type="text" class="form-control" id="recipient" placeholder="Nome" name="recipient" required>
-				                <div class="invalid-feedback">Riempi questo campo!</div>
-				                <label>Nome</label>
-				            </div>
-				            <div class="form-group">
-				                <input type="text" class="form-control" id="street" placeholder="Via, numero civico" name="street" required>
-				                <div class="invalid-feedback">Riempi questo campo!</div>
-				                <label >Via, numero civico</label>
-				            </div>
-				            
-			                <div class="form-group">
-			                    <input type="text" class="form-control" id="city" placeholder="Citta" name="city" required>
-			                    <div class="invalid-feedback">Riempi questo campo!</div>
-			                    <label >Citta</label>
-			                </div>
-			                <div class="form-group">
-			                    <input type="text" class="form-control" id="cap" placeholder="Cap" name="cap" required>
-			                    <div class="invalid-feedback">Riempi questo campo!</div>
-			                    <label >Cap</label>
-			                </div>
-			                <div class="form-group">
-			                    <input type="text" class="form-control" id="province" placeholder="Provincia" name="province" required>
-			                    <div class="invalid-feedback">Riempi questo campo!</div>
-			                    <label >Provincia</label>
-			                </div>
-				            
-	    				</div>
-	    			</div>
-					</form>
-   		 	</div>
+
+			<h3 id="shipmentTitle">Spedizione</h3>
+
+			<div class="alert alert-danger" id="shipmentAlert" role="alert">
+				Non tutti i campi sono stati compilati!
+			</div>
+
+			<div id="shipmentcontainer" class="row">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<input type="radio" id="radio1" name="optradio" value="option1" checked>
+						</div>
+					</div>
+					<input type="text" class="form-control" placeholder="Ritiro a mano in negozio" disabled>
+				</div>
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<input type="radio" id="radio2" name="optradio" value="option2">
+						</div>
+					</div>
+					<input type="text" class="form-control" placeholder="Spedizone a domicilio" disabled>
+				</div>
+				<div id="shipment" style="display: none;" class="col card">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="input-group-text fa fa-drivers-license-o" disabled></button>
+						</div>
+						<input type="text" class="form-control" id="recipient" placeholder="Nome e cognome del referente" name="recipient" required>
+						<div class="invalid-feedback">Riempi questo campo!</div>
+					</div>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="input-group-text fa fa-home" disabled></button>
+						</div>
+						<input type="text" class="form-control" id="street" placeholder="Indirizzo di casa e numero civico" name="street" required>
+						<div class="invalid-feedback">Riempi questo campo!</div>
+					</div>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="input-group-text fa fa-map-marker" disabled></button>
+						</div>
+						<input type="text" class="form-control" id="cap" placeholder="CAP" name="cap" required>
+						<div class="invalid-feedback">Riempi questo campo!</div>
+					</div>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="input-group-text fa fa-building-o" disabled></button>
+						</div>
+						<input type="text" class="form-control" id="city" placeholder="Città" name="city" required>
+						<div class="invalid-feedback">Riempi questo campo!</div>
+					</div>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="input-group-text fa fa-globe" disabled></button>
+						</div>
+						<input type="text" class="form-control" id="province" placeholder="Provincia" name="province" required>
+						<div class="invalid-feedback">Riempi questo campo!</div>
+					</div>
+				</div>
+				<div class="input-group mb-3">
+					<button onclick="valueCheck()" type="button" class="btn btn-secondary" id="shipmentButton">Conferma dati di spedizione</button>
+				</div>
+			</div>
+		</div>
   
 </div>
 			
