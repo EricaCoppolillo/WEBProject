@@ -1,9 +1,7 @@
 package persistence;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import javafx.util.Pair;
 import model.Administrator;
 import model.Category;
 import model.Manufacturer;
@@ -13,12 +11,14 @@ import model.User;
 import persistence.dao.AdministratorDao;
 import persistence.dao.CartDao;
 import persistence.dao.CategoryDao;
+import persistence.dao.MapDao;
 import persistence.dao.ProductDao;
 import persistence.dao.ReviewDao;
 import persistence.dao.UserDao;
 import persistence.dao.jdbc.AdministratorDaoJDBC;
 import persistence.dao.jdbc.CartDaoJDBC;
 import persistence.dao.jdbc.CategoryDaoJDBC;
+import persistence.dao.jdbc.MapDaoJDBC;
 import persistence.dao.jdbc.ProductDaoJDBC;
 import persistence.dao.jdbc.ReviewDaoJDBC;
 import persistence.dao.jdbc.UserDaoJDBC;
@@ -147,7 +147,7 @@ public class DBManager {
 	}
 	
 	public ReviewDao getReviewDao() {
-		return new ReviewDaoJDBC(this.dataSource);
+		return new ReviewDaoJDBC(dataSource);
 	}
 	
 	public void postReview(Review r) { getReviewDao().postReview(r);}
@@ -156,6 +156,18 @@ public class DBManager {
 	
 	public void deleteProduct(int id) {getProductDao().deleteProduct(id);}
 	
+<<<<<<< HEAD
 	public ArrayList<Product> getProductPurchaseForUser(int idUser) {return getProductDao().getProductPurchaseForUser(idUser);}
 	public boolean purchasedProduct(int usrId, int productID) {return getProductDao().purchasedBy(usrId, productID);}
+=======
+	public boolean purchasedProduct(int usrId, int productID) {return getProductDao().purchasedBy(usrId, productID);}
+
+	public ArrayList<String> getMapCoords() {
+		return getMapDao().getCoords();
+	}
+	
+	public MapDao getMapDao() {
+		return new MapDaoJDBC(dataSource);
+	}
+>>>>>>> branch 'master' of https://github.com/EricaCoppolillo/WEBProject.git
 }
