@@ -155,4 +155,6 @@ public class DBManager {
 	public void updateProduct(Product p){ getProductDao().updateProduct(p);}
 	
 	public void deleteProduct(int id) {getProductDao().deleteProduct(id);}
+	
+	public ArrayList<Product> getProductPurchaseForUser(int idUser) {return getProductDao().getProductPurchaseForUser(idUser);}
 }

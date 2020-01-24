@@ -201,5 +201,15 @@
 		<servlet-name>CompletedPayment</servlet-name>
 		<url-pattern>/completedpayment</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Orders</servlet-name>
+		<servlet-class>controller.Orders</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Orders</servlet-name>
+		<url-pattern>/orders</url-pattern>
+	</servlet-mapping>
 
 </web-app>

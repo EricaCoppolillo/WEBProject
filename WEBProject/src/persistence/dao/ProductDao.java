@@ -16,4 +16,5 @@ public interface ProductDao {
     void saveProduct(Product p);
     void updateProduct(Product p);
     void deleteProduct(int id);
+	ArrayList<Product> getProductPurchaseForUser(int idUser);
 }

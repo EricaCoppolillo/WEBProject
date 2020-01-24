@@ -72,7 +72,7 @@
 			
 			<c:if test="${administrator != null}">
 				<div class="col">
-					<a href="..servletAddProduct">
+					<a href="insertproduct">
 						<button id="buttonAddProduct" class="btn btn">
 							Aggiungi Prodotto
 						</button>

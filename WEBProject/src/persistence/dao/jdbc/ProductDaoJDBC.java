@@ -373,6 +373,40 @@ public class ProductDaoJDBC implements ProductDao {
 	            }
 	        }
 	}
+	
+	//funzione creata il 24 mattina alle ore dal signor farottino che bestemmia il signore appena inizio al mattino
+	@Override
+	public ArrayList<Product> getProductPurchaseForUser(int idUser) {
+		ArrayList<Product>products = new ArrayList<Product>();
+		 try {
+	            connection = dataSource.getConnection();
+	            String query = "select *\n" + 
+	            		"from product,\"purchaseProducts\",purchase,user\n" + 
+	            		"where product.id = \"purchaseProducts\".product and purchase.id = \"purchaseProducts\".purchase and purchase.user=? ";
+	            PreparedStatement statement = connection.prepareStatement(query);
+	            statement.setInt(1, idUser);
+	            ResultSet result = statement.executeQuery();
+	            while (result.next()) {
+	            	Product product = new ProductProxy(result.getInt(1), result.getString("model"), result.getString("manufacturer"), result.getFloat("price"), result.getString("specs"), result.getString("description"), new Category(result.getString("category")),  0, result.getString("image"));
+	                product.setDate(result.getDate("date"));
+	                product.setShipment(result.getString("shipment"));
+	            	products.add(product);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            try {
+	                connection.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+		 for(int i = 0; i<100; i++)
+		{
+			System.out.println(products.size());
+		}
+		return products;
+	}
     
     
     

@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 public abstract class Product {
@@ -13,6 +14,8 @@ public abstract class Product {
     private int starsAvg;
     private String imagePath;
     protected ArrayList<Review> reviews;
+    private Date date; 
+    private String shipment;
     
     private int orderQuantity;
 	public float pricePerQuantity;
@@ -131,4 +134,20 @@ public abstract class Product {
     public void setPricePerQuantity(float pricePerQuantity) {
     	this.pricePerQuantity = pricePerQuantity;
     }
+    
+    public Date getDate() {
+		return date;
+	}
+    
+    public void setDate(Date date2) {
+		this.date = date2;
+	}
+    
+    public String getShipment() {
+		return shipment;
+	}
+    
+    public void setShipment(String shipment) {
+		this.shipment = shipment;
+	}
 }

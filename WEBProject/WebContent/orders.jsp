@@ -4,11 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<meta charset="UTF-8">
 	<title>Orders</title>
 	<%@ include file="include.jsp" %>
 	<link rel="stylesheet" href="css/orders.css">	
-	 <link rel="stylesheet" href="css/wrunner-default-theme.css">
+	<link rel="stylesheet" href="css/wrunner-default-theme.css">
+	<script src="js/product.js"></script>
 </head>
 <body>
 	<%@ include file="menuBar.jsp" %>
@@ -21,50 +23,37 @@
 	
 	<div class="row" id = "principalRowOrders">
 		
-		<div class = "col-sm-3" id="filterOnOrders">
-			<div class="form-group">
-					<h4>Ordina per:</h4>
-						<select class="form-control" id="orderBy" onchange="updateProducts()">
-							<option>Ultimi Acquisti</option>
-							<option>Prezzo crescente</option>  <!--  TODO implement ajax function orderBy -->
-							<option>Prezzo decrescente</option>
-						</select>
-			</div>
-			
-			<h4><br>Prezzo:</h4>
-                <div class="my-js-slider"></div>
-				<script src="js/wrunner-native.js"></script>
-                <script>
-                	
-                    var setting = {
-                        roots: document.querySelector('.my-js-slider'),
-                        type: 'range',
-                        step: 1,
-                        //prezzo minimo e prezzo massimo dei prodotti presenti
-                        limits : {     minLimit: 0,      maxLimit: 1000   },
-                    }
-                    var slider = wRunner(setting);
-                </script>    
-			
-			<div id="buttonSubmitOrders">
-				<button class="btn btn-primary">Applica</button>
-			</div>
+		<div class = "col-sm-2" id="filterOnOrders">
 					
 		</div>
 		
-		<div class = "col-sm-9" id = "viewOrders">
+		<div class = "col-sm-10" id = "viewOrders">
 		
-			<div id = "rowProduct" class="row"> <!-- a questo devo inserire la grandezza in vh -->
-				<div id = "imageProductContainer"><img src="img/package.png" width="200px"></div>
-				<div id = "descriptionOrder">
-					<h2>Model e facturer del prodotto</h2>
-					<h4>Prezzo del prodotto</h4>
-					<h5>Data di acquisto</h5>
-					<h6>Shipment</h6>
-					<button class="btn btn-warning">Compralo di nuovo</button>
-					<button class="btn btn-success">Scrivi una recensione</button>
-				</div>
-			</div> <!-- rowProduct -->
+			<div class = "row">
+					<h2>Numero di prodotti acquistati: ${nProducts}</h2>
+			</div>
+			
+			<c:if test="${emptyProducts == true}">
+					<div id="emptyCart" class="row"><h1>Il Carrello è vuoto</h1></div>
+			</c:if>
+		
+			<c:forEach var="product" items="${products}">
+				<a href="product?id=${product.id}">
+					<div id = "rowProduct" class="row">
+						<div id = "imageProductContainer"><img src="img/products/${product.imagePath}" width="200px"></div>
+						<div id = "descriptionOrder">
+							<h2>${product.model}</h2>
+				</a>
+							<h4>${product.price}</h4>
+							<h5>${product.date}</h5>
+							<h6>${product.shipment}</h6>
+							<button onclick="checkProduct('${product.id}', 'cart')" class="btn btn-warning">Compralo di nuovo</button>
+							<button class="btn btn-primary">Scrivi una recensione</button>
+						</div>
+					</div> <!-- rowProduct -->
+				
+			</c:forEach>
+			
 			
 		</div> <!-- viewOrders -->
 	</div> <!-- principalRowOrders -->
