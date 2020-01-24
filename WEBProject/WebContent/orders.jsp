@@ -30,7 +30,7 @@
 		<div class = "col-sm-10" id = "viewOrders">
 		
 			
-			<c:if test="${emptyProducts == true}">
+			<c:if test="${emptyOrders == true}">
 					<div id="emptyCart" class="row"><h1>Il Carrello è vuoto</h1></div>
 			</c:if>
 		

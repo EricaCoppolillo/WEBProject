@@ -18,19 +18,19 @@ public class Orders  extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher rd = req.getRequestDispatcher("orders.jsp");
-		System.out.println("ciao");
 		User user = (User) req.getSession().getAttribute("user");
 		
-		ArrayList<Product>products = DBManager.getInstance().getProductPurchaseForUser(user.getId());
-		System.out.println(products.size());
+		ArrayList<Product> products = DBManager.getInstance().getProductPurchaseForUser(user.getId());
 		
-		req.getSession().setAttribute("nProducts", products.size());
-		req.getSession().setAttribute("products", products);
+		if(products != null) {
+			req.getSession().setAttribute("nProducts", products.size());
+			req.getSession().setAttribute("products", products);
+		}
 
-		if(products.isEmpty() == true)
-			req.getSession().setAttribute("emptyProduct", true);
+		if(products == null || products.isEmpty() == true)
+			req.getSession().setAttribute("emptyOrders", true);
 		else
-			req.getSession().setAttribute("emptyProducts", false);
+			req.getSession().setAttribute("emptyOrders", false);
 		
 		rd.forward(req, resp);
 	}
