@@ -30,7 +30,11 @@
 			FAQ
 		</a>
 	</div>
-	<div id="map" class="col">Mappa</div>
+	<div id="map" class="col">
+		<a href="map">
+			Mappa
+		</a>
+	</div>
 	<div id="assistance" class="col">Assistenza</div>	
 	
 	 <div id="containerSearchBar">
