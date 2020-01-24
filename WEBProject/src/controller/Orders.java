@@ -19,18 +19,14 @@ public class Orders  extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher rd = req.getRequestDispatcher("orders.jsp");
 		System.out.println("ciao");
-		//mi ottengo l'user dalla session che si trova in menu bar
 		User user = (User) req.getSession().getAttribute("user");
 		
-		//mi ottengo la lista di prodotti in base all'user corrente
-		ArrayList<Product>products = DBManager.getInstance().getProductPurchaseForUser(7);
+		ArrayList<Product>products = DBManager.getInstance().getProductPurchaseForUser(user.getId());
 		System.out.println(products.size());
 		
 		req.getSession().setAttribute("nProducts", products.size());
-//		mi setto come attributo l'array in modo da poterlo utilizzare nell jsp
 		req.getSession().setAttribute("products", products);
-//		
-//		mi creo un attributo che mi permetta di fare in modo che 
+
 		if(products.isEmpty() == true)
 			req.getSession().setAttribute("emptyProduct", true);
 		else

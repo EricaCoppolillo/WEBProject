@@ -7,10 +7,6 @@ div {
 	padding-left: 2%;
 }
 
-#viewOrders
-{
-}
-
 #descriptionOrder{
 	position:relative;
 }
@@ -24,6 +20,10 @@ div {
 	text-align: center;
 	height: 30%;
 	position: relative;
+}
+
+#orderLink>a:hover {
+	text-decoration: none;
 }
 
 .imageTitleOrders{

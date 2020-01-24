@@ -400,10 +400,7 @@ public class ProductDaoJDBC implements ProductDao {
 	                e.printStackTrace();
 	            }
 	        }
-		 for(int i = 0; i<100; i++)
-		{
-			System.out.println(products.size());
-		}
+	
 		return products;
 	}
 	@Override

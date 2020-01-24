@@ -35,7 +35,13 @@
 			Mappa
 		</a>
 	</div>
-	<div id="assistance" class="col">Assistenza</div>	
+	<div id="orders" class="col">
+		<c:if test="${user!=null }">
+			<a href="orders">
+				I miei ordini
+			</a>
+		</c:if>
+	</div>	
 	
 	 <div id="containerSearchBar">
       <div class="d-flex justify-content-center">
@@ -96,9 +102,11 @@
 		</c:if>
 		<c:if test="${(user != null) || (administrator != null)}">
 			<a href="login?logout=true">
+				
 				<button id="logout" class="btn btn-primary">
 					Logout
 				</button>
+				
 			</a>
 		</c:if>
 	</div>

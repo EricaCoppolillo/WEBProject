@@ -29,16 +29,13 @@
 		
 		<div class = "col-sm-10" id = "viewOrders">
 		
-			<div class = "row">
-					<h2>Numero di prodotti acquistati: ${nProducts}</h2>
-			</div>
 			
 			<c:if test="${emptyProducts == true}">
 					<div id="emptyCart" class="row"><h1>Il Carrello è vuoto</h1></div>
 			</c:if>
 		
 			<c:forEach var="product" items="${products}">
-				<a href="product?id=${product.id}">
+				<a id = "orderLink" href="product?id=${product.id}">
 					<div id = "rowProduct" class="row">
 						<div id = "imageProductContainer"><img src="img/products/${product.imagePath}" width="200px"></div>
 						<div id = "descriptionOrder">
