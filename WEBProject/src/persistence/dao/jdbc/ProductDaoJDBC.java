@@ -373,6 +373,32 @@ public class ProductDaoJDBC implements ProductDao {
 	            }
 	        }
 	}
+
+	@Override
+	public boolean purchasedBy(int userID, int productId) {
+		boolean purchased = false;
+		try {
+			connection = dataSource.getConnection();
+			String query = "select * from \"purchaseProducts\", purchase where purchase.id = \"purchaseProducts\".purchase and \"purchaseProducts\".product = ? and purchase.user = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, productId);
+			statement.setInt(2, userID);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				purchased = true;
+				break;
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+		}
+		return purchased;
+	}
     
     
     
