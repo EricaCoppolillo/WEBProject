@@ -83,7 +83,7 @@
 				</c:forEach>
 			
 		</div>
-		
+		</c:if>
 		<div id="goToPayment" class="col-sm-3">
 			<div class="card" id="cardPayment">
 				<div id="rowTotalPrice" class="row">
@@ -183,7 +183,6 @@
 		</div>
 		
 		
-		</c:if>
 	</div>
 		
 	

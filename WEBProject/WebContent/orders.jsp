@@ -35,12 +35,20 @@
 			</c:if>
 		
 			<c:forEach var="product" items="${products}">
-				<a id = "orderLink" href="product?id=${product.id}">
-					<div id = "rowProduct" class="row">
+				
+					<div id = "rowProduct" class="row"> 
+						
 						<div id = "imageProductContainer"><img src="img/products/${product.imagePath}" width="200px"></div>
 						<div id = "descriptionOrder">
-							<h2>${product.model}</h2>
-				</a>
+						<div id="orderLink">
+							<a  href="product?id=${product.id}">
+								<h2> 
+									${product.manufacturer} ${product.model}
+								</h2>
+									
+								
+							</a>
+						</div>
 							<h4>${product.price}</h4>
 							<h5>${product.date}</h5>
 							<h6>${product.shipment}</h6>
@@ -48,7 +56,7 @@
 							<button class="btn btn-primary">Scrivi una recensione</button>
 						</div>
 					</div> <!-- rowProduct -->
-				
+					
 			</c:forEach>
 			
 			

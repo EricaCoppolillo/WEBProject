@@ -2,6 +2,16 @@
 div {
 	position: relative;
 }
+
+#orderLink>a:hover
+{
+	text-decoration: none;
+}
+
+#orderLink > a {
+	color: inherit;
+}
+
 #filterOnOrders
 {
 	padding-left: 2%;
