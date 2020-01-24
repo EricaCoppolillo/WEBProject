@@ -156,10 +156,7 @@ public class DBManager {
 	
 	public void deleteProduct(int id) {getProductDao().deleteProduct(id);}
 	
-<<<<<<< HEAD
 	public ArrayList<Product> getProductPurchaseForUser(int idUser) {return getProductDao().getProductPurchaseForUser(idUser);}
-	public boolean purchasedProduct(int usrId, int productID) {return getProductDao().purchasedBy(usrId, productID);}
-=======
 	public boolean purchasedProduct(int usrId, int productID) {return getProductDao().purchasedBy(usrId, productID);}
 
 	public ArrayList<String> getMapCoords() {
@@ -169,5 +166,4 @@ public class DBManager {
 	public MapDao getMapDao() {
 		return new MapDaoJDBC(dataSource);
 	}
->>>>>>> branch 'master' of https://github.com/EricaCoppolillo/WEBProject.git
 }
