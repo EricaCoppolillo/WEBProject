@@ -96,7 +96,7 @@
 					</div>
 				</div>
 				<c:if test="${user != null}">
-                    <h5>Paga con PayPal:</h5>
+                    <h5 id="paypalTitle">Paga con PayPal:</h5>
 					<div id="paypal-button-container"></div>
 				</c:if>
 				<c:if test="${user == null}">
@@ -107,51 +107,76 @@
 			</div>
 			
 			<br>
-			<div id="shipmentcontainer" class="container">
-			
-			    <h3>Spedizione</h3>
-					<form>
-				    	<div class="form-check">
-				      		<label class="form-check-label" for="radio1" id="radio">
-				        		<input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Rititro a mano in un nostro store
-				      		</label>
-				    	</div>
-				    	<div class="form-check">
-				      		<label class="form-check-label" for="radio2">
-				        		<input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Spedizone a domicilio
-				      		</label>
-				     		<div id = "shipment" style="display: none;" class = "col">
-				            	<div class="form-group">
-				                <input type="text" class="form-control" id="recipient" placeholder="Nome" name="recipient" required>
-				                <div class="invalid-feedback">Riempi questo campo!</div>
-				                <label>Nome</label>
-				            </div>
-				            <div class="form-group">
-				                <input type="text" class="form-control" id="street" placeholder="Via, numero civico" name="street" required>
-				                <div class="invalid-feedback">Riempi questo campo!</div>
-				                <label >Via, numero civico</label>
-				            </div>
-				            
-			                <div class="form-group">
-			                    <input type="text" class="form-control" id="city" placeholder="Citta" name="city" required>
-			                    <div class="invalid-feedback">Riempi questo campo!</div>
-			                    <label >Citta</label>
-			                </div>
-			                <div class="form-group">
-			                    <input type="text" class="form-control" id="cap" placeholder="Cap" name="cap" required>
-			                    <div class="invalid-feedback">Riempi questo campo!</div>
-			                    <label >Cap</label>
-			                </div>
-			                <div class="form-group">
-			                    <input type="text" class="form-control" id="province" placeholder="Provincia" name="province" required>
-			                    <div class="invalid-feedback">Riempi questo campo!</div>
-			                    <label >Provincia</label>
-			                </div>
-				            
-	    				</div>
-	    			</div>
-					</form>
-   		 	</div>
+
+			<h3 id="shipmentTitle">Spedizione</h3>
+
+			<div class="alert alert-danger" id="shipmentAlert" role="alert">
+				Non tutti i campi sono stati compilati!
+			</div>
+
+			<div id="shipmentcontainer" class="row">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<input type="radio" id="radio1" name="optradio" value="option1" checked>
+						</div>
+					</div>
+					<input type="text" class="form-control" placeholder="Ritiro a mano in negozio" disabled>
+				</div>
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<input type="radio" id="radio2" name="optradio" value="option2">
+						</div>
+					</div>
+					<input type="text" class="form-control" placeholder="Spedizone a domicilio" disabled>
+				</div>
+				<div id="shipment" style="display: none;" class="col card">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="input-group-text fa fa-drivers-license-o" disabled></button>
+						</div>
+						<input type="text" class="form-control" id="recipient" placeholder="Nome e cognome del referente" name="recipient" required>
+						<div class="invalid-feedback">Riempi questo campo!</div>
+					</div>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="input-group-text fa fa-home" disabled></button>
+						</div>
+						<input type="text" class="form-control" id="street" placeholder="Indirizzo di casa e numero civico" name="street" required>
+						<div class="invalid-feedback">Riempi questo campo!</div>
+					</div>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="input-group-text fa fa-map-marker" disabled></button>
+						</div>
+						<input type="text" class="form-control" id="cap" placeholder="CAP" name="cap" required>
+						<div class="invalid-feedback">Riempi questo campo!</div>
+					</div>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="input-group-text fa fa-building-o" disabled></button>
+						</div>
+						<input type="text" class="form-control" id="city" placeholder="Città" name="city" required>
+						<div class="invalid-feedback">Riempi questo campo!</div>
+					</div>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="input-group-text fa fa-globe" disabled></button>
+						</div>
+						<input type="text" class="form-control" id="province" placeholder="Provincia" name="province" required>
+						<div class="invalid-feedback">Riempi questo campo!</div>
+					</div>
+				</div>
+				<div class="input-group mb-3">
+					<button onclick="valueCheck()" type="button" class="btn btn-secondary" id="shipmentButton">Conferma dati di spedizione</button>
+				</div>
+			</div>
+		</div>
   
 </div>
 			
