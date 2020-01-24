@@ -35,13 +35,13 @@
 			Mappa
 		</a>
 	</div>
-	<div id="orders" class="col">
-		<c:if test="${user!=null }">
+	<c:if test="${user != null}">
+		<div id="orders" class="col">
 			<a href="orders">
 				I miei ordini
 			</a>
-		</c:if>
-	</div>	
+		</div>	
+	</c:if>
 	
 	 <div id="containerSearchBar">
       <div class="d-flex justify-content-center">
