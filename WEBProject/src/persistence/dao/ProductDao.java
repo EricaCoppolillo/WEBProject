@@ -16,4 +16,5 @@ public interface ProductDao {
     void saveProduct(Product p);
     void updateProduct(Product p);
     void deleteProduct(int id);
+    boolean purchasedBy(int userID, int productID);
 }

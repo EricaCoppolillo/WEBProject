@@ -155,4 +155,6 @@ public class DBManager {
 	public void updateProduct(Product p){ getProductDao().updateProduct(p);}
 	
 	public void deleteProduct(int id) {getProductDao().deleteProduct(id);}
+	
+	public boolean purchasedProduct(int usrId, int productID) {return getProductDao().purchasedBy(usrId, productID);}
 }

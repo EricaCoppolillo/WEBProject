@@ -55,10 +55,12 @@
 		         </div>
 				  <span id="otherReviewsButton">
 				  	<a href="#" onclick="loadOtherReviews(${product.id})">Altre recensioni...</a>
-					<hr>
 				  </span>
-				  <!-- se l'utente ha ha cquistato il prodotto mostrare il bottone altrimenti no -->
-		         <button class="btn btn-primary" id="writeReview">Scrivi una recensione</button>
+				  <hr>
+				  <c:if test="${purchased == true}">
+				  	<button class="btn btn-primary" id="writeReview">Scrivi una recensione</button>
+				  </c:if>
+		         
 	          </div>
 	        </div>
 	      </div>
