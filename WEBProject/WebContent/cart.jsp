@@ -9,13 +9,17 @@
 <meta charset="UTF-8">
 <title>Il tuo Carrello</title>
 	<%@ include file="include.jsp" %>
-	<script src="js/cart.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AUuQsZ6W_kSfRMWY_JWNer6Ho-eU3XDcVAgce3CZYj8LhYJO4ZiL9AME6LMbWHPxGkbTVp3zHpoQudsR"></script>
+    <script src="js/cart.js"></script>
 	<script src="js/product.js"></script>
 	<link rel="stylesheet" href="css/cart.css">
-
 </head>
 
-<body>
+<body onload="<c:forEach var="cartProduct" items="${cartProducts}">
+            addCardProduct(${cartProduct.id}, ${cartProduct.orderQuantity});
+            setUserId(${user.id});
+            setTotalPrice(${totalPrice});
+        </c:forEach>">
 
 	<%@ include file="menuBar.jsp" %>
 	
@@ -36,7 +40,7 @@
 						
 						<img class="col-sm-2" src="img/products/${cartProduct.imagePath}" alt="">
 						<div class="col-sm-6">
-							<div id="modelProduct">${cartProduct.model} ${cartProduct.manufacturer}</div>
+							<div id="modelProduct">${cartProduct.manufacturer} ${cartProduct.model}</div>
 							<div>${cartProduct.description}</div>
 							<div id="trashIcon" onclick="removeCartProduct('${cartProduct.id}')"><i class="fa fa-trash"></i> Rimuovi</div>
 						</div>
@@ -81,25 +85,31 @@
 		</div>
 		
 		<div id="goToPayment" class="col-sm-3">
-			<div class = card id="cardPayment">
+			<div class="card" id="cardPayment">
 				<div id="rowTotalPrice" class="row">
-					<div class="col">Prezzo Totale:</div>
-					<div id="totalPrice" class="col">
+                    <div class="col-sm-7"><h5>Prezzo Totale:</h5></div>
+					<div class="col-sm-5"><h5 id="totalPrice"></h5>
 					<script>
 						var totPrice = ${totalPrice};
 						document.getElementById("totalPrice").innerHTML = totPrice.toFixed(2) + " €";
 					</script>
 					</div>
 				</div>
-				<a id="anchorPayment" href="..payment">
+				<c:if test="${user != null}">
+                    <h5>Paga con PayPal:</h5>
+					<div id="paypal-button-container"></div>
+				</c:if>
+				<c:if test="${user == null}">
+				<a id="anchorPayment" href="login">
 					<button class="btn btn-primary"> Procedi all'ordine</button>
 				</a>
+				</c:if>
 			</div>
 			
 			<br>
-			<div class="container">
+			<div id="shipmentcontainer" class="container">
 			
-			    <h3>Spedizone</h3>
+			    <h3>Spedizione</h3>
 					<form>
 				    	<div class="form-check">
 				      		<label class="form-check-label" for="radio1" id="radio">

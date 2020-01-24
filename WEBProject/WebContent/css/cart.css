@@ -65,11 +65,16 @@ img {
 	right: 3%;
 	height: 10%;
 }
+#rowTotalPrice{
+	margin: 2px;
+}
 
 #totalPrice {
 	color: #c10d0d;
-	font-weight: bold;
-	font-size: 2vw;
+}
+
+#paypal-button-container{
+	margin: 5px;
 }
 
 #anchorPayment {
