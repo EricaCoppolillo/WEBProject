@@ -28,11 +28,10 @@ public class CompletedPayment extends HttpServlet {
 
             PayPalOrder payPalOrder = gson.fromJson(input.toString(), PayPalOrder.class);
             GetOrder getOrder = new GetOrder();
+            String paymentId = getOrder.getOrder(payPalOrder.getOrderID());
+            if(!paymentId.equals("-1")){
 
-            if(getOrder.getOrder(payPalOrder.getOrderID()))
-                System.out.println("L'utente " + payPalOrder.getUserID() + " ha completato l'acquisto");
-            else
-                System.out.println("L'utente " + payPalOrder.getUserID() + " non ha completato l'acquisto");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

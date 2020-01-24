@@ -60,6 +60,27 @@ img {
 	width: 93%;
 }
 
+#paypalTitle{
+	display: none;
+}
+
+#shipment{
+	padding-top: 20px;
+}
+
+#shipmentcontainer{
+	margin-top: 20px;
+}
+
+#shipmentAlert{
+	display: none;
+}
+
+#shipmentButton{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 #goToPayment {
 	position: relative;
 	right: 3%;

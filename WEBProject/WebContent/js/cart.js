@@ -2,6 +2,64 @@ var cartProducts = [];
 var cartProductsQuantity = [];
 var userId;
 var totalPrice;
+var address;
+
+function valueCheck() {
+
+	if(($("#cap").val() === "" || $("#city").val() === "" || $("#province").val() === "" ||
+		$("#recipient").val() === "" || $("#street").val() === "") && $("#radio2").prop("checked") == true) {
+		$("#shipmentAlert").show();
+
+	} else {
+
+		if($("#radio1").prop("checked") == true)
+			address = "RITIRO IN NEGOZIO";
+
+		$("#shipmentAlert").hide();
+		$("#paypalTitle").show();
+		$('#shipmentcontainer').hide();
+		$('#shipmentTitle').hide();
+		address = $("#recipient").val() + ", " + $("#street").val() + ", " + $("#cap").val()
+			+ ", " + $("#city").val() + ", " + $("#province").val();
+		paypal.Buttons({
+			createOrder: function(data, actions) {
+					$('#products').hide();
+					$('#shipmentcontainer').hide();
+					$('#goToPayment').removeClass("col-sm-3");
+					$('#goToPayment').addClass("col-sm-12");
+					$('#goToPayment').css({"right": "0%", "position":"static", "padding" : "0"});
+					$('#rowTotalPrice').css({"margin": "2%"});
+					return actions.order.create({
+						purchase_units: [{
+							amount: {
+								value: totalPrice
+							}
+						}]
+					});
+				},
+			onApprove: function(data, actions) {
+				return actions.order.capture().then(function(details) {
+					alert('Transaction completed by ' + details.payer.name.given_name);
+
+					return fetch('completedpayment', {
+						method: 'post',
+						headers: {
+							'content-type': 'application/json'
+						},
+						body: JSON.stringify({
+							orderID: data.orderID,
+							userID: userId,
+							products: cartProducts,
+							productsQuantity: cartProductsQuantity,
+							address: address,
+							amount: totalPrice
+						})
+					});
+				});
+			}
+		}).render('#paypal-button-container');
+	}
+}
 
 function addCardProduct(productId, quantity) {
 	cartProducts.push(productId);
@@ -88,41 +146,5 @@ $(document).ready(function(){
     $("#radio1").click(function() {
         $("#shipment").css("display","none");
     });
-
-	paypal.Buttons({
-		createOrder: function(data, actions) {
-			$('#products').hide();
-			$('#shipmentcontainer').hide();
-			$('#goToPayment').removeClass("col-sm-3");
-			$('#goToPayment').addClass("col-sm-12");
-			$('#goToPayment').css({"right": "0%", "position":"static", "padding" : "0"});
-			$('#rowTotalPrice').css({"margin": "2%"});
-			return actions.order.create({
-				purchase_units: [{
-					amount: {
-						value: totalPrice
-					}
-				}]
-			});
-		},
-		onApprove: function(data, actions) {
-			return actions.order.capture().then(function(details) {
-				alert('Transaction completed by ' + details.payer.name.given_name);
-
-				return fetch('completedpayment', {
-					method: 'post',
-					headers: {
-						'content-type': 'application/json'
-					},
-					body: JSON.stringify({
-						orderID: data.orderID,
-						userID: userId,
-						products: cartProducts,
-						productsQuantity: cartProductsQuantity
-					})
-				});
-			});
-		}
-	}).render('#paypal-button-container');
 
 });
