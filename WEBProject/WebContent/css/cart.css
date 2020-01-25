@@ -109,6 +109,18 @@ img {
 	
 }
 
+#successfullPurchase{
+	display: none;
+	margin: 30px;
+	text-align: center;
+}
+
+#failedPurchase{
+	display: none;
+	margin: 30px;
+	text-align: center;
+}
+
 .form-group {
 	margin-bottom: 1%;
 }

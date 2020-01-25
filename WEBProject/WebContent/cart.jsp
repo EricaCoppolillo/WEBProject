@@ -24,6 +24,15 @@
 	<%@ include file="menuBar.jsp" %>
 	
 	<div id="container" class="row">
+
+		<div class="alert alert-success col" role="alert" id="successfullPurchase">
+			Acquisto effettuato con successo! Riceverai un riepilogo dell'ordine sulla tua casella di posta elettronica.
+		</div>
+
+		<div class="alert alert-danger col" role="alert" id="failedPurchase">
+			Si sono verificati dei problemi durante il pagamento, riprova.
+		</div>
+
 		<c:if test="${emptyCart == true}">
 			<div id="emptyCart" class="text-center py-3">Il Carrello è vuoto</div>
 		</c:if>
@@ -83,7 +92,6 @@
 				</c:forEach>
 			
 		</div>
-		</c:if>
 		<div id="goToPayment" class="col-sm-3">
 			<div class="card" id="cardPayment">
 				<div id="rowTotalPrice" class="row">
@@ -177,7 +185,7 @@
 				</div>
 			</div>
 		</div>
-  
+	</c:if>
 </div>
 			
 		</div>

@@ -2,7 +2,7 @@ var cartProducts = [];
 var cartProductsQuantity = [];
 var userId;
 var totalPrice;
-var address;
+var address = "";
 
 function valueCheck() {
 
@@ -14,13 +14,15 @@ function valueCheck() {
 
 		if($("#radio1").prop("checked") == true)
 			address = "RITIRO IN NEGOZIO";
+		else
+			address = $("#recipient").val() + ", " + $("#street").val() + ", " + $("#cap").val()
+				+ ", " + $("#city").val() + ", " + $("#province").val();
 
 		$("#shipmentAlert").hide();
 		$("#paypalTitle").show();
 		$('#shipmentcontainer').hide();
 		$('#shipmentTitle').hide();
-		address = $("#recipient").val() + ", " + $("#street").val() + ", " + $("#cap").val()
-			+ ", " + $("#city").val() + ", " + $("#province").val();
+
 		paypal.Buttons({
 			createOrder: function(data, actions) {
 					$('#products').hide();
@@ -39,14 +41,15 @@ function valueCheck() {
 				},
 			onApprove: function(data, actions) {
 				return actions.order.capture().then(function(details) {
-					alert('Transaction completed by ' + details.payer.name.given_name);
+					$('#goToPayment').hide();
 
-					return fetch('completedpayment', {
-						method: 'post',
+					return $.ajax({
+						method: "POST",
+						url: "completedpayment",
 						headers: {
 							'content-type': 'application/json'
 						},
-						body: JSON.stringify({
+						data: JSON.stringify({
 							orderID: data.orderID,
 							userID: userId,
 							products: cartProducts,
@@ -54,6 +57,11 @@ function valueCheck() {
 							address: address,
 							amount: totalPrice
 						})
+					}).done(function(msg) {
+						if(msg == 1)
+							$('#successfullPurchase').show();
+						else
+							$('#failedPurchase').show();
 					});
 				});
 			}
