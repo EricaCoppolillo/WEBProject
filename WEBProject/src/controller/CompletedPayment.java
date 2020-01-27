@@ -1,8 +1,9 @@
 package controller;
 import com.google.gson.Gson;
-import model.PayPalOrder;
+import model.*;
 import persistence.DBManager;
 import technicalServices.GetOrder;
+import technicalServices.MailUtility;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class CompletedPayment extends HttpServlet {
 
@@ -34,17 +36,24 @@ public class CompletedPayment extends HttpServlet {
             String paymentId = getOrder.getOrder(payPalOrder.getOrderID());
             if(!paymentId.equals("-1")){
                 if(DBManager.getInstance().insertPayment(payPalOrder.getAmount(), paymentId)){
-                    int paymentCode = DBManager.getInstance().getPaymentId(paymentId);
-                    if(DBManager.getInstance().insertPurchase(payPalOrder.getUserID(), paymentCode,
+                    Payment payment = DBManager.getInstance().getPayment(paymentId);
+                    if(DBManager.getInstance().insertPurchase(payPalOrder.getUserID(), payment.getId(),
                             payPalOrder.getAddress())){
-                        int purchaseId = DBManager.getInstance().getPurchaseId(paymentCode);
+                        Purchase purchase = DBManager.getInstance().getPurchase(payment);
                         int[] quantities = payPalOrder.getProductsQuantity();
                         int[] products = payPalOrder.getProducts();
+                        ArrayList<ProductQuantity> productQuantities = new ArrayList<>();
                         for (int i = 0; i < products.length; i++) {
-                            DBManager.getInstance().insertPurchaseProductAssociation(quantities[i], products[i], purchaseId);
+                            productQuantities.add(new ProductQuantity(DBManager.getInstance().getProduct(products[i]),
+                                    quantities[i]));
+                            DBManager.getInstance().insertPurchaseProductAssociation(quantities[i], products[i], purchase.getId());
                         }
 
+                        purchase.setProducts(productQuantities);
                         DBManager.getInstance().deleteAllCartProducts(payPalOrder.getUserID());
+                        String imagePath = getServletContext().getRealPath("/img/logo.png");
+                        MailUtility.sendRecipt(purchase, DBManager.getInstance().getUser(purchase.getUser()).getEmail(),
+                                imagePath);
                         completed = true;
                     }
                 }
@@ -54,7 +63,7 @@ public class CompletedPayment extends HttpServlet {
                 response.getOutputStream().print(1);
             else
                 response.getOutputStream().print(0);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

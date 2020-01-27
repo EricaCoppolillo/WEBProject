@@ -40,7 +40,7 @@ public class PostReview extends HttpServlet{
 			if(!matcher.find()) {
 				db.postReview(r);
 			}
-			RequestDispatcher rd = req.getRequestDispatcher("home");
+			RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
 			rd.forward(req, resp);
 			
 		}

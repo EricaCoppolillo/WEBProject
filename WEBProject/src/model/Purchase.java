@@ -60,7 +60,7 @@ public class Purchase {
 		return payment;
 	}
 
-	public void setPrice(Payment payment) {
+	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
 

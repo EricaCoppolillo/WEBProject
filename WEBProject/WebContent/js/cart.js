@@ -15,8 +15,8 @@ function valueCheck() {
 		if($("#radio1").prop("checked") == true)
 			address = "RITIRO IN NEGOZIO";
 		else
-			address = $("#recipient").val() + ", " + $("#street").val() + ", " + $("#cap").val()
-				+ ", " + $("#city").val() + ", " + $("#province").val();
+			address = $("#recipient").val() + ",\n" + $("#street").val() + ",\n" + $("#cap").val()
+				+ ",\n" + $("#city").val() + ",\n" + $("#province").val();
 
 		$("#shipmentAlert").hide();
 		$("#paypalTitle").show();

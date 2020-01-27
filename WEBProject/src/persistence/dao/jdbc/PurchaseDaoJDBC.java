@@ -1,8 +1,6 @@
 package persistence.dao.jdbc;
 
-import model.Category;
-import model.Product;
-import model.ProductProxy;
+import model.*;
 import persistence.DataSource;
 import persistence.dao.PurchaseDao;
 
@@ -95,20 +93,21 @@ public class PurchaseDaoJDBC implements PurchaseDao {
     }
 
     @Override
-    public int findPaymentId(String transactionCode) {
-        int id = -1;
+    public Payment findPayment(String transactionCode) {
+        Payment payment = null;
         try {
             connection = dataSource.getConnection();
-            String query = "select id from payment where \"transactionCode\" = ?";
+            String query = "select * from payment where \"transactionCode\" = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, transactionCode);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
-                id = result.getInt("id");
+                payment = new Payment(result.getInt("id"), result.getDate("date"),
+                    result.getFloat("amount"), transactionCode);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return -1;
+            return null;
         } finally {
             try {
                 connection.close();
@@ -117,24 +116,29 @@ public class PurchaseDaoJDBC implements PurchaseDao {
             }
         }
 
-        return id;
+        return payment;
     }
 
     @Override
-    public int findPurchaseId(int paymentId) {
-        int id = -1;
+    public Purchase findPurchase(Payment payment) {
+        Purchase purchase = null;
         try {
             connection = dataSource.getConnection();
-            String query = "select id from purchase where \"payment\" = ?";
+            String query = "select * from purchase, \"user\" where purchase.payment = ? and purchase.\"user\" = \"user\".id";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, paymentId);
+            statement.setInt(1, payment.getId());
             ResultSet result = statement.executeQuery();
             if (result.next()) {
-                id = result.getInt("id");
+                purchase = new Purchase();
+                purchase.setDate(result.getDate("date"));
+                purchase.setId(result.getInt("id"));
+                purchase.setUser(result.getString("username"));
+                purchase.setPayment(payment);
+                purchase.setShipment(result.getString("shipment"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return -1;
+            return null;
         } finally {
             try {
                 connection.close();
@@ -143,7 +147,7 @@ public class PurchaseDaoJDBC implements PurchaseDao {
             }
         }
 
-        return id;
+        return purchase;
     }
 
     @Override

@@ -23,10 +23,10 @@ import javax.mail.internet.MimeMultipart;
 		private static String from = "technoworldcustommersservice@gmail.com";
 		private static String pass = "bsuhdwsgqqonqvhu";
 		
-		public static void sendRecipt(Purchase order, String dest) throws Exception{
+		public static void sendRecipt(Purchase order, String dest, String imagePath) throws Exception{
            
 		       
-	        String content = "Ciao " + order.getUser() + ",\nGrazie per aver acquistato su TecnhoWorld.it!\n\nTi ricordiamo la modalit‡ di spedizone selezionata:\n" +
+	        String content = "Ciao " + order.getUser() + ",\nGrazie per aver acquistato su TecnhoWorld.it!\n\nTi ricordiamo la modalit√† di spedizone selezionata:\n" +
 	        order.getShipment() + "\n\n Inoltre puoi trovare in allegato la ricevuta di acquisto.\n\nPer qualsiasi informazione riguardante l'ordine contatta il nostro servizio"
 	        		+ "clienti al seguente indirizzo " + from;
 	        String subject = "Conferma ordine " + order.getId();      
@@ -47,7 +47,7 @@ import javax.mail.internet.MimeMultipart;
 	            MimeBodyPart textBodyPart = new MimeBodyPart();
 	            textBodyPart.setText(content);
 	            outputStream = new ByteArrayOutputStream();
-	            PdfCreator.generatePurchaseReceipt(outputStream, order);
+	            PdfCreator.generatePurchaseReceipt(outputStream, order, imagePath);
 
 	            byte[] bytes = outputStream.toByteArray();
 	            DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");
@@ -91,7 +91,7 @@ import javax.mail.internet.MimeMultipart;
 			message.setText("Ciao " + username + " grazie per esserti registrato su TechnoWorld.it!\n\n"
 					+ "Ti ricordiamo le credenziali da te inserite:\nUsername: "+username+"\nPassword: "+password+" \n\n"
 					+ "Ti auguriamo una piacevole navigazione!\nCordiali Saluti!\n\n Il team technoWorld\n\n\n\n"
-					+ "Non rispondere a questa e-mail in quanto Ë stata generata automaticamente.\n ");
+					+ "Non rispondere a questa e-mail in quanto √® stata generata automaticamente.\n ");
 			Transport transport = session.getTransport("smtp");
 			transport.connect(host,from,pass);
 			transport.sendMessage(message, message.getAllRecipients());

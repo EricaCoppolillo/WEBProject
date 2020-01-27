@@ -1,5 +1,6 @@
 package technicalServices;
 
+import java.io.File;
 import java.io.OutputStream;
 
 
@@ -15,7 +16,7 @@ import model.Purchase;
 
 public class PdfCreator {
 
-	public static void generatePurchaseReceipt(OutputStream outputStream, Purchase order) throws Exception {
+	public static void generatePurchaseReceipt(OutputStream outputStream, Purchase order, String imagePath) throws Exception {
 		
 		Document document = new Document();
         PdfWriter.getInstance(document, outputStream);
@@ -27,8 +28,8 @@ public class PdfCreator {
         document.addKeywords("iText, email");
         document.addAuthor("TechnoWorld");
         document.addCreator("TechnoWorld");
-       
-        Image logo = Image.getInstance("http://localhost:8080/WEBProject/img/logo.png");
+
+        Image logo = Image.getInstance(imagePath);
         logo.scaleAbsolute(100,100);
         logo.setAlignment(PdfPCell.ALIGN_MIDDLE);
         Paragraph logoParagraph = new Paragraph();
@@ -53,11 +54,11 @@ public class PdfCreator {
         	quantity += product.getQuantity();
         	table.addCell(getCell(product.getProduct().getManufacturer() + " " + product.getProduct().getModel(), PdfPCell.ALIGN_LEFT));
         	table.addCell(getCell("qta. " + product.getQuantity(), PdfPCell.ALIGN_CENTER));
-        	table.addCell(getCell("prezzo: " + product.getProduct().getPrice() + " €", PdfPCell.ALIGN_RIGHT));
+        	table.addCell(getCell("prezzo: " + product.getProduct().getPrice() + " â‚¬", PdfPCell.ALIGN_RIGHT));
 		}
         table.addCell(getCell("\nTotale:", PdfPCell.ALIGN_LEFT));
         table.addCell(getCell("\nqta. " + quantity, PdfPCell.ALIGN_CENTER));
-        table.addCell(getCell(""+total+"€"+"\n di cui IVA " + (total*0.22) + " €", PdfPCell.ALIGN_RIGHT));
+        table.addCell(getCell(""+total+"â‚¬"+"\n di cui IVA " + (total*0.22) + " â‚¬", PdfPCell.ALIGN_RIGHT));
         paragraph.add(table);
         Chunk transaction = new Chunk("\n\n\nPagamento gestito da PayPal.\nCodice Transazione: " + order.getPayment().getTransaction());
         paragraph.add(transaction);

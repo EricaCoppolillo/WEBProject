@@ -3,12 +3,7 @@ package persistence;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import model.Administrator;
-import model.Category;
-import model.Manufacturer;
-import model.Product;
-import model.Review;
-import model.User;
+import model.*;
 import persistence.dao.*;
 import persistence.dao.jdbc.*;
 
@@ -168,12 +163,12 @@ public class DBManager {
 		return getPurchaseDao().insertPurchase(userId, paymentId, shipmentMode);
 	}
 
-	public int getPaymentId(String transactionCode){
-		 return getPurchaseDao().findPaymentId(transactionCode);
+	public Payment getPayment(String transactionCode){
+		 return getPurchaseDao().findPayment(transactionCode);
 	}
 
-	public int getPurchaseId(int paymentId){
-		return getPurchaseDao().findPurchaseId(paymentId);
+	public Purchase getPurchase(Payment payment){
+		return getPurchaseDao().findPurchase(payment);
 	}
 
 	public boolean insertPurchaseProductAssociation(int quantity, int productId, int purchaseId){
