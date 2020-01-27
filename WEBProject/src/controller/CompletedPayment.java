@@ -52,7 +52,7 @@ public class CompletedPayment extends HttpServlet {
                         purchase.setProducts(productQuantities);
                         DBManager.getInstance().deleteAllCartProducts(payPalOrder.getUserID());
                         String imagePath = getServletContext().getRealPath("/img/logo.png");
-                        MailUtility.sendRecipt(purchase, DBManager.getInstance().getUser(purchase.getUser()).getEmail(),
+                        MailUtility.sendRecipt(purchase, DBManager.getInstance().getUserByUsername(purchase.getUser()).getEmail(),
                                 imagePath);
                         completed = true;
                     }

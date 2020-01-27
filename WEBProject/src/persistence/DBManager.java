@@ -35,12 +35,16 @@ public class DBManager {
 		return instance;
 	} 
 	
-	public User getUser(String username) {
-		return getUserDao().findUser(username);
+	public User getUser(String username, String password) {
+		return getUserDao().findUser(username, password);
 	}
 	
 	public User getUserByEmail(String email) {
 		return getUserDao().findUserByEmail(email);
+	}
+	
+	public User getUserByUsername(String username) {
+		return getUserDao().findUserByUsername(username);
 	}
 	
 	public UserDao getUserDao() {
@@ -57,6 +61,10 @@ public class DBManager {
 	
 	public void registerUser(User user) {
 		getUserDao().registerUser(user);
+	}
+	
+	public void updatePassword(String username, String newPassword) {
+		getUserDao().updatePassword(username, newPassword);
 	}
 	
 	public Administrator getAdministrator(String id, String password) {
@@ -110,6 +118,10 @@ public class DBManager {
 	
 	public void updateQuantity(int idUser, int idProduct, int quantity) {
 		getCartDao().updateQuantity(idUser, idProduct, quantity);
+	}
+	
+	public boolean isInCart(int idUser, String idProduct) {
+		return getCartDao().isInCart(idUser, idProduct);
 	}
 
 	public ArrayList<Product> getCartProducts(int idUser) {

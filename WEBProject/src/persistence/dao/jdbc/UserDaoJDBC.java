@@ -51,15 +51,64 @@ public class UserDaoJDBC implements UserDao {
 			}
 		}
 	}
+	
+	@Override
+	public void updatePassword(String username, String newPassword) {
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "update \"user\" set password = ? where username = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, newPassword);
+			statement.setString(2, username);
+			
+			statement.executeUpdate();
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
-	public User findUser(String username) {
+	public User findUser(String username, String password) {
 		User user = null;
 		
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select * from \"user\" where username = ?";
+			String query = "select * from \"user\" where username = ? and password = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, username);
+			statement.setString(2, password);
+			
+			ResultSet result = statement.executeQuery();
+			if(result.next()) {
+				user = new User(username, result.getString(7), result.getString(3), result.getString(2), result.getString(5), result.getDate(4), result.getString(8), result.getString(9));
+				user.setId(result.getInt(1));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return user;
+	}
+	
+	@Override
+	public User findUserByUsername(String username) {
+		User user = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select * from \"user\" where username";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, username);
 			

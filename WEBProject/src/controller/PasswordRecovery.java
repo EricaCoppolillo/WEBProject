@@ -36,4 +36,21 @@ public class PasswordRecovery extends HttpServlet {
 			resp.getOutputStream().print(""+password);
 		}
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String username = req.getParameter("username");
+		String newPassword = req.getParameter("newPassword");
+		
+		boolean validNewPassword = Registration.validPassword(newPassword);
+		
+		if(username != null && validNewPassword) {
+			DBManager.getInstance().updatePassword(username, newPassword);
+		}
+		
+		else if(username != null && !validNewPassword) {
+			resp.getOutputStream().print("invalidNewPassword");
+		}
+	}
 }

@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="css/forgottenPassword.css">
 	
 </head>
-<body onload=disable()>
+<body onload="disable()">
 
 	<div id="container">
 		<div id="divLogo">
@@ -46,10 +46,19 @@
 			  <div class="text-center">
 				 <input id="buttonPassword" class="btn btn-primary" onclick="getPassword()" value="Recupera Password"/>
 			  </div>
+			  
+			  
 		  </div>
 		</form>
 		
+		<div class="text-center">
+			<input id="buttonNewPassword" class="btn btn-primary" onclick="saveNewPassword()" value="Salva nuova Password"/>
+			<div id="invalidNewPassword" class="invalid-feedback d-block">La password deve contenere almeno 8 caratteri, almeno una lettera maiuscola e almeno una minuscola</div>
+		</div>
+		
 	</div> 
+	
+	<%@ include file="footer.jsp" %>
 
 </body>
 </html>

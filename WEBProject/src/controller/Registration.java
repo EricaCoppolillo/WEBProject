@@ -19,6 +19,23 @@ import technicalServices.MailUtility;
 
 public class Registration extends HttpServlet {
 	
+	static boolean validPassword(String password) {
+		if(password.length() < 8)
+			return false;
+		
+		boolean lower = false, upper = false;
+		for(int i=0; i<password.length() && (!lower || !upper); i++) {
+			if(Character.isLowerCase(password.charAt(i)))
+				lower = true;
+			if(Character.isUpperCase(password.charAt(i)))
+				upper = true;
+		}
+		if(!lower || !upper) {
+			return false;
+		}
+		return true;
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -34,23 +51,6 @@ public class Registration extends HttpServlet {
 		req.getSession().removeAttribute("sameEmail");
 		req.getSession().removeAttribute("invalidPassword");
 		rd.forward(req, resp);
-	}
-	
-	protected boolean validPassword(String password) {
-		if(password.length() < 8)
-			return false;
-		
-		boolean lower = false, upper = false;
-		for(int i=0; i<password.length() && (!lower || !upper); i++) {
-			if(Character.isLowerCase(password.charAt(i)))
-				lower = true;
-			if(Character.isUpperCase(password.charAt(i)))
-				upper = true;
-		}
-		if(!lower || !upper) {
-			return false;
-		}
-		return true;
 	}
 	
 	@Override
@@ -76,7 +76,7 @@ public class Registration extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		User alreadyUser = db.getUser(username);
+		User alreadyUser = db.getUserByUsername(username);
 		User alreadyUserEmail = db.getUserByEmail(email);
 		boolean valid = validPassword(password);
 		/*^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])*/

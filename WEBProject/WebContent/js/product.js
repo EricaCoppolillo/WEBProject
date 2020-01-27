@@ -41,7 +41,7 @@ function checkProduct(idProduct, page) {
 			
 			else if(page == "product" && data != "inCart") {
 				document.getElementById("addToCart").disabled = false;
-				$("#addToCart").html("Aggiunto al carrello");
+				$("#addToCart").html("Aggiungi al carrello");
 			}
 			
 			if(page == "cart") {

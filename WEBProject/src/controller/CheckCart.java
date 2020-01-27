@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Product;
+import model.User;
+import persistence.DBManager;
 
 public class CheckCart extends HttpServlet {
 
@@ -19,12 +21,21 @@ public class CheckCart extends HttpServlet {
 		String idProduct = req.getParameter("idProduct");
 		String product = null;
 		
-		ArrayList<Product> cart = (ArrayList<Product>) req.getSession().getAttribute("cartArray");
+		User user = (User) req.getSession().getAttribute("user");
 		
-		if(cart != null) {
-			for(Product p : cart) {
-				if(p.getId() == Integer.parseInt(idProduct))
-					product = "inCart";
+		if(user != null) {
+			boolean inCart = DBManager.getInstance().isInCart(user.getId(), idProduct);
+			if(inCart) 
+				product = "inCart";
+		}
+		
+		else {
+			ArrayList<Product> cart = (ArrayList<Product>) req.getSession().getAttribute("cartArray");
+			if(cart != null) {
+				for(Product p : cart) {
+					if(p.getId() == Integer.parseInt(idProduct))
+						product = "inCart";
+				}
 			}
 		}
 		

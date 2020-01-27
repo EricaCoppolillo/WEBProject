@@ -113,6 +113,36 @@ public class CartDaoJDBC implements CartDao {
 			}
 		}
 	}
+	
+	@Override
+	public boolean isInCart(int idUser, String idProduct) {
+		boolean inCart = false;
+			
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select * from cart where \"idUser\" = ? and \"idProduct\" = ?";
+			
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, idUser);
+			statement.setInt(2, Integer.parseInt(idProduct));
+			
+			ResultSet result = statement.executeQuery();
+			if(result.next())
+				inCart = true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return inCart;
+	}
 
 	@Override
 	public ArrayList<Product> getCartProducts(int idUser) {
