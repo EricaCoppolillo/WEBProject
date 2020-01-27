@@ -11,5 +11,5 @@ public interface UserDao {
 	public User findUserByEmail(String email);
 	public String findSecurityQuestion(String username);
 	public String findPassword(String username, String answer);
-	public List<User> findAll();     
+	public List<User> findAll();    
 }

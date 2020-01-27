@@ -60,6 +60,27 @@ img {
 	width: 93%;
 }
 
+#paypalTitle{
+	display: none;
+}
+
+#shipment{
+	padding-top: 20px;
+}
+
+#shipmentcontainer{
+	margin-top: 20px;
+}
+
+#shipmentAlert{
+	display: none;
+}
+
+#shipmentButton{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 #goToPayment {
 	position: relative;
 	right: 3%;
@@ -86,6 +107,18 @@ img {
 	background-color: #efefef;
 	text-align: center;
 	
+}
+
+#successfullPurchase{
+	display: none;
+	margin: 30px;
+	text-align: center;
+}
+
+#failedPurchase{
+	display: none;
+	margin: 30px;
+	text-align: center;
 }
 
 .form-group {

@@ -1,27 +1,16 @@
 package persistence;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import javafx.util.Pair;
 import model.Administrator;
 import model.Category;
 import model.Manufacturer;
 import model.Product;
 import model.Review;
 import model.User;
-import persistence.dao.AdministratorDao;
-import persistence.dao.CartDao;
-import persistence.dao.CategoryDao;
-import persistence.dao.ProductDao;
-import persistence.dao.ReviewDao;
-import persistence.dao.UserDao;
-import persistence.dao.jdbc.AdministratorDaoJDBC;
-import persistence.dao.jdbc.CartDaoJDBC;
-import persistence.dao.jdbc.CategoryDaoJDBC;
-import persistence.dao.jdbc.ProductDaoJDBC;
-import persistence.dao.jdbc.ReviewDaoJDBC;
-import persistence.dao.jdbc.UserDaoJDBC;
+import persistence.dao.*;
+import persistence.dao.jdbc.*;
 
 public class DBManager {
 	
@@ -91,6 +80,8 @@ public class DBManager {
 		return new CategoryDaoJDBC(this.dataSource);
 	}
 
+	public PurchaseDao getPurchaseDao(){ return new PurchaseDaoJDBC(this.dataSource);}
+
 	public Category getCategory(int categoryId){
 		return getCategoryDao().findCategory(categoryId);
 	}
@@ -137,6 +128,8 @@ public class DBManager {
 		}
 		return sum;
 	}
+
+	public void deleteAllCartProducts(int userId){ getCartDao().deleteAll(userId);}
 	
 	public void deleteCartProduct(int idUser, int idProduct) {
 		getCartDao().delete(idUser, idProduct);
@@ -147,7 +140,7 @@ public class DBManager {
 	}
 	
 	public ReviewDao getReviewDao() {
-		return new ReviewDaoJDBC(this.dataSource);
+		return new ReviewDaoJDBC(dataSource);
 	}
 	
 	public void postReview(Review r) { getReviewDao().postReview(r);}
@@ -156,5 +149,34 @@ public class DBManager {
 	
 	public void deleteProduct(int id) {getProductDao().deleteProduct(id);}
 	
+	public ArrayList<Product> getProductPurchaseForUser(int idUser) {return getPurchaseDao().getProductPurchaseForUser(idUser);}
 	public boolean purchasedProduct(int usrId, int productID) {return getProductDao().purchasedBy(usrId, productID);}
+
+	public ArrayList<String> getMapCoords() {
+		return getMapDao().getCoords();
+	}
+	
+	public MapDao getMapDao() {
+		return new MapDaoJDBC(dataSource);
+	}
+
+	public boolean insertPayment(float amount, String transactionCode){
+		return getPurchaseDao().insertPayment(amount, transactionCode);
+	}
+
+	public boolean insertPurchase(int userId, int paymentId, String shipmentMode){
+		return getPurchaseDao().insertPurchase(userId, paymentId, shipmentMode);
+	}
+
+	public int getPaymentId(String transactionCode){
+		 return getPurchaseDao().findPaymentId(transactionCode);
+	}
+
+	public int getPurchaseId(int paymentId){
+		return getPurchaseDao().findPurchaseId(paymentId);
+	}
+
+	public boolean insertPurchaseProductAssociation(int quantity, int productId, int purchaseId){
+		return getPurchaseDao().insertPurchaseProductAssociation(quantity, productId, purchaseId);
+	}
 }

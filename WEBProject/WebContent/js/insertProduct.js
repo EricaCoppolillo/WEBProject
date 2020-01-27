@@ -5,10 +5,10 @@ function loadPhoto(url) {
 	
 	var array = element.value.split("\\");
 	
-	var path = "img/"+array[array.length-1];
+	var path = "img/products"+array[array.length-1];
 	if(url != "")
 	{
-		path = "img/" + url;
+		path = "img/products" + url;
 	}
 	var divContainer = document.getElementById("imageInsertProduct");
 	divContainer.setAttribute("class","col-sm-7 imageModified");

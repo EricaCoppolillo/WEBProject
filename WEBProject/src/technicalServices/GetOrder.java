@@ -10,19 +10,19 @@ import com.paypal.orders.OrdersGetRequest;
 
 public class GetOrder extends PayPalClient {
 
-    public boolean getOrder(String orderId) throws IOException {
+    public String getOrder(String orderId) throws IOException {
 
         OrdersGetRequest request = new OrdersGetRequest(orderId);
         HttpResponse<Order> response = client().execute(request);
         try {
             JSONObject jsonObject = new JSONObject(new Json().serialize(response.result()));
             if(jsonObject.getString("status").equals("COMPLETED")){
-                return true;
+                return jsonObject.getString("id");
             } else {
-                return false;
+                return "-1";
             }
         } catch (JSONException e) {
-            return false;
+            return "-1";
         }
     }
 }

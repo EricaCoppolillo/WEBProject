@@ -30,8 +30,18 @@
 			FAQ
 		</a>
 	</div>
-	<div id="map" class="col">Mappa</div>
-	<div id="assistance" class="col">Assistenza</div>	
+	<div id="map" class="col">
+		<a href="map">
+			Mappa
+		</a>
+	</div>
+	<c:if test="${user != null}">
+		<div id="orders" class="col">
+			<a href="orders">
+				I miei ordini
+			</a>
+		</div>	
+	</c:if>
 	
 	 <div id="containerSearchBar">
       <div class="d-flex justify-content-center">
@@ -72,7 +82,7 @@
 			
 			<c:if test="${administrator != null}">
 				<div class="col">
-					<a href="..servletAddProduct">
+					<a href="insertproduct">
 						<button id="buttonAddProduct" class="btn btn">
 							Aggiungi Prodotto
 						</button>
@@ -92,9 +102,11 @@
 		</c:if>
 		<c:if test="${(user != null) || (administrator != null)}">
 			<a href="login?logout=true">
+				
 				<button id="logout" class="btn btn-primary">
 					Logout
 				</button>
+				
 			</a>
 		</c:if>
 	</div>

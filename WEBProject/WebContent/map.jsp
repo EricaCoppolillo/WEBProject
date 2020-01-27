@@ -13,11 +13,11 @@
 	<script src="js/map.js"></script>
 	<link rel="stylesheet" href="css/map.css">
 </head>
-<body>
+<body onload="loadMarkers('${coords}')" >
 
 	<%@ include file="menuBar.jsp" %>
 	
-	<div id="googleMap" action="myMap"></div>
+	<div id="googleMap"></div>
 
 	
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoq-xsFhUtC3ucI3N5wH0KVVhVJZvNa68&callback=myMap"></script>
