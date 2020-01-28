@@ -47,7 +47,7 @@
       <div class="d-flex justify-content-center">
         <div class="searchbar">
           <input class="search_input col-sm-9" type="text" name="" placeholder="Cerca...">
-          <a class="search_icon col-sm-3"><i class="fa fa-search"></i></a>
+          <a class="search_icon col-sm-3" id="searchButton"><i class="fa fa-search"></i></a>
         </div>
       </div>
     </div>
