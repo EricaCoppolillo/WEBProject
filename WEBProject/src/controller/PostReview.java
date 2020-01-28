@@ -26,6 +26,8 @@ public class PostReview extends HttpServlet{
 			int stars = Integer.parseInt(req.getParameter("stars"));
 			String comment = req.getParameter("comment");
 			int productID = Integer.parseInt(req.getParameter("product"));
+
+			System.out.println(title);
 			
 			Review r = new Review();
 			r.setAuthor(user);

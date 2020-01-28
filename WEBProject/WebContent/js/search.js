@@ -7,7 +7,7 @@ $(document).ready(function(){
 	
 	/*set the price range*/
 	$("#apply").click(function() {
-		updateProducts();
+		updateProducts(1);
 	});
 	
 	/*set the brand*/
@@ -27,18 +27,18 @@ $(document).ready(function(){
 		}
 		
 		
-		updateProducts();
+		updateProducts(1);
 	});
   
 });
 
-function createPagination(numPages){
+function createPagination(numPages, actualPage){
 	$("#paginationDiv").html("");
 	$("#paginationDiv").append("<ul class=\"pagination justify-content-center\" id=\"pagination\">");
 	$("#pagination").append("<li class=\"page-item\"><a class=\"page-link\" id=\"previous\">Precedente</a></li>");
 	$("#previous").attr("onclick", "changePage(false,"+numPages+")");
 	for(var i = 1; i<= numPages; i++){
-		if(i==1){
+		if(i==actualPage){
 			$("#pagination").append("<li class=\"page-item active\" id=\"page"+i+"\"><a onclick=\"goToPage("+i+")\" class=\"page-link active\" id=\"a"+i+"\">"+i+"</a></li>");
 		}
 		else{
@@ -60,7 +60,7 @@ function createProduct(id, img, manufacturer, model, price, description, starsAv
     $("#card"+id).append("<a href=\"product?id="+id+"\"><img class=\"card-img-top img-thumbnail\" src=img/products/"+img+" alt=\"\"></a>");
     $("#card"+id).append("<div id=\"card-body"+id+"\" class=\"card-body\">");
     $("#card-body"+id).append("<h4 class=\"card-title\"><a href=\"product?id="+id+"\">"+manufacturer+" "+model+"</a></h4><h5>"+price+"€</h5><p class=\"card-text\">"+description+"</p>");
-    $("#card-body"+id).append("<div class=\"card-footer\"><small id=\"stars"+id+"\" class=\"text-muted\"></small></div>");
+    $("#card"+id).append("<div class=\"card-footer\"><small id=\"stars"+id+"\" class=\"text-muted\"></small></div>");
    
     for(var i = 1; i<=5; i++){
         if(i<=starsAvg){
@@ -104,7 +104,7 @@ function updateProducts(page){
 		$.get("searchjson?"+keyword+"&p="+page+"&orderBy="+orderBy+"&filterBy="+filterBy+"&priceFrom="+priceLower+"&priceTo="+priceUpper, function(responseJson) {         
 		    $.each(responseJson, function(index, product) { 
 		    	if(index == 0){
-		    		createPagination(product.pages);
+		    		createPagination(product.pages, page);
 		    	}
 		    	else{
 		    		createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
@@ -116,7 +116,7 @@ function updateProducts(page){
 		$.get("searchjson?category="+categoryID+"&p="+page+"&orderBy="+orderBy+"&filterBy="+filterBy+"&priceFrom="+priceLower+"&priceTo="+priceUpper, function(responseJson) {         
 		    $.each(responseJson, function(index, product) { 
 		    	if(index == 0){
-		    		createPagination(product.pages);
+		    		createPagination(product.pages, page);
 		    	}else{
 		    		createProduct(product.id, product.imagePath, product.manufacturer, product.model, product.price, product.description, product.starsAvg);
 		    	}

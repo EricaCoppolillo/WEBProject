@@ -149,7 +149,7 @@
 	            <li class="page-item"><a class="page-link" id="next" onclick="changePage(true,2)">Successiva</a>
 	            
 	    </ul>-->
-	   <script> createPagination(${pages}); </script>
+	   <script> createPagination(${pages}, 1); </script>
     </div>
 
     

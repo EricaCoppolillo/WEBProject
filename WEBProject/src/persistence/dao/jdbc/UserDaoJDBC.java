@@ -108,7 +108,7 @@ public class UserDaoJDBC implements UserDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "select * from \"user\" where username";
+			String query = "select * from \"user\" where username = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, username);
 			
