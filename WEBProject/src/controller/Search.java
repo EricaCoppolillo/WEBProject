@@ -34,15 +34,18 @@ public class Search extends HttpServlet {
         if(keyword == null)
             keyword = "";
 
-        int productCount = DBManager.getInstance().getProductsCount(categoryId, "", -1,
-                -1, keyword);
+        float lowerBound = 0;
+        float upperBound = 5000;
+
+        int productCount = DBManager.getInstance().getProductsCount(categoryId, "", lowerBound,
+                upperBound, keyword);
         int productsInAPage = 9;
         int numPages = productCount / productsInAPage;
         if(productCount % productsInAPage != 0)
             numPages++;
 
         ArrayList<Product> products = DBManager.getInstance().getProducts(categoryId, page, "",
-                -1, -1, 0, keyword);
+                lowerBound, upperBound, 0, keyword);
         Category category = DBManager.getInstance().getCategory(categoryId);
         ArrayList<Manufacturer> manufacturers = DBManager.getInstance().getManufacturers(categoryId, keyword);
         req.setAttribute("category", category);

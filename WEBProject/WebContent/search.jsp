@@ -90,7 +90,7 @@
                         type: 'range',
                         step: 1,
                         //prezzo minimo e prezzo massimo dei prodotti presenti
-                        limits : {     minLimit: 0,      maxLimit: 1000   },
+                        limits : {     minLimit: 0,      maxLimit: 5000   },
                     }
                     var slider = wRunner(setting);
                 </script>    

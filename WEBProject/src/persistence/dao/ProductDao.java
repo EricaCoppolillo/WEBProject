@@ -10,7 +10,7 @@ public interface ProductDao {
     Product findProduct(int productId);
     ArrayList<Product> findProducts(int categoryId, int page, String manufacturer, float lowerBound, float upperBound,
                                     int orderType, String keyword);
-    int findProductsNumber(int categoryId, String manufacturer, float lowerBound, float upperBound, String ketword);
+    int findProductsNumber(int categoryId, String manufacturer, float lowerBound, float upperBound, String keyword);
     ArrayList<Manufacturer> findManufacturers(int categoryID, String keyword);
     ArrayList<Review> findLastReviews(int productId, int offset);
     void saveProduct(Product p);
