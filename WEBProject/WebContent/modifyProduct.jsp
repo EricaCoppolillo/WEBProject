@@ -27,6 +27,26 @@
 			<div class= "col-sm-12 card-body"  id="rightRowInsertProduct">
 			
 		<form id="modulo1" class="form-horizontal" method="post" action="modifyProduct">
+		
+			<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="examplepModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Informazioni operazione</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        Operazione avvenuta con successo
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		
 				<div id="titleInsertProduct">
 					<h1>Modifica prodotto</h1>
 				</div>
@@ -57,6 +77,16 @@
 				  <div class="form-group" onchange="loadPhoto('');" id="insertImage">
 				    <input type="file" class="form-control-file" id="formControlFile" name="path" value="${imgPathProduct}" required>
 				  </div>
+				
+				<c:if test="${completed == true}">
+						<script>
+							$("#modalConfirm").modal();
+							
+							 setTimeout(function(){
+							  $('#modalConfirm').modal('hide')
+						 }, 2000);  
+						</script>
+				</c:if>
 				
 				<div class="row" id="insertTitle">
 					  <div class="col-sm-2">Modello:</div>

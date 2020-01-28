@@ -47,6 +47,10 @@ public class InsertProduct  extends HttpServlet {
 		p.setImagePath(path);
 
 		db.insertProduct(p);
+		
+		//questo mi serve affinche possa
+		boolean completed = true;
+		req.getSession().setAttribute("completed", true);
 		RequestDispatcher rd = req.getRequestDispatcher("insertProduct.jsp");
 		rd.forward(req, resp);
 	} 
@@ -54,6 +58,7 @@ public class InsertProduct  extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("insertProduct.jsp");
+		req.getSession().setAttribute("completed", false);
 		requestDispatcher.forward(req, resp);
 	}
 }

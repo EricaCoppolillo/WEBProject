@@ -21,12 +21,42 @@
 	
 	<div class = "row" id = "mainRow">
 		
-<!-- 		<div class="col-sm-1" id="leftRowInsertProduct"></div> -->
 		
 		<div class="card">
 			<div class= "col-sm-12 card-body"  id="rightRowInsertProduct">
 			
 		<form id="modulo1" class="form-horizontal" method="post" action="insertproduct">
+			
+			<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="examplepModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Informazioni operazione</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        Operazione avvenuta con successo
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
+				<c:if test="${completed == true}">
+						<script>
+							$("#modalConfirm").modal();
+							
+							 setTimeout(function(){
+							  $('#modalConfirm').modal('hide')
+						 }, 2000);  
+						</script>
+				</c:if>
+			
+				
 				<div id="titleInsertProduct">
 					<h1>Aggiungi un prodotto al catalogo</h1>
 				</div>

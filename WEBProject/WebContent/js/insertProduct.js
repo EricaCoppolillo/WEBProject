@@ -1,15 +1,14 @@
 
 
-function loadPhoto(url) {
+function loadPhoto() {
 	var element = document.getElementById("formControlFile");
 	
 	var array = element.value.split("\\");
 	
-	var path = "img/products"+array[array.length-1];
-	if(url != "")
-	{
-		path = "img/products" + url;
-	}
+	console.log(array[array.length-1]);
+	
+	var path = "img/products/"+array[array.length-1];
+	
 	var divContainer = document.getElementById("imageInsertProduct");
 	divContainer.setAttribute("class","col-sm-7 imageModified");
 	var img = document.createElement("img");

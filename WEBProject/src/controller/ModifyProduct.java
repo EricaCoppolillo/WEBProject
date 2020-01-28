@@ -40,7 +40,7 @@ public class ModifyProduct extends HttpServlet {
 		req.setAttribute("imgPathProduct", imgPath);
 		req.setAttribute("specificsProduct", specifics);
 		req.setAttribute("descriptionProduct", description);
-		
+		req.getSession().setAttribute("completed", false);
 		rd.forward(req, resp);
 	}
 	
@@ -70,6 +70,8 @@ public class ModifyProduct extends HttpServlet {
 		p.setImagePath(path);
 
 		db.updateProduct(p);
+		boolean completed = true;
+		req.getSession().setAttribute("completed", true);
 		RequestDispatcher rd = req.getRequestDispatcher("insertProduct.jsp");
 		rd.forward(req, resp);
 	}
