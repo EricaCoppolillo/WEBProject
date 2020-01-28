@@ -24,7 +24,7 @@ public class CheckCart extends HttpServlet {
 		User user = (User) req.getSession().getAttribute("user");
 		
 		if(user != null) {
-			boolean inCart = DBManager.getInstance().isInCart(user.getId(), idProduct);
+			boolean inCart = DBManager.getInstance().isInCart(user.getId(), Integer.parseInt(idProduct));
 			if(inCart) 
 				product = "inCart";
 		}

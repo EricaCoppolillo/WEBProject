@@ -11,5 +11,5 @@ public interface CartDao {
 	public void deleteAll(int idUser);
 	public void updateQuantity(int idUser, int idProduct, int quantity);
 	public ArrayList<Product> getCartProducts(int idUser);
-	public boolean isInCart(int idUser, String idProduct);
+	public boolean isInCart(int idUser, int idProduct);
 }

@@ -115,7 +115,7 @@ public class CartDaoJDBC implements CartDao {
 	}
 	
 	@Override
-	public boolean isInCart(int idUser, String idProduct) {
+	public boolean isInCart(int idUser, int idProduct) {
 		boolean inCart = false;
 			
 		try {
@@ -125,7 +125,7 @@ public class CartDaoJDBC implements CartDao {
 			
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, idUser);
-			statement.setInt(2, Integer.parseInt(idProduct));
+			statement.setInt(2, idProduct);
 			
 			ResultSet result = statement.executeQuery();
 			if(result.next())

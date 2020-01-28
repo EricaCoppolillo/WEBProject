@@ -120,7 +120,7 @@ public class DBManager {
 		getCartDao().updateQuantity(idUser, idProduct, quantity);
 	}
 	
-	public boolean isInCart(int idUser, String idProduct) {
+	public boolean isInCart(int idUser, int idProduct) {
 		return getCartDao().isInCart(idUser, idProduct);
 	}
 
