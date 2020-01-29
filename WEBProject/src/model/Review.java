@@ -21,8 +21,6 @@ public class Review {
         this.author = author;
         this.product = product;
     }
-    
-    
 
     public Review(int id, String title, String body, int stars, int product, String username) {
 		super();
