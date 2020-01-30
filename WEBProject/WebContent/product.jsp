@@ -46,17 +46,23 @@
 	          <div class="card-header">Recensioni</div>
 	          <div class="card-body">
 	          	<div id="reviewBox" class="col">
-					<c:forEach var="review" items="${product.reviews}">
-						<h6 id="reviewTitle">${review.title}</h6>
-						<p id="reviewText">${review.body}</p>
-						<small id="author" class="text-muted">Scritta da ${review.username}</small>
-						<hr>
-					</c:forEach>
+					<c:if test="${thereAreReviews != null}">
+						<c:forEach var="review" items="${product.reviews}">
+							<h6 id="reviewTitle">${review.title}</h6>
+							<p id="reviewText">${review.body}</p>
+							<small id="author" class="text-muted">Scritta da ${review.username}</small>
+							<hr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${thereAreReviews == null}">
+						<h4>Questo prodotto non ha recensioni</h4>
+					</c:if>
 		         </div>
+				  <c:if test="${thereAreReviews != null}">
 				  <span id="otherReviewsButton">
 				  	<a href="#" onclick="loadOtherReviews(${product.id})">Altre recensioni...</a>
-				  </span>
-				  <hr>
+				  </span><hr>
+				  </c:if>
 				  <c:if test="${purchased == true}">
 				  	<button class="btn btn-primary" id="writeReview">Scrivi una recensione</button>
 				  </c:if>

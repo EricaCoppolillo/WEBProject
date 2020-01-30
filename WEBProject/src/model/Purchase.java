@@ -18,7 +18,6 @@ public class Purchase {
 	public Purchase() {}
 	
 	public Purchase(int id, Date date, Payment payment, String user, String shipment, ArrayList<ProductQuantity> products) {
-		super();
 		this.id = id;
 		this.date = date;
 		this.payment = payment;
@@ -31,7 +30,6 @@ public class Purchase {
 
 	public Purchase(int id, Date date, Payment payment, int idUser, String shipment,
 			ArrayList<ProductQuantity> products) {
-		super();
 		this.id = id;
 		this.date = date;
 		this.payment = payment;

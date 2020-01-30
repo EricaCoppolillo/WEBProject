@@ -166,8 +166,8 @@ public class ProductDaoJDBC implements ProductDao {
                 queryChars = " and";
             }
 
-            if(lowerBound > 0 && upperBound > 0) {
-                query += queryChars + " and product.price >= ? and product.price <= ?";
+            if(lowerBound >= 0 && upperBound >= 0) {
+                query += queryChars + " product.price >= ? and product.price <= ?";
                 queryChars = " and";
             }
 
@@ -191,7 +191,7 @@ public class ProductDaoJDBC implements ProductDao {
                 parameterIndex++;
             }
 
-            if(lowerBound > 0 && upperBound > 0){
+            if(lowerBound >= 0 && upperBound >= 0){
                 statement.setFloat(parameterIndex, lowerBound);
                 parameterIndex++;
                 statement.setFloat(parameterIndex, upperBound);
