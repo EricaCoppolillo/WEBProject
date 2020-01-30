@@ -1,4 +1,4 @@
-function writeTexts(name, surname, date, username, email, question, answer, sameUsername, sameEmail, invalidPassword) {
+function writeTexts(name, surname, date, username, email, question, answer, sameUsername, sameEmail, invalidPassword, invalidEmail) {
 	
 	$("#name").val(name);
 	$("#surname").val(surname);
@@ -45,6 +45,20 @@ function writeTexts(name, surname, date, username, email, question, answer, same
 		  $("#password").css('color', 'black');
 	  });
     }
+    
+    if(invalidEmail == "true") {
+    	  $("#email").css('color','#d70000');
+    	  $("#email").css('border', '1px solid #d70000');
+    	  $("#email").focusout(function() {
+    		  $("#email").css('box-shadow', '0 0 0');
+    	  });
+    	  $("#email").focus(function() {
+    		  $("#email").css('box-shadow', '0px 0px 0px 3px rgba(215, 0, 0, 0.2)');
+    		  $("#email").css('color', 'black');
+    	  });
+      }
 }
+
+
 
 

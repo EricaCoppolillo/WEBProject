@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.mail.MessagingException;
@@ -78,11 +79,14 @@ public class Registration extends HttpServlet {
 		
 		User alreadyUser = db.getUserByUsername(username);
 		User alreadyUserEmail = db.getUserByEmail(email);
-		boolean valid = validPassword(password);
-		/*^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])*/
+		boolean validPassword = validPassword(password);
+		Pattern p = Pattern.compile("^((?!\\.)[\\w-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])");
+		Matcher m = p.matcher(email);
+		boolean validEmail = m.matches();
+		
 		/*regex per controllo email*/
 		
-		if(alreadyUser == null && alreadyUserEmail == null && valid) {
+		if(alreadyUser == null && alreadyUserEmail == null && validPassword && validEmail) {
 			User user = new User(username, password, name, surname, email, d, question, answer);
 			
 			req.getSession().setAttribute("user", user);
@@ -115,8 +119,11 @@ public class Registration extends HttpServlet {
 			if(alreadyUserEmail != null)
 				req.getSession().setAttribute("sameEmail", true);
 			
-			if(!valid)
+			if(!validPassword)
 				req.getSession().setAttribute("invalidPassword", true);
+			
+			if(!validEmail)
+				req.getSession().setAttribute("invalidEmail", true);
 			
 			req.getSession().setAttribute("name", name);
 			req.getSession().setAttribute("surname", surname);

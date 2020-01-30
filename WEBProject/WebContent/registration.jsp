@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="css/login.css">
 		
 </head>
-<body onload="writeTexts('${name}', '${surname}', '${date}', '${username}', '${email}', '${question}', '${answer}', '${sameUsername}', '${sameEmail}', '${invalidPassword}')" >
+<body onload="writeTexts('${name}', '${surname}', '${date}', '${username}', '${email}', '${question}', '${answer}', '${sameUsername}', '${sameEmail}', '${invalidPassword}', '${invalidEmail}')" >
 	
 	<div id="container">
 		<div id="divLogo">
@@ -47,6 +47,9 @@
 			<input type="text" class="form-control" id="email" placeholder="email@esempio.it" name="email" required>
 			<c:if test="${sameEmail == true}">
 				<div class="invalid-feedback d-block">Indirizzo e-mail già in uso</div>
+			</c:if>
+			<c:if test="${invalidEmail == true}">
+				<div class="invalid-feedback d-block">Indirizzo e-mail non valido</div>
 			</c:if>
 		    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 		  </div>
