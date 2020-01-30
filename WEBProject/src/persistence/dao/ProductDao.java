@@ -17,4 +17,5 @@ public interface ProductDao {
     void updateProduct(Product p);
     void deleteProduct(int id);
     boolean purchasedBy(int userID, int productID);
+    boolean existsProduct(String model, String manufacturer); 
 }

@@ -20,6 +20,7 @@ import model.User;
 import persistence.DBManager;
 
 public class InsertProduct  extends HttpServlet {
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -33,24 +34,31 @@ public class InsertProduct  extends HttpServlet {
 		String path = req.getParameter("path");
 		Float price = Float.parseFloat(req.getParameter("price"));
 		
+		boolean alreadyExists = false;
+		alreadyExists = db.getProduct(model, manufacturer); 
+//		System.out.println(exists);
+		req.getSession().setAttribute("exists", alreadyExists);
 		
-		Product p = new ProductProxy();
 		
-		p.setId(0); //questo abbiamo detto che dal momento che se lo setta il db, di metterlo a 0
-		p.setModel(model);
-		p.setManufacturer(manufacturer);
-		p.setPrice(price);
-		p.setSpecs(specifics);
-		p.setDescription(description);
-		p.setCategory(new Category(category));
-		p.setStarsAvg(0);// questo abbiamo detto che lo settiamo a 0 per lo stesso motivo di id
-		p.setImagePath(path);
+			
+		if(!alreadyExists)
+		{
+			Product p = new ProductProxy();
+			
+			p.setId(0);
+			p.setModel(model);
+			p.setManufacturer(manufacturer);
+			p.setPrice(price);
+			p.setSpecs(specifics);
+			p.setDescription(description);
+			p.setCategory(new Category(category));
+			p.setStarsAvg(0);
+			p.setImagePath(path);
+			db.insertProduct(p);
+		}
 
-		db.insertProduct(p);
-		
-		//questo mi serve affinche possa
-		boolean completed = true;
-		req.getSession().setAttribute("completed", true);
+//		boolean completed = true;
+//		req.getSession().setAttribute("completed", true);
 		RequestDispatcher rd = req.getRequestDispatcher("insertProduct.jsp");
 		rd.forward(req, resp);
 	} 
@@ -59,6 +67,7 @@ public class InsertProduct  extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("insertProduct.jsp");
 		req.getSession().setAttribute("completed", false);
+		req.getSession().setAttribute("exists", false);
 		requestDispatcher.forward(req, resp);
 	}
 }

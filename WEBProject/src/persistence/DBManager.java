@@ -186,4 +186,9 @@ public class DBManager {
 	public boolean insertPurchaseProductAssociation(int quantity, int productId, int purchaseId){
 		return getPurchaseDao().insertPurchaseProductAssociation(quantity, productId, purchaseId);
 	}
+	
+	public boolean getProduct(String model, String manufacturer)
+	{
+		return getProductDao().existsProduct(model, manufacturer);
+	}
 }

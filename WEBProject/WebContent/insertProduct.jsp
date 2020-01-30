@@ -27,38 +27,46 @@
 			
 		<form id="modulo1" class="form-horizontal" method="post" action="insertproduct">
 			
-			<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="examplepModalLabel" aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">Informazioni operazione</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			        Operazione avvenuta con successo
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
+<!-- 			<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="examplepModalLabel" aria-hidden="true"> -->
+<!-- 			  <div class="modal-dialog" role="document"> -->
+<!-- 			    <div class="modal-content"> -->
+<!-- 			      <div class="modal-header"> -->
+<!-- 			        <h5 class="modal-title" id="exampleModalLabel">Informazioni operazione</h5> -->
+<!-- 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+<!-- 			          <span aria-hidden="true">&times;</span> -->
+<!-- 			        </button> -->
+<!-- 			      </div> -->
+<!-- 			      <div class="modal-body"> -->
+<!-- 			        Operazione avvenuta con successo -->
+<!-- 			      </div> -->
+<!-- 			      <div class="modal-footer"> -->
+<!-- 			        <button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button> -->
+<!-- 			      </div> -->
+<!-- 			    </div> -->
+<!-- 			  </div> -->
+<!-- 			</div> -->
 			
-				<c:if test="${completed == true}">
-						<script>
-							$("#modalConfirm").modal();
+<%-- 				<c:if test="${completed == true}"> --%>
+<!-- 						<script> -->
+<!-- 							$("#modalConfirm").modal(); -->
 							
-							 setTimeout(function(){
-							  $('#modalConfirm').modal('hide')
-						 }, 2000);  
-						</script>
-				</c:if>
+<!-- 							 setTimeout(function(){ -->
+<!-- 							  $('#modalConfirm').modal('hide') -->
+<!-- 						 }, 2000);   -->
+<!-- 						</script> -->
+<%-- 				</c:if> --%>
 			
 				
 				<div id="titleInsertProduct">
 					<h1>Aggiungi un prodotto al catalogo</h1>
+					<c:if test="${exists != null }">
+						<c:if test="${exists == true}">
+							<p id = "writeMessage1">Il prodotto esiste gia nel catalogo, prova ad inserirne uno nuovo</p>
+						</c:if>
+						<c:if test="${exists == false}">
+							<p id = "writeMessage2">Il prodotto è stato inserito nel catalogo</p>
+						</c:if>
+					</c:if>
 				</div>
 				
 				

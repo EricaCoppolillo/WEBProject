@@ -72,7 +72,7 @@ public class ModifyProduct extends HttpServlet {
 		db.updateProduct(p);
 		boolean completed = true;
 		req.getSession().setAttribute("completed", true);
-		RequestDispatcher rd = req.getRequestDispatcher("insertProduct.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
 		rd.forward(req, resp);
 	}
 	

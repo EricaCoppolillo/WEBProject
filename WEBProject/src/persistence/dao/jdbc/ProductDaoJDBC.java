@@ -10,11 +10,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.itextpdf.text.log.SysoCounter;
+
 public class ProductDaoJDBC implements ProductDao {
 
     private DataSource dataSource;
     private Connection connection;
-
     public ProductDaoJDBC(DataSource dataSource){
         this.dataSource = dataSource;
     }
@@ -398,6 +399,32 @@ public class ProductDaoJDBC implements ProductDao {
             }
 		}
 		return purchased;
+	}
+
+	@Override
+	public boolean existsProduct(String model, String m) {
+		boolean founded = false;
+		try {
+			connection = dataSource.getConnection();
+			String query = "select * from product where product.model=? and product.manufacturer=?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, model);
+			statement.setString(2, m);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				founded = true;
+				break;
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+		}
+		return founded;
 	}
     
     
