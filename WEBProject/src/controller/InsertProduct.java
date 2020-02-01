@@ -36,7 +36,7 @@ public class InsertProduct  extends HttpServlet {
 		
 		boolean alreadyExists = false;
 		alreadyExists = db.existsProduct(model, manufacturer);
-		req.getSession().setAttribute("exists", alreadyExists);
+		req.setAttribute("exists", alreadyExists);
 		
 		
 			
