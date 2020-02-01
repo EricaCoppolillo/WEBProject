@@ -89,6 +89,8 @@ public class Registration extends HttpServlet {
 		if(alreadyUser == null && alreadyUserEmail == null && validPassword && validEmail) {
 			User user = new User(username, password, name, surname, email, d, question, answer);
 			
+			db.registerUser(user);
+			user.setId(db.getId(username));
 			req.getSession().setAttribute("user", user);
 			req.getSession().removeAttribute("name");
 			req.getSession().removeAttribute("surname");
@@ -100,8 +102,6 @@ public class Registration extends HttpServlet {
 			req.getSession().removeAttribute("sameUsername");
 			req.getSession().removeAttribute("sameEmail");
 			req.getSession().removeAttribute("invalidPassword");
-			
-			db.registerUser(user);
 			try {
 				MailUtility.sendRegistrationMail(email, username, password);
 			} catch (MessagingException e) {

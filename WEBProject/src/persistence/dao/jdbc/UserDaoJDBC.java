@@ -215,6 +215,35 @@ public class UserDaoJDBC implements UserDao {
 		
 		return password;
 	}
+
+	
+	@Override
+	public int findId(String username) {
+		int id = 0;
+		
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select id from \"user\" where username = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, username);
+			
+			ResultSet result = statement.executeQuery();
+			if(result.next()) 
+				id = result.getInt(1);
+			
+			} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return id;
+	}
 	
 	
 	@Override

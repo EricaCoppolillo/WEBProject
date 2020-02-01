@@ -59,6 +59,10 @@ public class DBManager {
 		return getUserDao().findPassword(username, answer);
 	}
 	
+	public int getId(String username) {
+		return getUserDao().findId(username);
+	}
+	
 	public void registerUser(User user) {
 		getUserDao().registerUser(user);
 	}
@@ -191,5 +195,4 @@ public class DBManager {
 	{
 		return getProductDao().existsProduct(model, manufacturer);
 	}
-	
 }

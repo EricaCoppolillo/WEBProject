@@ -14,4 +14,5 @@ public interface UserDao {
 	public String findPassword(String username, String answer);
 	public List<User> findAll();
 	public void updatePassword(String username, String newPassword);
+	public int findId(String username);
 }

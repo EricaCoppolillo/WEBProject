@@ -26,7 +26,9 @@
 	</a>
 	
 	<div id="whoWeAre" class="col">
-		<a href="whoWeAre.jsp">Chi Siamo</a>
+		<a href="whoWeAre.jsp">
+			Chi Siamo
+		</a>
 	</div>
 	<div id="faq" class="col">
 		<a href="faq">
