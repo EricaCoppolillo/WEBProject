@@ -82,7 +82,7 @@
 				
 				
 				  <div class="form-group" onchange="loadPhoto('null');" id="insertImage">
-				    <input type="file" class="form-control-file" id="formControlFile" name="path" value="${product.imagePath}" required>
+				    <input type="file" class="form-control-file" id="formControlFile" name="path" value="${product.imagePath}">
 				  </div>
 				
 <%-- 				<c:if test="${completed == true}"> --%>
