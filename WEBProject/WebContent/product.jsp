@@ -24,7 +24,7 @@
 	
 	      <div class="col-lg-9">
 	        <div class="card mt-4">
-	          <img id="productImage" class="card-img-top img-fluid" src="img/products/${product.imagePath}" alt="">
+	         <div id="centerImage"> <img id="productImage" class="card-img-top" src="img/products/${product.imagePath}" alt="">  </div>
 	          <div class="card-body">
 	            <h3 id="name" class="card-title">${product.manufacturer} ${product.model}</h3>
 	            <h4 id="price">${product.price}€</h4>

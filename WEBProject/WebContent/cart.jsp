@@ -129,7 +129,7 @@
 							<input type="radio" id="radio1" name="optradio" value="option1" checked>
 						</div>
 					</div>
-					<input type="text" class="form-control" placeholder="Ritiro a mano in negozio" disabled>
+					<input type="text" class="form-control" placeholder="Ritiro in negozio" disabled>
 				</div>
 				<div class="input-group">
 					<div class="input-group-prepend">
@@ -137,7 +137,7 @@
 							<input type="radio" id="radio2" name="optradio" value="option2">
 						</div>
 					</div>
-					<input type="text" class="form-control" placeholder="Spedizone a domicilio" disabled>
+					<input type="text" class="form-control" placeholder="Spedizione a domicilio" disabled>
 				</div>
 				<div id="shipment" style="display: none;" class="col card">
 					<div class="input-group mb-3">

@@ -24,7 +24,10 @@
 	<a href="home" class="col">
 	<div id="logo"></div>
 	</a>
-	<div id="whoWeAre" class="col">Chi Siamo</div>
+	
+	<div id="whoWeAre" class="col">
+		<a href="whoWeAre.jsp">Chi Siamo</a>
+	</div>
 	<div id="faq" class="col">
 		<a href="faq">
 			FAQ
