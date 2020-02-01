@@ -29,7 +29,7 @@
 	            <h3 id="name" class="card-title">${product.manufacturer} ${product.model}</h3>
 	            <h4 id="price">${product.price}€</h4>
 	            <p class="card-text">Descrizione:<br></p>
-	            <p class="card-text" id="description">${product.description}</p>
+	            <p class="card-text" id="description">${product.specs}</p>
 	  		    <span class="text-warning" id="stars">
 					<c:forEach var="i" begin="1" end="${product.starsAvg}">
 						&#9733;
