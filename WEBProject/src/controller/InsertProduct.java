@@ -35,8 +35,7 @@ public class InsertProduct  extends HttpServlet {
 		Float price = Float.parseFloat(req.getParameter("price"));
 		
 		boolean alreadyExists = false;
-		alreadyExists = db.getProduct(model, manufacturer); 
-//		System.out.println(exists);
+		alreadyExists = db.getProduct(model, manufacturer);
 		req.getSession().setAttribute("exists", alreadyExists);
 		
 		
@@ -57,8 +56,6 @@ public class InsertProduct  extends HttpServlet {
 			db.insertProduct(p);
 		}
 
-//		boolean completed = true;
-//		req.getSession().setAttribute("completed", true);
 		RequestDispatcher rd = req.getRequestDispatcher("insertProduct.jsp");
 		rd.forward(req, resp);
 	} 
@@ -66,8 +63,6 @@ public class InsertProduct  extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("insertProduct.jsp");
-		req.getSession().setAttribute("completed", false);
-		req.getSession().setAttribute("exists", false);
 		requestDispatcher.forward(req, resp);
 	}
 }

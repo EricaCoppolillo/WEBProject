@@ -1,15 +1,5 @@
 @charset "utf-8";
 
-#writeMessage1
-{
-	color:red;
-}
-
-#writeMessage2
-{
-	color:green;
-}
-
 div.card{
 	width:1280px;
 }
@@ -21,8 +11,6 @@ div {
 div.photoCameraInsertProduct{
 	position: relative;
 	content: url("../img/camera2d.png");
-	cursor: pointer;
-	
 }
 
 #rowSubmitInsertProduct{
