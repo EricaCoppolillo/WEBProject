@@ -13,11 +13,11 @@ body {
 	width: 90px;
 }
 
-#whoWeAre:hover, #faq>a:hover, #map>a:hover, #orders>a:hover {
+#whoWeAre>a:hover, #faq>a:hover, #map>a:hover, #orders>a:hover {
 	text-decoration: none;
 }
 
-#faq > a, #map > a , #orders > a {
+#whoWeAre>a, #faq > a, #map > a , #orders > a {
 	color: inherit;
 }
 
@@ -70,6 +70,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .search_icon:hover { 

@@ -131,4 +131,14 @@ textarea {
 	margin-top: 2%;
 }
 
+#productImage {
+	max-width: 50%;
+	height: auto;
+}
+
+#centerImage {
+	text-align: center;
+	margin-top: 2%;
+}
+
 

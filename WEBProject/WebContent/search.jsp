@@ -100,11 +100,10 @@
 
             <div class="col-sm-9">
                 <div class="row" id="productBox">
-                    <!-- iterare du tutti gli elementi e prendere info -->
                     <c:forEach var="product" items="${products}">
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card h-100">
-                                <a href="product?id=${product.id}"><img class="card-img-top img-thumbnail" src="img/products/${product.imagePath}" alt=""></a>
+                                <div class="card-image"><a href="product?id=${product.id}"><img class="card-img-top img-thumbnail" src="img/products/${product.imagePath}" alt=""></a></div>
                                 <div class="card-body">
                                     <h4 class="card-title">
                                         <a href="product?id=${product.id}">${product.manufacturer} ${product.model}</a>
@@ -132,23 +131,7 @@
 
 	
 	<div id="paginationDiv">
-		<!--  <ul class="pagination justify-content-center" id="pagination">
-			
-	            <li class="page-item"><a class="page-link" id="previous" onclick="changePage(false,2)">Precedente</a></li>
-	            <c:forEach var = "page" begin = "1" end = "${pages}">
-	            <c:choose>	
-	            	<c:when test="${page < 2}">
-    					<li class="page-item active" id="page${page}"><a onclick="goToPage(${page})" class="page-link active" id="a${page}">${page}</a></li>
-  					</c:when>
-  					<c:otherwise>
-  						<li class="page-item" id="page${page}"  onclick="goToPage(${page})"><a class="page-link" id="a${page}">${page}</a></li>
-  					</c:otherwise>
-  				</c:choose>
-	            </c:forEach>
-	            <li class="page-item" id="page2"><a onclick="goToPage(2)" class="page-link" id="a2">2</a></li>
-	            <li class="page-item"><a class="page-link" id="next" onclick="changePage(true,2)">Successiva</a>
-	            
-	    </ul>-->
+		
 	   <script> createPagination(${pages}, 1); </script>
     </div>
 

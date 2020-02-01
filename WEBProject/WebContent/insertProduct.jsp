@@ -26,108 +26,76 @@
 			<div class= "col-sm-12 card-body"  id="rightRowInsertProduct">
 			
 		<form id="modulo1" class="form-horizontal" method="post" action="insertproduct">
-			
-<!-- 			<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="examplepModalLabel" aria-hidden="true"> -->
-<!-- 			  <div class="modal-dialog" role="document"> -->
-<!-- 			    <div class="modal-content"> -->
-<!-- 			      <div class="modal-header"> -->
-<!-- 			        <h5 class="modal-title" id="exampleModalLabel">Informazioni operazione</h5> -->
-<!-- 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-<!-- 			          <span aria-hidden="true">&times;</span> -->
-<!-- 			        </button> -->
-<!-- 			      </div> -->
-<!-- 			      <div class="modal-body"> -->
-<!-- 			        Operazione avvenuta con successo -->
-<!-- 			      </div> -->
-<!-- 			      <div class="modal-footer"> -->
-<!-- 			        <button type="button" class="btn btn-primary" data-dismiss="modal">Chiudi</button> -->
-<!-- 			      </div> -->
-<!-- 			    </div> -->
-<!-- 			  </div> -->
-<!-- 			</div> -->
-			
-<%-- 				<c:if test="${completed == true}"> --%>
-<!-- 						<script> -->
-<!-- 							$("#modalConfirm").modal(); -->
-							
-<!-- 							 setTimeout(function(){ -->
-<!-- 							  $('#modalConfirm').modal('hide') -->
-<!-- 						 }, 2000);   -->
-<!-- 						</script> -->
-<%-- 				</c:if> --%>
-			
-				
-				<div id="titleInsertProduct">
-					<h1>Aggiungi un prodotto al catalogo</h1>
-					<c:if test="${exists != null }">
-						<c:if test="${exists == true}">
-							<p id = "writeMessage1">Il prodotto esiste gia nel catalogo, prova ad inserirne uno nuovo</p>
-						</c:if>
-						<c:if test="${exists == false}">
-							<p id = "writeMessage2">Il prodotto è stato inserito nel catalogo</p>
-						</c:if>
+			<div id="titleInsertProduct">
+				<h1>Aggiungi un prodotto al catalogo</h1>
+				<c:if test="${exists != null }">
+					<c:if test="${exists == true}">
+						<div class="alert alert-danger" role="alert">Il prodotto esiste gia nel catalogo!</div>
 					</c:if>
-				</div>
+					<c:if test="${exists == false}">
+						<p class="alert alert-success" role="alert">Il prodotto è stato inserito correttamente nel catalogo</p>
+					</c:if>
+				</c:if>
+			</div>
 				
-				
-				<div class="row" id="categoryChoice">
-					  <label for="sel1" class = "col-sm-2">Categoria:</label>
-					  <select class="form-control col-sm-9" name="category">
-					    <option>Smartphone</option>
-					    <option>Laptop</option>
-					    <option>Hardware</option>
-					    <option>Accessori</option>
-					  </select>
-				</div>
-				
-				<br>
-			
-				<div class="row" id="imgChoice">
-					<div class="col-sm-2">Immagine:</div>
-					<div id="imageInsertProduct" class="col-sm-7 photoCameraInsertProduct"></div>
-				</div>
+			<div class="row" id="categoryChoice">
+				  <label for="sel1" class = "col-sm-2">Categoria:</label>
+				  <select class="form-control col-sm-9" name="category">
+					<option>Smartphone</option>
+					<option>Laptop</option>
+					<option>Hardware</option>
+					<option>Accessori</option>
+				  </select>
+			</div>
 
-			
-				
-				
-				  <div class="form-group" onchange="loadPhoto();" id="insertImage">
-				    <input type="file" class="form-control-file" id="formControlFile" name="path" required>
-				  </div>
-				
-				<div class="row" id="insertTitle">
-					  <div class="col-sm-2">Modello:</div>
-					  <input type="text" class="form-control col-sm-9" id="usr" name="model"required>
-				</div>
-				
-				<div class="row" id="insertManufacturer">
-					  <div class="col-sm-2">Produttore:</div>
-					  <input type="text" class="form-control col-sm-9" id="usr" name="manufacturer"required>
-				</div>
-				
-			
-				
-				<div class="row" id="commentText">
-					  <div class="col-sm-2">Descrizione del prodotto:</div>
-					   <textarea class="form-control col-sm-9" rows="5" id="comment" name="description"required></textarea>
-				</div>
-				
-				<div class="row" id="specificsText">
-					  <div class="col-sm-2">Specifiche del prodotto:</div>
-					   <textarea class="form-control col-sm-9" rows="2" id="comment" name="specifics"required></textarea>
-				</div>
-				
-				<div class="row" id = "priceInsertProduct">
-					  <div class="col-sm-2">Prezzo (€):</div>
-					  <input type="text" class="form-control col-sm-2" id="usr" name="price"required>
-				</div>
-				
-				
-				<div id="rowSubmitInsertProduct">
-						<button class="btn btn-primary">Invia</button>
-				</div>
-			</form>
-		  </div> <!-- chiude la colonna di destra -->
-		</div> <!-- chiude la card della seconda colonna -->
+			<br>
+
+			<div class="row" id="imgChoice">
+				<div class="col-sm-2">Immagine:</div>
+				<div id="imageInsertProduct" class="col-sm-7 photoCameraInsertProduct"></div>
+			</div>
+
+
+
+
+			  <div class="form-group" onchange="loadPhoto();" id="insertImage">
+				<input type="file" class="form-control-file" id="formControlFile" name="path" required>
+			  </div>
+
+			<div class="row" id="insertTitle">
+				  <div class="col-sm-2">Modello:</div>
+				  <input type="text" class="form-control col-sm-9" id="usr" name="model"required>
+			</div>
+
+			<div class="row" id="insertManufacturer">
+				  <div class="col-sm-2">Produttore:</div>
+				  <input type="text" class="form-control col-sm-9" id="usr" name="manufacturer"required>
+			</div>
+
+
+
+			<div class="row" id="commentText">
+				  <div class="col-sm-2">Descrizione del prodotto:</div>
+				   <textarea class="form-control col-sm-9" rows="5" id="comment" name="description"required></textarea>
+			</div>
+
+			<div class="row" id="specificsText">
+				  <div class="col-sm-2">Specifiche del prodotto:</div>
+				   <textarea class="form-control col-sm-9" rows="2" id="comment" name="specifics"required></textarea>
+			</div>
+
+			<div class="row" id = "priceInsertProduct">
+				  <div class="col-sm-2">Prezzo (€):</div>
+				  <input type="text" class="form-control col-sm-2" id="usr" name="price"required>
+			</div>
+
+
+			<div id="rowSubmitInsertProduct">
+					<button class="btn btn-primary">Invia</button>
+			</div>
+		</form>
+	  </div> <!-- chiude la colonna di destra -->
+	</div> <!-- chiude la card della seconda colonna -->
 		
 
 		
