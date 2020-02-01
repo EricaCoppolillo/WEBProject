@@ -35,7 +35,7 @@ public class InsertProduct  extends HttpServlet {
 		Float price = Float.parseFloat(req.getParameter("price"));
 		
 		boolean alreadyExists = false;
-		alreadyExists = db.getProduct(model, manufacturer);
+		alreadyExists = db.existsProduct(model, manufacturer);
 		req.getSession().setAttribute("exists", alreadyExists);
 		
 		

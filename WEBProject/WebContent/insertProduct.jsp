@@ -38,7 +38,6 @@
 				</c:if>
 			</div>
 				
-				
 			<div class="row" id="categoryChoice">
 				  <label for="sel1" class = "col-sm-2">Categoria:</label>
 				  <select class="form-control col-sm-9" name="category">
