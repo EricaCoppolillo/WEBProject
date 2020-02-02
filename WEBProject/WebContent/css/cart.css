@@ -90,6 +90,22 @@ img {
 	margin: 2px;
 }
 
+#paymentWaitingBox{
+	width: 200px;
+	margin: 0 auto;
+	display: none;
+}
+
+#paymentWaitingBox img{
+	height: 150px;
+	width: 100%;
+}
+
+#paymentWaitingBox p{
+	margin: 0 auto;
+	font-size: 15px;
+}
+
 #totalPrice {
 	color: #c10d0d;
 }
