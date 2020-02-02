@@ -12,6 +12,16 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>WhoWeAre</servlet-name>
+	  	<servlet-class>controller.WhoWeAre</servlet-class>
+	</servlet>
+	  
+	<servlet-mapping>
+	  	<servlet-name>WhoWeAre</servlet-name>
+	  	<url-pattern>/whoWeAre</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>Login</servlet-name>
 	  	<servlet-class>controller.Login</servlet-class>
 	</servlet>

@@ -31,7 +31,7 @@
 		
 			
 			<c:if test="${emptyOrders == true}">
-					<div id="emptyCart" class="row"><h1>Il Carrello è vuoto</h1></div>
+					<div id="emptyCart" class="row"><h1>La lista dei tuoi Ordini è vuota</h1></div>
 			</c:if>
 		
 			<c:forEach var="product" items="${products}">
