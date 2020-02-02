@@ -25,6 +25,10 @@
 	
 	<div id="container" class="row">
 
+		<div id="paymentWaitingBox" class="row">
+			<img src="img/paywait.gif" class="img-fluid">
+			<p class="lead">Attesa conferma pagamento...</p>
+		</div>
 		<div class="alert alert-success col" role="alert" id="successfullPurchase">
 			Acquisto effettuato con successo! Riceverai un riepilogo dell'ordine sulla tua casella di posta elettronica.
 		</div>

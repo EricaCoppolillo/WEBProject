@@ -43,7 +43,7 @@
 				  <select class="form-control col-sm-9" name="category">
 					<option>Smartphone</option>
 					<option>Laptop</option>
-					<option>Hardware</option>
+					<option>PC-Hardware</option>
 					<option>Accessori</option>
 				  </select>
 			</div>
@@ -58,7 +58,7 @@
 
 
 
-			  <div class="form-group" onchange="loadPhoto();" id="insertImage">
+			  <div class="form-group" onchange="loadPhoto('null');" id="insertImage">
 				<input type="file" class="form-control-file" id="formControlFile" name="path" required>
 			  </div>
 

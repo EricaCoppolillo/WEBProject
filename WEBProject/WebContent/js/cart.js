@@ -42,6 +42,7 @@ function valueCheck() {
 			onApprove: function(data, actions) {
 				return actions.order.capture().then(function(details) {
 					$('#goToPayment').hide();
+					$('#paymentWaitingBox').show();
 
 					return $.ajax({
 						method: "POST",
@@ -58,6 +59,7 @@ function valueCheck() {
 							amount: totalPrice
 						})
 					}).done(function(msg) {
+						$('#paymentWaitingBox').hide();
 						if(msg == 1)
 							$('#successfullPurchase').show();
 						else

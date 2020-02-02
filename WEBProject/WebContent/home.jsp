@@ -107,7 +107,7 @@
 		<div class="col-sm-6">
 			<div class="hardwareCategory">
 		    	<div class="imageHardware"></div>
-		    	<h1>Hardware</h1>
+		    	<h1>PC-Hardware</h1>
 		    	<p><a id="hardwareLink" href="search?category=3">Acquista ></a></p>
     		</div>
     	</div>
