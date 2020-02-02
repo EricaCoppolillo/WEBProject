@@ -41,11 +41,11 @@ public class ModifyProduct extends HttpServlet {
 			Product p = (Product) req.getSession().getAttribute("product");
 			if(p.getDescription().equals(description) && p.getImagePath().equals(path) && p.getPrice() == price)
 			{
-				req.getSession().setAttribute("notModified", true);
+				req.setAttribute("notModified", true);
 			}
 			else
 			{
-				req.getSession().setAttribute("notModified", false);
+				req.setAttribute("notModified", false);
 				p.setPrice(price);
 				p.setDescription(description);
 				if(path != "")

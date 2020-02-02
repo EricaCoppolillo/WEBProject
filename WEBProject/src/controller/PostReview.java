@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import model.Product;
 import model.Review;
+import model.User;
 import persistence.DBManager;
 
 public class PostReview extends HttpServlet{
@@ -20,14 +21,13 @@ public class PostReview extends HttpServlet{
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			DBManager db = DBManager.getInstance();
 			
-			
-			int user = 1;
+			Object o1 = req.getSession().getAttribute("user");
+            User usr = (User) o1;
+            int user = usr.getId();
 			String title = req.getParameter("title");
 			int stars = Integer.parseInt(req.getParameter("stars"));
 			String comment = req.getParameter("comment");
 			int productID = Integer.parseInt(req.getParameter("product"));
-
-			System.out.println(title);
 			
 			Review r = new Review();
 			r.setAuthor(user);
@@ -42,7 +42,10 @@ public class PostReview extends HttpServlet{
 			if(!matcher.find()) {
 				db.postReview(r);
 			}
-			RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
+
+			Product p = db.getProduct(productID);
+			req.setAttribute("product", p);
+			RequestDispatcher rd = req.getRequestDispatcher("product.jsp");
 			rd.forward(req, resp);
 			
 		}
