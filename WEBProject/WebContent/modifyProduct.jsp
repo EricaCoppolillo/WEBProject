@@ -61,11 +61,8 @@
 				
 				<div class="row" id="categoryChoice">
 					  <label for="sel1" class = "col-sm-2">Categoria:</label>
-					  <select class="form-control col-sm-9" name="category" value="${product.category}" disabled>
-					    <option>Smartphone</option>
-					    <option>Laptop</option>
-					    <option>Hardware</option>
-					    <option>Accessori</option>
+					  <select class="form-control col-sm-9" name="category" value="${product.category.name}" disabled>
+					    <option>${product.category.name}</option>
 					  </select>
 				</div>
 				

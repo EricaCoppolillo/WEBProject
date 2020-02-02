@@ -23,7 +23,6 @@ public class ModifyProduct extends HttpServlet {
 		String id = req.getParameter("id");
 		
 		Product clicked = DBManager.getInstance().getProduct(Integer.parseInt(id));
-		System.out.println(clicked.getImagePath());
 		req.getSession().setAttribute("product", clicked);
 		
 		
@@ -49,7 +48,8 @@ public class ModifyProduct extends HttpServlet {
 				req.getSession().setAttribute("notModified", false);
 				p.setPrice(price);
 				p.setDescription(description);
-				p.setImagePath(path);
+				if(path != "")
+					p.setImagePath(path);
 				db.updateProduct(p);
 			}
 			
