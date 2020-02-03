@@ -49,11 +49,15 @@
 								
 							</a>
 						</div>
-							<h4>${product.price}</h4>
+							<h4>${product.price} €</h4>
 							<h5>${product.date}</h5>
 							<h6>${product.shipment}</h6>
-							<button onclick="checkProduct('${product.id}', 'cart')" class="btn btn-warning">Compralo di nuovo</button>
-							<button class="btn btn-primary">Scrivi una recensione</button>
+							<a id="buyAgain" href="product?id=${product.id}">
+								<button onclick="checkProduct('${product.id}', 'cart')" class="btn btn-warning">Compralo di nuovo</button>
+							</a>
+							<a id="writeComment" href="product?id=${product.id}">
+								<button class="btn btn-primary">Scrivi una recensione</button>
+							</a>
 						</div>
 					</div> <!-- rowProduct -->
 					

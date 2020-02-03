@@ -42,11 +42,20 @@ public class PostReview extends HttpServlet{
 			if(!matcher.find()) {
 				db.postReview(r);
 			}
+            
 
 			Product p = db.getProduct(productID);
 			req.setAttribute("product", p);
+			
+			if(usr != null)
+				req.setAttribute("purchased", true);
+			
+			if(p.getReviews().size() > 0)
+                req.setAttribute("thereAreReviews", 1);
+            
 			RequestDispatcher rd = req.getRequestDispatcher("product.jsp");
 			rd.forward(req, resp);
+            
 			
 		}
 		

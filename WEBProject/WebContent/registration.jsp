@@ -67,7 +67,7 @@
 		    <label class="insert" for="pwd">Inserisci la tua Password</label>
 		    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
 		    <c:if test="${invalidPassword == true}">
-		   		<div class="invalid-feedback d-block">La password deve contenere almeno 8 caratteri, almeno una lettera maiuscola e almeno una minuscola</div>
+		   		<div class="invalid-feedback d-block">La password deve contenere almeno 8 caratteri, almeno una lettera maiuscola, almeno una minuscola e almeno un numero</div>
 		   	</c:if>
 		    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 		  </div>

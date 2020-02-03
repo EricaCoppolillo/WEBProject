@@ -53,7 +53,7 @@
 		
 		<div class="text-center">
 			<input id="buttonNewPassword" class="btn btn-primary" onclick="saveNewPassword()" value="Salva nuova Password"/>
-			<div id="invalidNewPassword" class="invalid-feedback d-block">La password deve contenere almeno 8 caratteri, almeno una lettera maiuscola e almeno una minuscola</div>
+			<div id="invalidNewPassword" class="invalid-feedback d-block">La password deve contenere almeno 8 caratteri, almeno una lettera maiuscola, almeno una minuscola e almeno un numero</div>
 		</div>
 		
 	</div> 

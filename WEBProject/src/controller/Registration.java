@@ -24,14 +24,16 @@ public class Registration extends HttpServlet {
 		if(password.length() < 8)
 			return false;
 		
-		boolean lower = false, upper = false;
-		for(int i=0; i<password.length() && (!lower || !upper); i++) {
+		boolean lower = false, upper = false, number = false;
+		for(int i=0; i<password.length() && (!lower || !upper || !number); i++) {
 			if(Character.isLowerCase(password.charAt(i)))
 				lower = true;
 			if(Character.isUpperCase(password.charAt(i)))
 				upper = true;
+			if(Character.isDigit(password.charAt(i))) 
+				number = true;
 		}
-		if(!lower || !upper) {
+		if(!lower || !upper || !number) {
 			return false;
 		}
 		return true;

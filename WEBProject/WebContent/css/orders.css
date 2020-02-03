@@ -56,3 +56,8 @@ div {
 {
 	text-align: center;
 }
+
+#buyAgain, #writeComment {
+	color: inherit;
+	text-decoration: none;
+}

@@ -2,7 +2,8 @@ package technicalServices;
 
 import java.io.File;
 import java.io.OutputStream;
-
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -58,7 +59,11 @@ public class PdfCreator {
 		}
         table.addCell(getCell("\nTotale:", PdfPCell.ALIGN_LEFT));
         table.addCell(getCell("\nqta. " + quantity, PdfPCell.ALIGN_CENTER));
-        table.addCell(getCell(""+total+"€"+"\n di cui IVA " + (total*0.22) + " €", PdfPCell.ALIGN_RIGHT));
+        
+        double a = total * 0.22;
+        a = Math.floor(a*100) / 100;
+        
+        table.addCell(getCell(""+total+"€"+"\n di cui IVA " + (a) + " €", PdfPCell.ALIGN_RIGHT));
         paragraph.add(table);
         Chunk transaction = new Chunk("\n\n\nPagamento gestito da PayPal.\nCodice Transazione: " + order.getPayment().getTransaction());
         paragraph.add(transaction);
