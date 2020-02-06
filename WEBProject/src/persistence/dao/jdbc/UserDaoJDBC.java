@@ -53,6 +53,29 @@ public class UserDaoJDBC implements UserDao {
 	}
 	
 	@Override
+	public void saveUser(User user) {
+		try {
+			connection = dataSource.getConnection();
+			
+			String saving = "insert into \"user\"(email, username) values (?,?)";
+			PreparedStatement statement = connection.prepareStatement(saving);
+			statement.setString(1, user.getEmail());
+			statement.setString(2, user.getUsername());
+			
+			statement.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@Override
 	public void updatePassword(String username, String newPassword) {
 		try {
 			connection = dataSource.getConnection();

@@ -66,6 +66,10 @@ public class DBManager {
 	public void registerUser(User user) {
 		getUserDao().registerUser(user);
 	}
+
+	public void saveGuestUser(User user) {
+		getUserDao().saveUser(user);
+	}
 	
 	public void updatePassword(String username, String newPassword) {
 		getUserDao().updatePassword(username, newPassword);

@@ -22,18 +22,11 @@
 	    <p class="card-text">Il gruppo che si è dedicato alla realizzazione di questo progetto è formato da:</p>
 	    
 		<ul>
-		  <li>Alfredo Farò</li>
-		  <li>Antonio Agostino</li>
 		  <li>Erica Coppolillo</li>
-		  <li>Lorenzo Guastalegname</li>
+		  <li>Alfredo Farò</li>
 		</ul>
 	    
-		<div id="preLinks">Fieri e Onorati studenti dei docenti<br></div>
-		<div id="links" class="row">
-			<div id="ricca" class="col-sm-5"><a href="https://www.mat.unical.it/ricca/" class="card-link">Francesco Ricca</a></div>
-			<div class="col-sm-2">e</div>
-			<div id="cuteri" class="col-sm-5"><a href="https://www.facebook.com/bernardo.cuteri" class="card-link">Bernardo Cuteri</a></div>
-		</div>
+		<div id="preLinks">Fieri e Onorati studenti dei docenti dell'<a href="https://www.mat.unical.it/demacs">Università della Calabria</a></div>
 	  </div>
 	</div>
 	

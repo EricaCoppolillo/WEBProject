@@ -7,6 +7,7 @@ import model.User;
 public interface UserDao {
 
 	public void registerUser(User user);
+	public void saveUser(User user);
 	public User findUser(String username, String password);
 	public User findUserByEmail(String email);
 	public User findUserByUsername(String username);    

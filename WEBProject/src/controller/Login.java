@@ -25,6 +25,27 @@ public class Login extends HttpServlet {
 		
 		String isAdmin = req.getParameter("admin");
 		
+		String usernameGoogle = req.getParameter("usernameGoogle");
+		String emailGoogle = req.getParameter("emailGoogle");
+		String usernameFacebook = req.getParameter("usernameFacebook");
+
+		if(usernameGoogle != null) {
+			req.getSession().setAttribute("googleLogin", true);
+			req.getSession().setAttribute("usernameGoogle", usernameGoogle);
+			req.getSession().setAttribute("emailGoogle", emailGoogle);
+
+			req.getSession().removeAttribute("facebookLogin");
+			req.getSession().removeAttribute("usernameFacebook");
+		}
+		
+		if(usernameFacebook != null) {
+			req.getSession().setAttribute("facebookLogin", true);
+			req.getSession().setAttribute("usernameFacebook", usernameFacebook);
+			
+			req.getSession().removeAttribute("googleLogin");
+			req.getSession().removeAttribute("usernameGoogle");
+		}
+		
 		if(isAdmin != null && isAdmin.equals("true")) {
 			req.getSession().setAttribute("adminNotAuthenticated", true);
 			rd = req.getRequestDispatcher("login.jsp");
@@ -39,6 +60,11 @@ public class Login extends HttpServlet {
 		Object o2 = req.getSession().getAttribute("administrator");
 		
 		if(logout != null && logout.equals("true")) {
+			
+			req.getSession().removeAttribute("googleLogin");
+			req.getSession().removeAttribute("usernameGoogle");
+			req.getSession().removeAttribute("facebookLogin");
+			req.getSession().removeAttribute("usernameFacebook");
 			
 			if(o1 != null)
 				req.getSession().removeAttribute("user");
@@ -85,27 +111,62 @@ public class Login extends HttpServlet {
 		}
 		
 		else if(isAdmin == null) {
-			String username = req.getParameter("username");
 			
-			User user = db.getUser(username, password);
-			if(user != null) {
+			Boolean google = (Boolean) req.getSession().getAttribute("googleLogin");
+			Boolean facebook = (Boolean) req.getSession().getAttribute("facebookLogin");
+			
+			if(google == null && facebook == null) {
+				
+				String username = req.getParameter("username");
+				User user = db.getUser(username, password);
+				
+				if(user != null) {
+					req.getSession().setAttribute("user", user);
+					req.getSession().setAttribute("firstLogin", true);
+					
+					ArrayList<Product> cart = (ArrayList<Product>) req.getSession().getAttribute("cartArray");
+					
+					if(cart != null) {
+						for(Product p : cart) {
+							if(!DBManager.getInstance().isInCart(user.getId(), p.getId()))
+								DBManager.getInstance().insertIntoCart(user.getId(), p.getId(), p.getOrderQuantity());
+						}
+					}
+					
+					rd = req.getRequestDispatcher("home.jsp");
+				}
+				else {
+					req.setAttribute("loginError", true);
+					rd = req.getRequestDispatcher("login.jsp");
+				}
+			}
+			
+			else {
+				
+				String username = null;
+				String email = null;
+				if(google != null && google.equals(true)) {
+					username = (String) req.getSession().getAttribute("usernameGoogle");
+					email = (String) req.getSession().getAttribute("emailGoogle"); 
+				}
+				
+				else if(facebook != null && facebook.equals(true)) 
+					username = (String) req.getSession().getAttribute("usernameFacebook");
+				
+				User user = db.getUserByEmail(email);
+				if(user == null) {
+					user = new User();
+					user.setUsername(username);
+					user.setEmail(email);
+					db.saveGuestUser(user);
+				}
+				else {
+					user.setUsername(username);
+				}
 				req.getSession().setAttribute("user", user);
 				req.getSession().setAttribute("firstLogin", true);
 				
-				ArrayList<Product> cart = (ArrayList<Product>) req.getSession().getAttribute("cartArray");
-				
-				if(cart != null) {
-					for(Product p : cart) {
-						if(!DBManager.getInstance().isInCart(user.getId(), p.getId()))
-							DBManager.getInstance().insertIntoCart(user.getId(), p.getId(), p.getOrderQuantity());
-					}
-				}
-				
 				rd = req.getRequestDispatcher("home.jsp");
-			}
-			else {
-				req.setAttribute("loginError", true);
-				rd = req.getRequestDispatcher("login.jsp");
 			}
 		}
 		

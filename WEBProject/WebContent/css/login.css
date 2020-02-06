@@ -5,9 +5,9 @@ body {
 }
 
 #container {
-	width: 50%;
+	width: 100%;
 	margin: auto;
-	padding: 20px 20px;
+	padding: 20px 100px 0px;
 }
 
 #divLogo {
@@ -32,6 +32,17 @@ i, strong, p {
 	left: 5%;
 }
 
+label {
+	font-size: 90%;
+}
+
+a.adminLogin, a.forgottenPassword {
+	font-size: 70%;
+}
+
+.form-control {
+	width: 100%;
+}
 
 .form-group {
 	position: relative;
@@ -54,8 +65,34 @@ i, strong, p {
 	padding-bottom: 20px;
 }
 
+.vl {
+	height: auto;
+	border-right: 1px solid #cccccc;
+}
+
+
+#rightDiv {
+	position: relative;
+	margin-top: 4.50%; 
+	text-align: center;
+}
+
+.g-signin2 > div {
+  margin: 0 auto;
+}
+
+.divHr {
+	margin-top: 3.50%;
+	margin-bottom: 3.50%;
+	color: #666666;
+}
+
+input {
+	margin-top: 10px;
+}
+
 hr {
-	width: 30%;
+	width: 72%;
 }
 
 
