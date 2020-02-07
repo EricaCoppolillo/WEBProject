@@ -21,8 +21,9 @@ public class PostReview extends HttpServlet{
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			DBManager db = DBManager.getInstance();
 			
-			Object o1 = req.getSession().getAttribute("user");
-            User usr = (User) o1;
+			RequestDispatcher rd = null;
+			
+			User usr = (User) req.getSession().getAttribute("user");
             int user = usr.getId();
 			String title = req.getParameter("title");
 			int stars = Integer.parseInt(req.getParameter("stars"));
@@ -53,11 +54,7 @@ public class PostReview extends HttpServlet{
 			if(p.getReviews().size() > 0)
                 req.setAttribute("thereAreReviews", 1);
             
-			RequestDispatcher rd = req.getRequestDispatcher("product.jsp");
+			rd = req.getRequestDispatcher("product.jsp");
 			rd.forward(req, resp);
-            
-			
 		}
-		
-		
 }

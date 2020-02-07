@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import model.User;
@@ -63,7 +60,6 @@ public class UserDaoJDBC implements UserDao {
 			statement.setString(2, user.getUsername());
 			
 			statement.executeUpdate();
-		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -169,6 +165,7 @@ public class UserDaoJDBC implements UserDao {
 				user = new User(result.getString(6), result.getString(7), result.getString(3), result.getString(2), email, result.getDate(4), result.getString(8), result.getString(9));
 				user.setId(result.getInt(1));
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

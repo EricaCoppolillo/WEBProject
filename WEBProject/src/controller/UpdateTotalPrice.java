@@ -27,8 +27,10 @@ public class UpdateTotalPrice extends HttpServlet {
 		
 		else {
 			ArrayList<Product> cart = (ArrayList<Product>) req.getSession().getAttribute("cartArray");
-			for(Product p : cart) {
-				totalPrice += p.getPricePerQuantity();
+			if(cart != null) {
+				for(Product p : cart) {
+					totalPrice += p.getPricePerQuantity();
+				}
 			}
 		}
 		

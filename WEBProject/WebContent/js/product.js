@@ -9,6 +9,7 @@ function Review(text, author){
 var reviewsOffset = 1;
 
 function loadOtherReviews(productId){
+	
 	$.getJSON( "findreviews?id=" + productId + "&offset=" + reviewsOffset, function( data ) {
 		if(data.length > 0) {
 			$.each(data, function (key, val) {

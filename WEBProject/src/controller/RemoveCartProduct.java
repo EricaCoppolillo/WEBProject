@@ -23,10 +23,12 @@ public class RemoveCartProduct extends HttpServlet {
 		
 		if(user == null) {
 			ArrayList<Product> cart = (ArrayList<Product>) req.getSession().getAttribute("cartArray");
-			for(int i=0; i<cart.size(); i++) {
-				if(cart.get(i).getId() == idProduct) {
-					cart.remove(i);
-					break;
+			if(cart != null) {
+				for(int i=0; i<cart.size(); i++) {
+					if(cart.get(i).getId() == idProduct) {
+						cart.remove(i);
+						break;
+					}
 				}
 			}
 		}

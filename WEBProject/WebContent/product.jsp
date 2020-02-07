@@ -10,7 +10,6 @@
 <title>Techno World</title>
 	
 	<%@ include file="include.jsp" %>
-<!-- 	<link rel="stylesheet" href="css/home.css"> -->
 	<link rel="stylesheet" href="css/product.css">
 	<script src="js/product.js"></script>
 	
