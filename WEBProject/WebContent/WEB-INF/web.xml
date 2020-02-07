@@ -181,6 +181,16 @@
 		<servlet-name>FindReviews</servlet-name>
 		<url-pattern>/findreviews</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SaveComments</servlet-name>
+		<servlet-class>controller.SaveComments</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SaveComments</servlet-name>
+		<url-pattern>/saveComments</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>InsertProduct</servlet-name>

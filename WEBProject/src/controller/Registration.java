@@ -86,8 +86,6 @@ public class Registration extends HttpServlet {
 		Matcher m = p.matcher(email);
 		boolean validEmail = m.matches();
 		
-		/*regex per controllo email*/
-		
 		if(alreadyUser == null && alreadyUserEmail == null && validPassword && validEmail) {
 			User user = new User(username, password, name, surname, email, d, question, answer);
 			

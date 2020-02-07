@@ -282,10 +282,10 @@ public class ProductDaoJDBC implements ProductDao {
             connection = dataSource.getConnection();
             String query = "select * from review, \"user\" where review.product = ? and review.author = \"user\".id " +
                     "order by " +
-                    "review.id desc limit 5 offset ?";
+                    "review.id desc limit 3 offset ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, productId);
-            statement.setInt(2, offset * 5);
+            statement.setInt(2, offset * 3);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 Review review = new Review(result.getInt(1), result.getString("title"),

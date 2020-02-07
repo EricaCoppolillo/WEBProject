@@ -1,5 +1,6 @@
 package controller;
 
+import model.Comment;
 import model.Product;
 import model.User;
 import persistence.DBManager;
@@ -16,11 +17,18 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if(req.getParameter("id") != null) {
+        	
+        	req.getSession().removeAttribute("commented");
             int productId = Integer.parseInt(req.getParameter("id"));
             Product product = DBManager.getInstance().getProduct(productId);
 
             if(product.getReviews().size() > 0)
                 req.setAttribute("thereAreReviews", 1);
+            
+            ArrayList<Comment> comments = DBManager.getInstance().getComments(productId);
+            req.getSession().setAttribute("comments", comments);
+            if(!comments.isEmpty()) 
+            	req.getSession().setAttribute("commented", true);
 
             req.setAttribute("product", product);
             Object o1 = req.getSession().getAttribute("user");

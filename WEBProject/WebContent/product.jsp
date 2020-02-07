@@ -14,14 +14,14 @@
 	<script src="js/product.js"></script>
 	
 </head>
-<body onload="checkProduct('${product.id}', 'product')">
+<body onload="checkProduct('${product.id}', 'product'); changeColor();">
 	
 	<%@ include file="menuBar.jsp" %>  
 	<div class="container" id="mainContainer">
 
 	    <div class="row">
 	
-	      <div class="col-lg-9">
+	      <div class="col-lg-8">
 	        <div class="card mt-4">
 	         <div id="centerImage"> <img id="productImage" class="card-img-top" src="img/products/${product.imagePath}" alt="">  </div>
 	          <div class="card-body">
@@ -54,7 +54,7 @@
 						</c:forEach>
 					</c:if>
 					<c:if test="${thereAreReviews == null}">
-						<h4>Questo prodotto non ha recensioni</h4>
+						<div id="noReviews">Questo prodotto non ha recensioni</div>
 					</c:if>
 		         </div>
 				  <c:if test="${thereAreReviews != null}">
@@ -65,13 +65,12 @@
 				  <c:if test="${purchased == true}">
 				  	<button class="btn btn-primary" id="writeReview">Scrivi una recensione</button>
 				  </c:if>
-		         
 	          </div>
 	        </div>
 	      </div>
 	     
 	
-	      <div class="col-lg-3">
+	      <div class="col-lg-4">
 	        <div class="card mt-4">
 	          <div class="card-title">
 	            <h3 id="summary"><strong>Riepilogo:</strong></h3>
@@ -111,10 +110,33 @@
  				 </select>
 	          </form>
 	          </c:if>
-	          
-	
 	        </div>
-	      </div> <!-- lg-3 -->
+	        
+	        <div class="card card-outline-secondary my-4">
+	        	<div id="titleQuestionsProduct" class="card-header">Domande relative al prodotto</div>
+	       	    <div id="questionsBody" class="card-body">
+	       	    	<div id="questionsCard">
+		      			<c:if test="${commented == null}">
+		      				<div id="noQuestions">Non ci sono domande relative al prodotto</div>
+		      			</c:if>
+		      			<c:if test="${commented == true}">
+		      				<c:forEach var="comment" items="${comments}">
+		      					<div class="username">${comment.username}</div><div>${comment.content}</div>
+		      					<hr>
+		      				</c:forEach>
+		      			</c:if>
+	      			</div>
+	      			<c:if test="${user != null}">
+	      				<div id="divQuestions" class="input-group mb-3">
+							<input id="inputQuestion" type="text" class="form-control" placeholder="Scrivi qualcosa..." aria-describedby="basic-addon2">
+						  	<div class="input-group-append">
+						    	<button class="btn btn-outline-secondary" onclick="postQuestion('${user.username}', '${product.id}')" type="button">Pubblica</button>
+						  	</div>
+						</div>
+	      			</c:if>
+	      		</div>
+	        </div>
+	      </div> <!-- lg-4 -->
 	    </div> <!-- row -->
         
 

@@ -59,6 +59,54 @@ function checkProduct(idProduct, page) {
 	});
 }
 
+function getRandomColor() {
+	
+	var letters = '0123456789ABCDEF';
+	var color = '#';
+	for (var i = 0; i < 6; i++) {
+	  color += letters[Math.floor(Math.random() * 16)];
+	}
+	return color;
+}
+
+function changeColor() {
+	
+	var objDiv = document.getElementById("questionsBody");
+	objDiv.scrollTop = objDiv.scrollHeight;
+	var comments = $(".username");
+	for(let i=0; i<comments.length; i++) {
+		comments.eq(i).css({ 
+	        "color": getRandomColor()
+	    });
+	}
+}
+
+function postQuestion(username, idProduct) {
+	
+	var text = $("#inputQuestion").val();
+	
+	if(text != "") {
+		$("#inputQuestion").val("");
+		$("#noQuestions").remove();
+		var label = document.createElement("label");
+		label.setAttribute("class", "questionLabel");
+		label.setAttribute("text", text);
+		$("#questionsCard").append(username.fontcolor(getRandomColor())+"<br>"+text);
+		$("#questionsCard").append("<br>");
+		$("#questionsCard").append("<hr>");
+		
+		var content = username + "   " + text;
+		var objDiv = document.getElementById("questionsBody");
+		objDiv.scrollTop = objDiv.scrollHeight;
+		$.ajax({
+			type: "POST", 
+			url: "saveComments",
+			data: {idProduct: idProduct, content: content},
+			success: function(data) {}
+		});
+	}
+}
+
 $(document).ready(function(){
 	  
 	  $("#writeReview").click(function(){

@@ -17,7 +17,7 @@ public class DBManager {
 			Class.forName("org.postgresql.Driver").newInstance();
 			//questi vanno messi in file di configurazione!!!	
 //			dataSource=new DataSource("jdbc:postgresql://52.39.164.176:5432/xx","xx","p@xx");
-			dataSource = new DataSource("jdbc:postgresql://manny.db.elephantsql.com:5432/ndbzhnht","ndbzhnht","orWOykJIylSTUE8z1z2yXSFfvAn1jyIH");
+			dataSource = new DataSource("jdbc:postgresql://rogue.db.elephantsql.com:5432/xgnounaz","xgnounaz","qM-VMf9EWX3zTH6uPNRAZL2nBJOXX7CG");
 		} 
 		catch (Exception e) {
 			System.err.println("PostgresDAOFactory.class: failed to load MySQL JDBC driver\n"+e);
@@ -159,6 +159,18 @@ public class DBManager {
 	}
 	
 	public void postReview(Review r) { getReviewDao().postReview(r);}
+	
+	public CommentDao getCommentDao() {
+		return new CommentDaoJDBC(dataSource);
+	}
+	
+	public void saveComment(int idProduct, String content) {
+		getCommentDao().saveComment(idProduct, content);
+	}
+
+	public ArrayList<Comment> getComments(int productId) {
+		return getCommentDao().getCommentForProduct(productId);
+	}
 	
 	public void updateProduct(Product p){ getProductDao().updateProduct(p);}
 	
