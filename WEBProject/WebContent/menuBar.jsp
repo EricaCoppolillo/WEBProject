@@ -40,6 +40,13 @@
 			Mappa
 		</a>
 	</div>
+	<c:if test="${user != null || administrator != null}">
+		<div id="assistance" class="col">
+			<a href="assistance">
+				Assistenza
+			</a>
+		</div>
+	</c:if>	
 	<c:if test="${user != null}">
 		<div id="orders" class="col">
 			<a href="orders">

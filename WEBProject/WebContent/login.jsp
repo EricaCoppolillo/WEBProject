@@ -37,9 +37,11 @@
 	    </c:if>
 	    
 		<form method="post" <c:if test="${adminNotAuthenticated == null}"> action="login" </c:if> <c:if test="${adminNotAuthenticated != null}"> action="login?admin=true" </c:if> class="needs-validation">		  
+			<c:if test="${adminNotAuthenticated == null}">
 			<div class="form row">
 				<div class="col-sm-6 vl">
-					<div class="form-group">
+			</c:if> 
+					<div <c:if test="${adminNotAuthenticated == null}"> class="form-group" </c:if> <c:if test="${adminNotAuthenticated != null}"> class="form-group adm" </c:if> >
 					 	<c:if test="${adminNotAuthenticated == null}">
 					 		<a class="adminLogin" href="login?admin=true">
 						  		Sei un amministratore?
@@ -67,7 +69,7 @@
 					    <div class="invalid-feedback">Per favore, riempi questo campo</div>
 				  </div>
 				  
-				  <div class="form-group">
+				  <div <c:if test="${adminNotAuthenticated == null}"> class="form-group" </c:if> <c:if test="${adminNotAuthenticated != null}"> class="form-group adm" </c:if> >
 				  	<c:if test="${adminNotAuthenticated == null}">
 				   		<a class="forgottenPassword" href="forgottenPassword">
 				  			Password dimenticata?
@@ -89,18 +91,25 @@
 					  </div>
 				  </c:if>
 			  
+			  <c:if test="${adminNotAuthenticated == null}">
 			  </div>
+			  </c:if> 
 			  
-			  <div id="rightDiv" class="col-sm-6">
-				  <div id="googleButton" class="g-signin2" data-width="300" data-onsuccess="onSignIn"></div>
-				  
-				  <div class="divHr row">
-				  <hr class="col-sm-2">oppure<hr class="col-sm-2">
-				  </div>
-				  
-				  <div id="facebookButton" class="fb-login-button" onlogin="checkLoginState()" data-width="300" data-size="large" data-button-type="login_with" data-login_text="Autenticati con Facebook" data-auto-logout-link="false" data-use-continue-as="false"></div>
-		  	  </div>
+			  <c:if test="${adminNotAuthenticated == null}">
+				  <div id="rightDiv" class="col-sm-6">
+					  <div id="googleButton" class="g-signin2" data-width="300" data-onsuccess="onSignIn"></div>
+					  
+					  <div class="divHr row">
+					  <hr class="col-sm-2">oppure<hr class="col-sm-2">
+					  </div>
+					  
+					  <div id="facebookButton" class="fb-login-button" onlogin="checkLoginState()" data-width="300" data-size="large" data-button-type="login_with" data-login_text="Autenticati con Facebook" data-auto-logout-link="false" data-use-continue-as="false"></div>
+			  	  </div>
+		  	  </c:if>
+		  
+		  <c:if test="${adminNotAuthenticated == null}">
 		  </div>
+		  </c:if> 
 		  
 		  <div class="col text-center">
 		  	<input type="submit" class="btn btn-primary" value="Accedi" />

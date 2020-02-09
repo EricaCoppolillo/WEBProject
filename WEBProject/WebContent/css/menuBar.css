@@ -13,11 +13,11 @@ body {
 	width: 90px;
 }
 
-#whoWeAre>a:hover, #faq>a:hover, #map>a:hover, #orders>a:hover {
+#whoWeAre>a:hover, #faq>a:hover, #map>a:hover, #orders>a:hover, #assistance>a:hover {
 	text-decoration: none;
 }
 
-#whoWeAre>a, #faq > a, #map > a , #orders > a {
+#whoWeAre>a, #faq > a, #map > a , #orders > a, #assistance>a{
 	color: inherit;
 }
 

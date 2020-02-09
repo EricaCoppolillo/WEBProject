@@ -52,7 +52,12 @@ a.adminLogin, a.forgottenPassword {
 	padding-bottom: 20px;
 }
 
-.forgottenPassword, .adminLogin {
+.adm {
+	position: relative;
+	width: 25%;
+}
+
+.forgottenPassword, .adminLogin, .userLogin {
 	position: relative;
 	font-size: 12px;
 	padding-top: 6px;
@@ -94,7 +99,7 @@ input {
 hr {
 	width: 72%;
 }
-
+ 
 
 
 
