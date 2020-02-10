@@ -1,0 +1,115 @@
+body {
+	position: relative;
+	height: 100vh;
+}
+
+#assistanceContainer {
+	background-image: url(../img/chatBackground.jpg);
+	height: 90%;
+}
+
+#chat {
+	position: relative;
+	border-radius: 25px;
+	border: 2px solid #00a3bf;
+	background-color: #f8f8f8;
+	width: 40%;
+	height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
+}	
+
+#divInputChat {
+	position: absolute;
+	width: 90%;
+	left: 5%;
+	bottom: 1%;
+}
+
+.chatDisplay {
+	max-height: 60vh;
+	overflow: auto;
+	margin-top: 4px;
+	margin-right: 10px;
+}
+
+.chatHr {
+	width: 93%;
+}
+
+.adm {
+	max-height: 70vh;
+}
+
+.divAssistanceComment {
+	background-color: white;
+	border-radius: 0px 20px 20px 20px;
+	border: 1px solid #feac01;
+	max-width: 50%;
+	padding: 5px 10px 10px 10px;
+	height: auto;
+	left: 10%;
+	margin-top: 4%;
+	margin-left: 4%;
+	margin-bottom: 4%;
+}
+
+.you {
+	color: #feac01;
+	font-size: 17px;
+}
+
+.divInput {
+	position: relative;
+	width: 90%;
+	left: 4%;
+}
+
+.buttonAnswer:hover {
+	background-color: #00a3bf;
+	color: white;
+	border: 1px solid #0096b0;
+}
+
+#buttonQuestion:hover {
+	background-color: #feac01;
+	border: 1px solid white;
+}
+
+.divAdmComment {
+	position: relative;
+	background-color: white;
+	border-radius: 20px 0px 20px 20px;
+	border: 1px solid #00a3bf;
+	max-width: 50%; 
+	width: 50%;
+	padding: 5px 10px 10px 10px;
+	height: auto;
+	margin-left: auto;
+	margin-right:0;
+	right: 4%;
+	text-align: right;
+	margin-top: 4%;
+	margin-bottom: 4%;
+}
+
+.adminUsername {
+	color: #008da6;
+	font-size: 17px;
+}
+
+#noQuestions, #noHelp {
+	padding: 40% 0;
+	text-align: center;
+	font-size: 2vw;
+	color: #b5b5b5;
+	font-weight: lighter;
+}
+
+hr {
+	position: relative;
+	width: 100%;
+}

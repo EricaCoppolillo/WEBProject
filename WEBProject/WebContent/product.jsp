@@ -113,11 +113,11 @@
 	        </div>
 	        
 	        <div class="card card-outline-secondary my-4">
-	        	<div id="titleQuestionsProduct" class="card-header">Domande relative al prodotto</div>
-	       	    <div id="questionsBody" class="card-body">
-	       	    	<div id="questionsCard">
+	        	<div id="titleCommentsProduct" class="card-header">Domande relative al prodotto</div>
+	       	    <div id="commentsBody" class="card-body">
+	       	    	<div id="commentsCard">
 		      			<c:if test="${commented == null}">
-		      				<div id="noQuestions">Non ci sono domande relative al prodotto</div>
+		      				<div id="noComments">Non ci sono domande relative al prodotto</div>
 		      			</c:if>
 		      			<c:if test="${commented == true}">
 		      				<c:forEach var="comment" items="${comments}">
@@ -127,10 +127,10 @@
 		      			</c:if>
 	      			</div>
 	      			<c:if test="${user != null}">
-	      				<div id="divQuestions" class="input-group mb-3">
-							<input id="inputQuestion" type="text" class="form-control" placeholder="Scrivi qualcosa..." aria-describedby="basic-addon2">
+	      				<div id="divComments" class="input-group mb-3">
+							<input id="inputComment" type="text" class="form-control" placeholder="Scrivi qualcosa..." aria-describedby="basic-addon2">
 						  	<div class="input-group-append">
-						    	<button class="btn btn-outline-secondary" onclick="postQuestion('${user.username}', '${product.id}')" type="button">Pubblica</button>
+						    	<button class="btn btn-outline-secondary" onclick="postComment('${user.username}', '${product.id}')" type="button">Pubblica</button>
 						  	</div>
 						</div>
 	      			</c:if>

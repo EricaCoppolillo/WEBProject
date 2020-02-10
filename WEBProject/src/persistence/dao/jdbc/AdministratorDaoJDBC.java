@@ -21,18 +21,18 @@ public class AdministratorDaoJDBC implements AdministratorDao {
 	}
 	
 	@Override
-	public Administrator findAdmin(String id, String password) {
+	public Administrator findAdmin(int id, String password) {
 		Administrator administrator = null;
 		
 		try {
 			connection = dataSource.getConnection();
 			String query = "select * from administrator where id = ? and password = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, id);
+			statement.setInt(1, id);
 			statement.setString(2, password);
 			ResultSet result = statement.executeQuery();
 			if(result.next()) {
-				administrator = new Administrator(result.getString(1), result.getString(2));
+				administrator = new Administrator(result.getInt(1), result.getString(2));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -56,7 +56,7 @@ public class AdministratorDaoJDBC implements AdministratorDao {
 			PreparedStatement statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while(result.next()) {
-				Administrator admin = new Administrator(result.getString(0), result.getString(1));
+				Administrator admin = new Administrator(result.getInt(0), result.getString(1));
 				administrators.add(admin);
 			}
 		} catch (SQLException e) {

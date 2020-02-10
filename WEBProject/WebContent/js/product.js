@@ -71,7 +71,7 @@ function getRandomColor() {
 
 function changeColor() {
 	
-	var objDiv = document.getElementById("questionsBody");
+	var objDiv = document.getElementById("commentsBody");
 	objDiv.scrollTop = objDiv.scrollHeight;
 	var comments = $(".username");
 	for(let i=0; i<comments.length; i++) {
@@ -81,22 +81,19 @@ function changeColor() {
 	}
 }
 
-function postQuestion(username, idProduct) {
+function postComment(username, idProduct) {
 	
-	var text = $("#inputQuestion").val();
+	var text = $("#inputComment").val();
 	
 	if(text != "") {
-		$("#inputQuestion").val("");
-		$("#noQuestions").remove();
-		var label = document.createElement("label");
-		label.setAttribute("class", "questionLabel");
-		label.setAttribute("text", text);
-		$("#questionsCard").append(username.fontcolor(getRandomColor())+"<br>"+text);
-		$("#questionsCard").append("<br>");
-		$("#questionsCard").append("<hr>");
+		$("#inputComment").val("");
+		$("#noComments").remove();
+		$("#commentsCard").append(username.fontcolor(getRandomColor())+"<br>"+text);
+		$("#commentsCard").append("<br>");
+		$("#commentsCard").append("<hr>");
 		
 		var content = username + "   " + text;
-		var objDiv = document.getElementById("questionsBody");
+		var objDiv = document.getElementById("commentsBody");
 		objDiv.scrollTop = objDiv.scrollHeight;
 		$.ajax({
 			type: "POST", 

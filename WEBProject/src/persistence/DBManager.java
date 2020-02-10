@@ -75,7 +75,7 @@ public class DBManager {
 		getUserDao().updatePassword(username, newPassword);
 	}
 	
-	public Administrator getAdministrator(String id, String password) {
+	public Administrator getAdministrator(int id, String password) {
 		return getAdministratorDao().findAdmin(id, password);
 	}
 	
@@ -170,6 +170,30 @@ public class DBManager {
 
 	public ArrayList<Comment> getComments(int productId) {
 		return getCommentDao().getCommentForProduct(productId);
+	}
+	
+	private AssistanceDao getAssistanceDao() {
+		return new AssistanceDaoJDBC(dataSource);
+	}
+	
+	public void saveAssistanceQuestion(int idUser, String question) {
+		getAssistanceDao().saveQuestion(idUser, question);
+	}
+	
+	public ArrayList<Comment> getAssistanceQuestions() {
+		return getAssistanceDao().getAllQuestions();
+	}
+	
+	public ArrayList<Comment> getUserAssistanceComments(int idUser) {
+		return getAssistanceDao().getComments(idUser);
+	}
+	
+	public void saveAssistanceAnswer(int idAdmin, int idUser, String answer) {
+		getAssistanceDao().saveAnswer(idAdmin, idUser, answer);
+	}
+	
+	public void removeUserQuestion(int idUser, String content) {
+		getAssistanceDao().deleteUserQuestion(idUser, content);
 	}
 	
 	public void updateProduct(Product p){ getProductDao().updateProduct(p);}

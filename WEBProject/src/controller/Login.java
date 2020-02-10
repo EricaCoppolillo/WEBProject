@@ -23,6 +23,12 @@ public class Login extends HttpServlet {
 		
 		RequestDispatcher rd = null;
 		
+		req.getSession().removeAttribute("googleLogin");
+		req.getSession().removeAttribute("usernameGoogle");
+		req.getSession().removeAttribute("facebookLogin");
+		req.getSession().removeAttribute("usernameFacebook");
+		req.getSession().removeAttribute("adminNotAuthenticated");
+		
 		String isAdmin = req.getParameter("admin");
 		
 		String usernameGoogle = req.getParameter("usernameGoogle");
@@ -61,11 +67,6 @@ public class Login extends HttpServlet {
 		
 		if(logout != null && logout.equals("true")) {
 			
-			req.getSession().removeAttribute("googleLogin");
-			req.getSession().removeAttribute("usernameGoogle");
-			req.getSession().removeAttribute("facebookLogin");
-			req.getSession().removeAttribute("usernameFacebook");
-			
 			if(o1 != null)
 				req.getSession().removeAttribute("user");
 			else if(o2 != null) 
@@ -97,7 +98,7 @@ public class Login extends HttpServlet {
 		
 		if(isAdmin != null && isAdmin.equals("true")) {
 			String id = req.getParameter("id");
-			Administrator admin = db.getAdministrator(id, password);
+			Administrator admin = db.getAdministrator(Integer.parseInt(id), password);
 			if(admin != null) {
 				req.getSession().removeAttribute("adminNotAuthenticated");
 				req.getSession().setAttribute("administrator", admin);
