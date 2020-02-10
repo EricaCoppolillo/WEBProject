@@ -34,7 +34,7 @@ public class Login extends HttpServlet {
 		String usernameGoogle = req.getParameter("usernameGoogle");
 		String emailGoogle = req.getParameter("emailGoogle");
 		String usernameFacebook = req.getParameter("usernameFacebook");
-
+		
 		if(usernameGoogle != null) {
 			req.getSession().setAttribute("googleLogin", true);
 			req.getSession().setAttribute("usernameGoogle", usernameGoogle);
@@ -136,7 +136,7 @@ public class Login extends HttpServlet {
 			}
 			
 			else {
-				
+
 				String username = null;
 				String email = null;
 				if(google != null && google.equals(true)) {

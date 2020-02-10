@@ -176,8 +176,8 @@ public class DBManager {
 		return new AssistanceDaoJDBC(dataSource);
 	}
 	
-	public void saveAssistanceQuestion(int idUser, String question) {
-		getAssistanceDao().saveQuestion(idUser, question);
+	public void saveAssistanceQuestion(int idUser, String username, String question) {
+		getAssistanceDao().saveQuestion(idUser, username, question);
 	}
 	
 	public ArrayList<Comment> getAssistanceQuestions() {
@@ -194,6 +194,10 @@ public class DBManager {
 	
 	public void removeUserQuestion(int idUser, String content) {
 		getAssistanceDao().deleteUserQuestion(idUser, content);
+	}
+	
+	public void deleteComments(int idUser) {
+		getAssistanceDao().deleteComments(idUser);
 	}
 	
 	public void updateProduct(Product p){ getProductDao().updateProduct(p);}

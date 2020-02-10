@@ -50,6 +50,7 @@ function askQuestion() {
 	
 	if(text != "") {
 		
+		$(".chatDisplay").css("visibility", "visible");
 		$("#noHelp").remove();
 		$("#inputQuestion").val("");
 		
@@ -69,4 +70,17 @@ function askQuestion() {
 			success: function(data) {}
 		}); 
 	}
+}
+
+function deleteComments() {
+	
+	$("#noHelp").css("visibility", "visible");
+	$(".chatDisplay").css("visibility", "hidden");
+	
+	$.ajax({
+		type: "POST",
+		url: "assistance",
+		data: {makeEmpty: "true"},
+		success: function(data) {}
+	}); 
 }

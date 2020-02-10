@@ -108,6 +108,7 @@ img {
 
 #totalPrice {
 	color: #c10d0d;
+	white-space: nowrap;
 }
 
 #paypal-button-container{

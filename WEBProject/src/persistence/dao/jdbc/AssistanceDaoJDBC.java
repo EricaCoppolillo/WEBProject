@@ -6,10 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.mail.MessagingException;
+
 import model.Comment;
 import persistence.DBManager;
 import persistence.DataSource;
 import persistence.dao.AssistanceDao;
+import technicalServices.MailUtility;
 
 public class AssistanceDaoJDBC implements AssistanceDao {
 
@@ -21,8 +24,35 @@ public class AssistanceDaoJDBC implements AssistanceDao {
 		connection = null;
 	}
 	
+	public void sendAssistanceMail(String username) {
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "select id, email from administrator";
+			PreparedStatement statement = connection.prepareStatement(query);
+			
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				try {
+					MailUtility.sendAssistanceMail(result.getString(2), ""+result.getInt(1), username);
+				} catch (MessagingException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	@Override
-	public void saveQuestion(int idUser, String question) {
+	public void saveQuestion(int idUser, String username, String question) {
 		try {
 			connection = dataSource.getConnection();
 			
@@ -38,6 +68,8 @@ public class AssistanceDaoJDBC implements AssistanceDao {
 			
 			statement.executeUpdate();
 			statement2.executeUpdate();
+			
+			sendAssistanceMail(username);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -67,7 +99,7 @@ public class AssistanceDaoJDBC implements AssistanceDao {
 				Comment c = new Comment();
 				Integer idAdmin = result.getInt(1);
 				if(idAdmin > 0) 
-					c.setUsername(""+idAdmin);
+					c.setUsername("Amministratore "+idAdmin);
 				else
 					c.setUsername("Tu");
 				
@@ -159,6 +191,28 @@ public class AssistanceDaoJDBC implements AssistanceDao {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, idUser);
 			statement.setString(2, content);
+
+			statement.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void deleteComments(int idUser) {
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "delete from \"assistanceComment\" where \"idUser\" = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, idUser);
 
 			statement.executeUpdate();
 			

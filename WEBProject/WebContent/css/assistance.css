@@ -74,9 +74,19 @@ body {
 	border: 1px solid #0096b0;
 }
 
+#buttonQuestion {
+	 color: #eb9f01;
+	 border: 1px solid #eb9f01;
+} 
+
 #buttonQuestion:hover {
 	background-color: #feac01;
+	color: white;
 	border: 1px solid white;
+}
+
+#buttonDelete {
+	margin-left: 4%;
 }
 
 .divAdmComment {

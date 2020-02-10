@@ -99,6 +99,30 @@ import javax.mail.internet.MimeMultipart;
 			
 		}
 		
+		public static void sendAssistanceMail(String dest, String id, String username) throws MessagingException{
+			Properties props = System.getProperties();
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.host", MailUtility.host);
+			props.put("mail.smtp.user", MailUtility.from);
+			props.put("mail.smtp.password", MailUtility.pass);
+			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.auth", "true");
+			
+			Session session = Session.getDefaultInstance(props,null);
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(from));
+			message.addRecipients(Message.RecipientType.TO, dest);
+			message.setSubject("Richiesta Assistenza technoworld");
+			message.setText("Ciao Amministratore " + id + ",\n\n"
+					+ "E' appena stata inviata una richiesta di assistenza da parte dell'utente " + username + ".\n\n"
+					+ "Ti invitiamo a rispondere al più presto.\nCordiali Saluti.\n\n Il team technoWorld\n\n\n\n"
+					+ "Non rispondere a questa e-mail in quanto è stata generata automaticamente.\n ");
+			Transport transport = session.getTransport("smtp");
+			transport.connect(host,from,pass);
+			transport.sendMessage(message, message.getAllRecipients());
+			transport.close();
+		}
+		
 }
 
 	

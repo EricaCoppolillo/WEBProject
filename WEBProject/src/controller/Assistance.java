@@ -13,6 +13,7 @@ import model.Administrator;
 import model.Comment;
 import model.User;
 import persistence.DBManager;
+import technicalServices.MailUtility;
 
 public class Assistance extends HttpServlet {
 
@@ -51,7 +52,13 @@ public class Assistance extends HttpServlet {
 		
 		if(user != null) {
 			String question = req.getParameter("question");
-			DBManager.getInstance().saveAssistanceQuestion(user.getId(), question);
+			if(question != null) 
+				DBManager.getInstance().saveAssistanceQuestion(user.getId(), user.getUsername(), question);
+			
+			String makeEmpty = req.getParameter("makeEmpty");
+			if(makeEmpty != null && makeEmpty.equals("true"))
+				DBManager.getInstance().deleteComments(user.getId());
+			
 		}
 		
 		if(admin != null) {
