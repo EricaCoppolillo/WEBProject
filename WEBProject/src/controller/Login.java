@@ -34,6 +34,7 @@ public class Login extends HttpServlet {
 		String usernameGoogle = req.getParameter("usernameGoogle");
 		String emailGoogle = req.getParameter("emailGoogle");
 		String usernameFacebook = req.getParameter("usernameFacebook");
+		String emailFacebook = req.getParameter("emailFacebook");
 		
 		if(usernameGoogle != null) {
 			req.getSession().setAttribute("googleLogin", true);
@@ -47,6 +48,7 @@ public class Login extends HttpServlet {
 		if(usernameFacebook != null) {
 			req.getSession().setAttribute("facebookLogin", true);
 			req.getSession().setAttribute("usernameFacebook", usernameFacebook);
+			req.getSession().setAttribute("emailFacebook", emailFacebook);
 			
 			req.getSession().removeAttribute("googleLogin");
 			req.getSession().removeAttribute("usernameGoogle");
@@ -144,16 +146,23 @@ public class Login extends HttpServlet {
 					email = (String) req.getSession().getAttribute("emailGoogle"); 
 				}
 				
-				else if(facebook != null && facebook.equals(true)) 
+				else if(facebook != null && facebook.equals(true)) {
 					username = (String) req.getSession().getAttribute("usernameFacebook");
+					email = (String) req.getSession().getAttribute("emailFacebook");
+				}
 				
 				user = db.getUserByEmail(email);
 				if(user == null) {
-					user = new User();
-					user.setUsername(username);
-					user.setEmail(email);
-					db.saveGuestUser(user);
-					user.setId(db.getId(username));
+					
+					user = db.getUserByUsername(username);
+					if(user == null) {
+						
+						user = new User();
+						user.setUsername(username);
+						user.setEmail(email);
+						db.saveGuestUser(user);
+						user.setId(db.getId(username));
+					}
 				}
 				else {
 					user.setUsername(username);

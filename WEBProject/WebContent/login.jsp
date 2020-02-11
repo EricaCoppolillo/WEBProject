@@ -17,7 +17,7 @@
 	
 	
 </head>
-<body onload="googleFoo()">
+<body onload="googleFoo(); onSignIn()">
 
 	<div id="container">
 		<div id="divLogo">
@@ -97,14 +97,17 @@
 			  
 			  <c:if test="${adminNotAuthenticated == null}">
 				  <div id="rightDiv" class="col-sm-6">
-					  <div id="googleButton" class="g-signin2" data-width="300" data-onsuccess="onSignIn"></div>
+					  <div id="googleButton" class="g-signin2" data-width="300" data-onsuccess="onSignIn" onclick="googleLogin()" ></div>
 					  
 					  <div class="divHr row">
 					  <hr class="col-sm-2">oppure<hr class="col-sm-2">
 					  </div>
 					  
-					  <div id="facebookButton" class="fb-login-button" onlogin="checkLoginState()" data-width="300" data-size="large" data-button-type="login_with" data-login_text="Autenticati con Facebook" data-auto-logout-link="false" data-use-continue-as="false"></div>
-			  	  </div>
+					  <div id="facebookButton" class="fb-login-button" scope="public_profile,email" onlogin="checkLoginState()" data-width="300" data-size="large" data-button-type="login_with"  data-login_text="Autenticati con Facebook" data-auto-logout-link="false" data-use-continue-as="false"></div>
+ 			  	  		
+ 			  	  	  <div id="facebookButtonTwo" class="fb-login-button" scope="public_profile,email" data-width="300" data-size="large" data-button-type="login_with"  data-login_text="Autenticazione Effettuata" data-auto-logout-link="false" data-use-continue-as="false"></div>
+ 			  	  	  
+ 				  </div>
 		  	  </c:if>
 		  
 		  <c:if test="${adminNotAuthenticated == null}">

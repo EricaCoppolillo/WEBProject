@@ -1,11 +1,19 @@
+var username;
+var email;
+
 function onSignIn(googleUser) {
 
 	var profile = googleUser.getBasicProfile();
-	var username = profile.getName();
-	var email = profile.getEmail();
+	username = profile.getName();
+	email = profile.getEmail();
 	
 	document.getElementsByTagName("span")[0].textContent="Autenticazione effettuata";
 	document.getElementsByTagName("form")[0].setAttribute("novalidate", "");
+	
+}
+
+function googleLogin() {
+	
 	$.ajax({
 		type: "GET",
 		url: "login",
@@ -18,10 +26,14 @@ function onSignIn(googleUser) {
 function signOut() {
 	
   var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {});
+  auth2.signOut().then(function () {
 
-  document.getElementsByTagName("span")[0].textContent="Autenticati con Google";
-  document.getElementsByTagName("form")[0].removeAttribute("novalidate");
+	  document.getElementsByTagName("span")[0].textContent="Autenticati con Google";
+	  document.getElementsByTagName("form")[0].removeAttribute("novalidate");
+	  $("#facebookButtonTwo").css("display","none");
+
+	  
+  });
 }
 
 function googleFoo() {
@@ -38,7 +50,6 @@ function statusChangeCallback(response) {  // Called with the results from FB.ge
 
 function checkLoginState() {               // Called when a person is finished with the Login Button.
 	document.getElementsByTagName("span")[0].textContent="Autenticati con Google";
-	$('#facebookButton').attr("login_text","Autenticazione effettuato");
 
 	FB.getLoginStatus(function(response) {   // See the onlogin handler
 	statusChangeCallback(response);
@@ -71,14 +82,19 @@ FB.getLoginStatus(function(response) {   // Called after the JS SDK has been ini
 
 
 function testAPI() {           // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
-	FB.api('/me', function(response) {
+	FB.api('/me', {fields: 'name, email'}, function(response) {
 		var username = response.name;
-		
+		var email = response.email;
+
 		document.getElementsByTagName("form")[0].setAttribute("novalidate", "");
+		
+		$('#facebookButton').remove();
+		$("#facebookButtonTwo").css("display","inline");
+
 		$.ajax({
 			type: "GET",
 			url: "login",
-			data: {usernameFacebook: username},
+			data: {usernameFacebook: username, emailFacebook: email},
 			success: function(data) {
 			}
 		});
