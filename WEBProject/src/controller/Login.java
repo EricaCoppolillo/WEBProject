@@ -153,16 +153,12 @@ public class Login extends HttpServlet {
 				
 				user = db.getUserByEmail(email);
 				if(user == null) {
-					
-					user = db.getUserByUsername(username);
-					if(user == null) {
-						
-						user = new User();
-						user.setUsername(username);
-						user.setEmail(email);
-						db.saveGuestUser(user);
-						user.setId(db.getId(username));
-					}
+
+					user = new User();
+					user.setUsername(username);
+					user.setEmail(email);
+					db.saveGuestUser(user);
+					user.setId(db.getId(username));
 				}
 				else {
 					user.setUsername(username);
