@@ -426,6 +426,33 @@ public class ProductDaoJDBC implements ProductDao {
 		}
 		return founded;
 	}
+
+	@Override
+	public ArrayList<Pair> purchaseForCategory(int category) {
+		ArrayList<Pair> array = new ArrayList<Pair>();
+		try {
+			connection = dataSource.getConnection();
+			String query = "Select sum(p1.quantity), p1.product\n" + 
+					"From  product as p2, \"purchaseProducts\" as p1\n" + 
+					"where p2.category = ? and p2.id = p1.product\n" + 
+					"group by p1.product"; //ora mi sono creato questa serie di tuple in cui in pratica ho tutti i prodotti e il numero della quantita dei loro acquisti
+			PreparedStatement statement = connection.prepareStatement(query); //eseguo la query
+			statement.setInt(1, category); //setto questo per effettuare la query
+			ResultSet result = statement.executeQuery(); //ottengo il risultato della query
+			while (result.next()) {
+				array.add(new Pair(result.getInt("product"),result.getInt("sum"))); //qui mi creo tutti gli array con queste merdate di coppie
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+		}
+		return array;
+	}
     
     
     

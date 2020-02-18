@@ -239,4 +239,8 @@ public class DBManager {
 	{
 		return getProductDao().existsProduct(model, manufacturer);
 	}
+	
+	public ArrayList<Pair>purchaseForCategory(int category){
+		return getProductDao().purchaseForCategory(category);
+	}
 }

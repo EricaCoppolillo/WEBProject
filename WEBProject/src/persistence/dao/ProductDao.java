@@ -1,6 +1,7 @@
 package persistence.dao;
 
 import model.Manufacturer;
+import model.Pair;
 import model.Product;
 import model.Review;
 
@@ -17,5 +18,6 @@ public interface ProductDao {
     void updateProduct(Product p);
     void deleteProduct(int id);
     boolean purchasedBy(int userID, int productID);
-    boolean existsProduct(String model, String manufacturer); 
+    boolean existsProduct(String model, String manufacturer);
+    ArrayList<Pair> purchaseForCategory(int category);
 }

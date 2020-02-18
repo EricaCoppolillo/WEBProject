@@ -31,7 +31,9 @@
 			  <div class="carousel-inner">
 			    <div id="carouselPhone" class="carousel-item">
 			      <img class="carousel-img" src="img/phone.jpg" alt="cellulari">
-			      <button id="buttonPhone" class="btn btn-outline-primary">Smartphones Piu' Venduti</button> 
+			      <a href="statistics">
+			      	<button id="buttonPhone" class="btn btn-outline-primary">Smartphones Piu' Venduti</button> 
+			      </a>
 			      <div class="carousel-caption d-none d-md-block">
 				    <h5 class="carouselText">Smartphone</h5>
 				    <p class="carouselText">Il massimo della tecnologia</p>
@@ -40,7 +42,9 @@
 			    </div>
 			    <div id="carouselLaptop" class="carousel-item active">
 			      <img id="carouselImg2" class="carousel-img" src="img/computer.jpg" alt="laptop">
-			      <button id="buttonLaptop" class="btn btn-outline-light">Laptop Piu' Venduti</button> 
+			  	  <a href="statistics">
+			      	<button id="buttonLaptop" class="btn btn-outline-light">Laptop Piu' Venduti</button> 
+			      </a>
 			      <div class="carousel-caption d-none d-md-block">
 				    <h5 class="carouselText">Laptop</h5>
 				    <p class="carouselText">Il massimo della tecnologia</p>
@@ -49,7 +53,9 @@
 			    
 			    <div id="carouselHardware" class="carousel-item">
 			      <img class="carousel-img" src="img/cpu.jpg" alt="cpu">
-		      	  <button id="buttonHardware" class="btn btn-outline-light">Hardware Piu' Venduti</button>
+			      <a href="statistics">
+		      	  	<button id="buttonHardware" class="btn btn-outline-light">Hardware Piu' Venduti</button>
+		      	  </a>
 		      	  <div class="carousel-caption d-none d-md-block">
 				    <h5 class="carouselText">Hardware</h5>
 				    <p class="carouselText">Il massimo della tecnologia</p>
