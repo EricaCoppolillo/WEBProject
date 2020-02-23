@@ -26,7 +26,7 @@
 		  <li>Alfredo Farò</li>
 		</ul>
 	    
-		<div id="preLinks">Fieri e Onorati studenti dei docenti dell'<a href="https://www.mat.unical.it/demacs">Università della Calabria</a></div>
+		<div id="preLinks">Fieri e Onorati studenti dell'<a href="https://www.mat.unical.it/demacs">Università della Calabria</a></div>
 	  </div>
 	</div>
 	
