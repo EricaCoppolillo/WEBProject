@@ -1,7 +1,11 @@
 @charset "utf-8";
 
+
 /* // CAROUSEL */
 
+#carouselBox {
+	width: 100%;
+}
 #carouselBox div {
 	height: 50vh; 
 	z-index: 0;
@@ -54,14 +58,8 @@
 
 /* // CATEGORIE */
 
-.row {
-	position: relative;
-}
-
-
-.col-sm-12 {
-	position: relative;
-	padding-bottom: 10px;
+.divCategory {
+	width: 100%;
 }
 
 .smartphoneCategory, .laptopCategory, .hardwareCategory, .accessoryCategory {
@@ -81,15 +79,25 @@
 	background-color: #ff9f66;
 }
 
+
+#rowHalfCategory {
+	display: flex;
+	flex-direction: row-reverse;
+	margin-top: 20px;
+}
+
 .hardwareCategory {
-	border-radius: 0px 20px 20px 0px;
+	border-radius: 20px 0px 0px 20px;
 	background-color: #d8d8d8;
 	color: darkblue;
+	flex-grow: 1;
 }
 
 .accessoryCategory {
-	border-radius: 20px 0px 0px 20px;
+	border-radius: 0px 20px 20px 0px;
 	background-color: black;
+	flex-grow: 1;
+	margin-right: 20px;
 }
 
 p {
@@ -193,21 +201,3 @@ div.imageAccessory {
 #hardwareLink {
 	color: #014ac5;
 }
-
-
-	
-/* // FINE CATEGORIE */
-
-footer div {
-	/* position: relative;
-	top: 50px;
-	bottom: 0px;
-	background-color: #dbdbdb;
-	color: black;
-	text-align: center; */
-}
-
-
-
-
-

@@ -1,6 +1,5 @@
 @charset "ISO-8859-1";
 
-
 #googleMap {
 	position: relative;
 	width: 100%;
@@ -8,7 +7,7 @@
 }
 
 #route {
-	width: auto;
+	width: 99%;
 	margin-left: 1%;
 }
 

@@ -9,10 +9,6 @@
 <title>Statistiche</title>
 <%@ include file="include.jsp" %>
 <script src="js/chart.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script> -->
 <link rel="stylesheet" href="css/statistics.css">
 <link rel="stylesheet" href="css/chart.css">
 
