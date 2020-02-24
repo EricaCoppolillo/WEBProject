@@ -1,5 +1,6 @@
 @charset "ISO-8859-1";
 
+
 #title{
 	position: relative;
 	height: 30vh;
@@ -7,23 +8,27 @@
 
 #title h1 {
 	position: relative;
-	left: 42%;
+	margin-left: 42%;
 }
 
 #title p {
 	position: relative;
-	left: 39%;
+	margin-left: 39%;
 }
 
 .imgTitle{
 	position: relative;
 	height: 250%;
+	max-width: 100%;
 	float: right;
 	content: url("../img/graficoTitolo.png");
 	top: -10vh;
 }
 
 #bestProduct{
+	width: 60%;
+	/* margin: 0 auto; */
+	margin-left: 20%;
 	text-align: center;
 }
 
@@ -35,14 +40,12 @@
 #divGraph{
 	position:relative;
 	padding-bottom: 10%;
-	text-align: center;
-	padding-left:22%;
-	width: 1000px;
+	width: 450px;
 	height: 450px;
+  	margin: 0 auto;
 }
 
 #titleGraph{
-		text-align: center;
-		margin-top: 30px;
-		
+	text-align: center;
+	margin-top: 30px;
 }

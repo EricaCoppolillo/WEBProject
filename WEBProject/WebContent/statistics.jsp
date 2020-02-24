@@ -10,8 +10,6 @@
 <%@ include file="include.jsp" %>
 <script src="js/chart.js"></script>
 <link rel="stylesheet" href="css/statistics.css">
-<link rel="stylesheet" href="css/chart.css">
-
 
 </head>
 <body>
@@ -19,81 +17,75 @@
 	<div id = "title" class = "jumbotron">
 		<div class="imgTitle"></div>
 		<h1 id="h1Title">Statistiche</h1>
-		<p>Segui l'andamento dei prodotti presenti</p>
+		<p>Segui l'andamento dei prodotti presenti</p> 
+	</div> 
+	
+	
+	<div id="bestProduct" class="card">
+		<c:if test="${p1 != null}">
+			<div class="card-body">
+				<div id = "imageProductContainer"><img src="img/products/${p1.imagePath}" width="200px"></div>
+				<h3>Laptop più venduto</h3>
+				<div>${p1.model}${p1.manufacturer}</div>
+				<div>${p1.price}</div>
+			</div>
+		</c:if>
+		<c:if test="${p1 == null}">
+			<div class="card-body">
+				<div id = "imageProductContainer"><img src="img/package.png" width="200px"></div>
+				<div>Non e' stato ancora acquistato nessun prodotto della categoria Laptop</div>	
+			</div>
+		</c:if>
+		
+		<c:if test="${p2 != null}">
+			<div class="card-body">
+				<div id = "imageProductContainer"><img src="img/products/${p2.imagePath}" width="200px"></div>
+				<h3>Smartphone più venduto</h3>
+				<div>${p2.model}${p2.manufacturer}</div>
+				<div>${p2.price}</div>
+			</div>
+		</c:if>
+		<c:if test="${p2 == null}">
+			<div class="card-body">
+				<div id = "imageProductContainer"><img src="img/package.png" width="200px"></div>
+				<div>Non e' stato ancora acquistato nessun prodotto della categoria Smartphone</div>	
+			</div>
+		</c:if>
+		
+		<c:if test="${p3 != null}">
+			<div class="card-body">
+				<div id = "imageProductContainer"><img src="img/products/${p3.imagePath}" width="200px"></div>
+				<h3>Hardware più venduto</h3>
+				<div>${p3.model}${p3.manufacturer}</div>
+				<div>${p3.price}</div>
+			</div>
+		</c:if>
+		<c:if test="${p3 == null}">
+			<div class="card-body">
+				<div id = "imageProductContainer"><img src="img/package.png" width="200px"></div>
+				<div>Non e' stato ancora acquistato nessun prodotto della categoria Hardware</div>	
+			</div>
+		</c:if>
+		
+		
+		<c:if test="${p4 != null}">
+			<div class="card-body">
+				<div id = "imageProductContainer"><img src="img/products/${p4.imagePath}" width="200px"></div>
+				<h3>Accessorio più venduto</h3>
+				<div>${p4.model}${p4.manufacturer}</div>
+				<div>${p4.price}</div>
+			</div>
+		</c:if>
+		<c:if test="${p4 == null}">
+			<div class="card-body">
+				<div id = "imageProductContainer"><img src="img/package.png" width="200px"></div>
+				<div>Non e' stato ancora acquistato nessun prodotto della categoria Accessori</div>	
+			</div>
+		</c:if>
+	
 	</div>
-	
-	
-	<div class = "row">
-	
-		<div class="col-sm-2"></div>
 		
-		<div id="bestProduct" class="card col-sm-10">
 		
-			<c:if test="${p1 != null}">
-				<div class="card-body">
-					<div id = "imageProductContainer"><img src="img/products/${p1.imagePath}" width="200px"></div>
-					<h3>Smartphone più venduto</h3>
-					<div>${p1.model}${p1.manufacturer}</div>
-					<div>${p1.price}</div>
-				</div>
-			</c:if>
-			<c:if test="${p1 == null}">
-				<div class="card-body">
-					<div id = "imageProductContainer"><img src="img/package.png" width="200px"></div>
-					<div>Non e' stato ancora acquistato nessun prodotto della categoria Smartphone</div>	
-				</div>
-			</c:if>
-			
-			<c:if test="${p2 != null}">
-				<div class="card-body">
-					<div id = "imageProductContainer"><img src="img/products/${p2.imagePath}" width="200px"></div>
-					<h3>Hardware più venduto</h3>
-					<div>${p2.model}${p2.manufacturer}</div>
-					<div>${p2.price}</div>
-				</div>
-			</c:if>
-			<c:if test="${p2 == null}">
-				<div class="card-body">
-					<div id = "imageProductContainer"><img src="img/package.png" width="200px"></div>
-					<div>Non e' stato ancora acquistato nessun prodotto della categoria Laptop</div>	
-				</div>
-			</c:if>
-			
-			<c:if test="${p3 != null}">
-				<div class="card-body">
-					<div id = "imageProductContainer"><img src="img/products/${p3.imagePath}" width="200px"></div>
-					<h3>Hardware più venduto</h3>
-					<div>${p3.model}${p3.manufacturer}</div>
-					<div>${p3.price}</div>
-				</div>
-			</c:if>
-			<c:if test="${p3 == null}">
-				<div class="card-body">
-					<div id = "imageProductContainer"><img src="img/package.png" width="200px"></div>
-					<div>Non e' stato ancora acquistato nessun prodotto della categoria Hardware</div>	
-				</div>
-			</c:if>
-			
-			
-			<c:if test="${p4 != null}">
-				<div class="card-body">
-					<div id = "imageProductContainer"><img src="img/products/${p4.imagePath}" width="200px"></div>
-					<h3>Hardware più venduto</h3>
-					<div>${p4.model}${p4.manufacturer}</div>
-					<div>${p4.price}</div>
-				</div>
-			</c:if>
-			<c:if test="${p4 == null}">
-				<div class="card-body">
-					<div id = "imageProductContainer"><img src="img/package.png" width="200px"></div>
-					<div>Non e' stato ancora acquistato nessun prodotto della categoria Accessori</div>	
-				</div>
-			</c:if>
-		
-		</div>
-			
-		
-	</div>
 	
 	<div id="titleGraph"><h1>Acquisti per categoria</h1></div>
 	<div id="divGraph" class = "row">
@@ -138,8 +130,8 @@
 		    }
 		});
 		</script>
-	</div>
-	<br><br><br><br><br><br><br><br><br>
+	</div> 
+	<br><br><br><br><br>
 	<div id="titleGraph"><h1>Capitale incassato per categoria</h1></div>
 	<div id="divGraph" class = "row">
 		
@@ -184,7 +176,7 @@
 		});
 		</script>
 	</div>
-	<br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br>
 	
 	<%@ include file="footer.jsp" %>
 
