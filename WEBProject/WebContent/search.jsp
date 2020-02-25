@@ -18,8 +18,7 @@
 <body>
 	<%@ include file="menuBar.jsp" %>
 	<p id="categoryId" style="display: none;">${category.id}</p>
-		<div id="carouselBoxSearch" class="row">
-			<div class="col">
+		<div id="carouselBoxSearch" >
 				<div id="demo" class="carousel slide" data-ride="carousel">
 		  			<!-- Indicators -->
 					<ul class="carousel-indicators">
@@ -34,7 +33,6 @@
 						<div id="carousel3" class="carousel-item"><img class="carousel-img" id="img3" src="img/carousel/${fn:toLowerCase(category.name)}/3.jpg"></div>
 					</div>
 				</div>
-			</div>
 
  			 <!-- Left and right controls -->
 			 <a class="carousel-control-prev" href="#demo" data-slide="prev"><span class="carousel-control-prev-icon"></span></a>
